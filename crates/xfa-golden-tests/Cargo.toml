@@ -6,3 +6,6 @@ license.workspace = true
 repository.workspace = true
 
 [dependencies]
+pdfium-ffi-bridge.workspace = true
+image.workspace = true
+thiserror.workspace = true
