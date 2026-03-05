@@ -4,3 +4,6 @@
 .DS_Store
 *.pdf
 !/tests/fixtures/*.pdf
+/golden/actuals/
+/golden/diffs/
+/reports/

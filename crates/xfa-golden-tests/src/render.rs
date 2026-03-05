@@ -156,6 +156,10 @@ mod tests {
         // Check that the field area has non-white pixels (blue border)
         let img = &images[0];
         let pixel = img.as_rgba8().unwrap().get_pixel(10, 10);
-        assert_ne!(*pixel, Rgba([255, 255, 255, 255]), "Border should not be white");
+        assert_ne!(
+            *pixel,
+            Rgba([255, 255, 255, 255]),
+            "Border should not be white"
+        );
     }
 }

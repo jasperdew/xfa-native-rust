@@ -50,8 +50,7 @@ fn build_xfa_pdf(xfa_xml: &str) -> Vec<u8> {
         "Pages" => pages_id,
         "AcroForm" => acroform_id,
     };
-    doc.objects
-        .insert(catalog_id, Object::Dictionary(catalog));
+    doc.objects.insert(catalog_id, Object::Dictionary(catalog));
     doc.trailer.set("Root", catalog_id);
 
     let mut buf = Vec::new();
@@ -365,7 +364,11 @@ fn multipage_form_renders_all_pages() {
 
     let config = RenderConfig::default();
     let images = pipeline::render_form_tree(&mut tree, root, &config).unwrap();
-    assert!(images.len() > 1, "expected multiple pages, got {}", images.len());
+    assert!(
+        images.len() > 1,
+        "expected multiple pages, got {}",
+        images.len()
+    );
 }
 
 #[test]
@@ -403,8 +406,7 @@ fn pdf_without_xfa_is_detected() {
         "Kids" => vec![page_id.into()],
         "Count" => 1,
     };
-    doc.objects
-        .insert(pages_id, Object::Dictionary(pages));
+    doc.objects.insert(pages_id, Object::Dictionary(pages));
     let page = dictionary! {
         "Type" => "Page",
         "Parent" => pages_id,
@@ -416,8 +418,7 @@ fn pdf_without_xfa_is_detected() {
         "Type" => "Catalog",
         "Pages" => pages_id,
     };
-    doc.objects
-        .insert(catalog_id, Object::Dictionary(catalog));
+    doc.objects.insert(catalog_id, Object::Dictionary(catalog));
     doc.trailer.set("Root", catalog_id);
 
     let mut buf = Vec::new();

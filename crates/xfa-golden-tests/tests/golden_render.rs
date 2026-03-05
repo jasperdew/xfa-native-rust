@@ -41,10 +41,7 @@ fn assert_golden(name: &str, tree: &FormTree, root: FormNodeId) {
         } else {
             // First run: save golden image
             img.save(&golden_path).unwrap();
-            eprintln!(
-                "Created golden image: {}",
-                golden_path.display()
-            );
+            eprintln!("Created golden image: {}", golden_path.display());
         }
     }
 }
@@ -291,7 +288,11 @@ fn golden_multipage_overflow() {
     let images = render_layout(&layout);
 
     // Should produce multiple pages
-    assert!(images.len() > 1, "Expected multiple pages, got {}", images.len());
+    assert!(
+        images.len() > 1,
+        "Expected multiple pages, got {}",
+        images.len()
+    );
 
     // Compare each page against golden
     for (i, img) in images.iter().enumerate() {

@@ -5,13 +5,13 @@
 //! so `render_layout_dom` provides the rendering step for pre-built LayoutDoms.
 
 use crate::error::{PdfError, Result};
-use crate::native_renderer::{RenderConfig, render_layout};
+use crate::native_renderer::{render_layout, RenderConfig};
 use crate::pdf_reader::PdfReader;
 use crate::xfa_extract::XfaPackets;
 use image::DynamicImage;
 use std::path::Path;
-use xfa_layout_engine::layout::{LayoutDom, LayoutEngine};
 use xfa_layout_engine::form::{FormNodeId, FormTree};
+use xfa_layout_engine::layout::{LayoutDom, LayoutEngine};
 use xfa_layout_engine::scripting;
 
 /// Render a pre-built `LayoutDom` to page images.
@@ -87,7 +87,9 @@ mod tests {
         let mut tree = FormTree::new();
         let field = tree.add_node(FormNode {
             name: "Name".to_string(),
-            node_type: FormNodeType::Field { value: "John".to_string() },
+            node_type: FormNodeType::Field {
+                value: "John".to_string(),
+            },
             box_model: BoxModel {
                 width: Some(200.0),
                 height: Some(25.0),
@@ -148,7 +150,9 @@ mod tests {
         let mut tree = FormTree::new();
         let field = tree.add_node(FormNode {
             name: "Total".to_string(),
-            node_type: FormNodeType::Field { value: String::new() },
+            node_type: FormNodeType::Field {
+                value: String::new(),
+            },
             box_model: BoxModel {
                 width: Some(100.0),
                 height: Some(25.0),
