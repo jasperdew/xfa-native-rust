@@ -1640,6 +1640,7 @@ checksum = "35fb2e5f958ec131621fdd531e9fc186ed768cbe395337403ae56c17a74c68ec"
 name = "pdfium-ffi-bridge"
 version = "0.1.0"
 dependencies = [
+ "flate2",
  "image",
  "lopdf",
  "pdfium-render",
