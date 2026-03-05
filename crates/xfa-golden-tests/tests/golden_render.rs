@@ -68,6 +68,8 @@ fn make_field(tree: &mut FormTree, name: &str, w: f64, h: f64) -> FormNodeId {
         font: FontMetrics::default(),
         calculate: None,
         validate: None,
+        column_widths: vec![],
+        col_span: 1,
     })
 }
 
@@ -90,6 +92,8 @@ fn make_draw(tree: &mut FormTree, name: &str, content: &str, w: f64, h: f64) -> 
         font: FontMetrics::default(),
         calculate: None,
         validate: None,
+        column_widths: vec![],
+        col_span: 1,
     })
 }
 
@@ -117,6 +121,8 @@ fn make_subform(
         font: FontMetrics::default(),
         calculate: None,
         validate: None,
+        column_widths: vec![],
+        col_span: 1,
     })
 }
 
@@ -145,6 +151,8 @@ fn golden_simple_positioned() {
         font: FontMetrics::default(),
         calculate: None,
         validate: None,
+        column_widths: vec![],
+        col_span: 1,
     });
     let f2 = tree.add_node(FormNode {
         name: "Email".to_string(),
@@ -166,6 +174,8 @@ fn golden_simple_positioned() {
         font: FontMetrics::default(),
         calculate: None,
         validate: None,
+        column_widths: vec![],
+        col_span: 1,
     });
     let root = tree.add_node(FormNode {
         name: "Root".to_string(),
@@ -183,6 +193,8 @@ fn golden_simple_positioned() {
         font: FontMetrics::default(),
         calculate: None,
         validate: None,
+        column_widths: vec![],
+        col_span: 1,
     });
 
     assert_golden("simple_positioned", &tree, root);
