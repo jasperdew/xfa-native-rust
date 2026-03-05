@@ -8,6 +8,7 @@ members = [
     "crates/xfa-cli",
     "crates/xfa-json",
     "crates/xfa-api-server",
+    "crates/xfa-wasm",
 ]
 resolver = "2"
 
