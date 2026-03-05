@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XFA Sandbox — Interactive Demo</title>
+<style>
+  :root { --bg: #0f172a; --surface: #1e293b; --border: #334155; --text: #e2e8f0; --accent: #3b82f6; --success: #22c55e; --error: #ef4444; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+  h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .subtitle { color: #94a3b8; margin-bottom: 2rem; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; }
+  .card h2 { font-size: 1.1rem; margin-bottom: 1rem; }
+  .drop-zone { border: 2px dashed var(--border); border-radius: 0.5rem; padding: 3rem 1.5rem; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+  .drop-zone:hover, .drop-zone.active { border-color: var(--accent); background: rgba(59,130,246,0.05); }
+  .drop-zone p { color: #94a3b8; }
+  .drop-zone .icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+  .file-info { margin-top: 1rem; padding: 0.75rem; background: rgba(59,130,246,0.1); border-radius: 0.375rem; font-size: 0.875rem; display: none; }
+  .file-info.show { display: block; }
+  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem; border: none; border-radius: 0.375rem; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: #2563eb; }
+  .btn-primary:disabled { background: #475569; cursor: not-allowed; }
+  .btn-success { background: var(--success); color: white; }
+  .btn-success:hover { background: #16a34a; }
+  .actions { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+  .output { background: #0f172a; border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.8125rem; line-height: 1.5; overflow: auto; max-height: 500px; white-space: pre-wrap; word-break: break-word; min-height: 120px; color: #a5f3fc; }
+  .status { font-size: 0.8125rem; margin-top: 0.75rem; padding: 0.5rem 0.75rem; border-radius: 0.375rem; display: none; }
+  .status.show { display: block; }
+  .status.ok { background: rgba(34,197,94,0.15); color: var(--success); }
+  .status.err { background: rgba(239,68,68,0.15); color: var(--error); }
+  .status.info { background: rgba(59,130,246,0.15); color: var(--accent); }
+  .spinner { display: inline-block; width: 1rem; height: 1rem; border: 2px solid rgba(255,255,255,0.3); border-top: 2px solid white; border-radius: 50%; animation: spin 0.6s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .tab-bar { display: flex; gap: 0.25rem; margin-bottom: 1rem; }
+  .tab { padding: 0.5rem 1rem; border: 1px solid var(--border); border-bottom: none; border-radius: 0.375rem 0.375rem 0 0; background: transparent; color: #94a3b8; cursor: pointer; font-size: 0.8125rem; }
+  .tab.active { background: var(--surface); color: var(--text); border-color: var(--accent); }
+  .privacy { text-align: center; margin-top: 2rem; font-size: 0.75rem; color: #64748b; }
+  .limit-note { font-size: 0.75rem; color: #94a3b8; margin-top: 0.5rem; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>XFA Sandbox</h1>
+  <p class="subtitle">Upload an XFA PDF to extract fields, validate structure, or download a flattened version.</p>
+  <div class="grid">
+    <div class="card">
+      <h2>Upload PDF</h2>
+      <div class="drop-zone" id="dropZone">
+        <span class="icon">&#128196;</span>
+        <p>Drop an XFA PDF here or click to browse</p>
+        <p class="limit-note">Max 10 MB</p>
+      </div>
+      <input type="file" id="fileInput" accept=".pdf" hidden>
+      <div class="file-info" id="fileInfo"></div>
+      <div class="actions">
+        <button class="btn btn-primary" id="btnExtract" disabled>Extract Fields</button>
+        <button class="btn btn-primary" id="btnValidate" disabled>Validate</button>
+        <button class="btn btn-primary" id="btnFlatten" disabled>Flatten PDF</button>
+      </div>
+      <div class="status" id="status"></div>
+    </div>
+    <div class="card">
+      <div class="tab-bar">
+        <button class="tab active" data-tab="json">JSON Output</button>
+        <button class="tab" data-tab="schema">Schema</button>
+        <button class="tab" data-tab="validate">Validation</button>
+      </div>
+      <div class="output" id="output">Upload a PDF to get started.</div>
+      <div class="actions" id="downloadActions" style="display:none">
+        <button class="btn btn-success" id="btnDownload">Download Result</button>
+      </div>
+    </div>
+  </div>
+  <p class="privacy">Your files are processed in-memory and never stored on disk. Privacy by design.</p>
+</div>
+<script>
+const MAX_SIZE = 10 * 1024 * 1024;
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const fileInfo = document.getElementById('fileInfo');
+const output = document.getElementById('output');
+const status = document.getElementById('status');
+const btnExtract = document.getElementById('btnExtract');
+const btnValidate = document.getElementById('btnValidate');
+const btnFlatten = document.getElementById('btnFlatten');
+const btnDownload = document.getElementById('btnDownload');
+const downloadActions = document.getElementById('downloadActions');
+let selectedFile = null;
+let lastBlob = null;
+let lastFormId = null;
+
+dropZone.addEventListener('click', () => fileInput.click());
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('active'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('active'));
+dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('active'); handleFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+
+function handleFile(file) {
+  if (!file) return;
+  if (file.size > MAX_SIZE) { showStatus('File exceeds 10 MB limit.', 'err'); return; }
+  if (!file.name.toLowerCase().endsWith('.pdf')) { showStatus('Please upload a PDF file.', 'err'); return; }
+  selectedFile = file;
+  fileInfo.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+  fileInfo.classList.add('show');
+  btnExtract.disabled = false;
+  btnValidate.disabled = false;
+  btnFlatten.disabled = false;
+  showStatus('', '');
+  output.textContent = 'Ready. Click an action button.';
+  downloadActions.style.display = 'none';
+}
+
+function showStatus(msg, type) {
+  status.textContent = msg;
+  status.className = 'status' + (msg ? ' show ' + type : '');
+}
+
+async function apiCall(url, formData, isBlob) {
+  try {
+    const res = await fetch(url, { method: 'POST', body: formData });
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`${res.status}: ${text}`);
+    }
+    return isBlob ? await res.blob() : await res.json();
+  } catch (e) {
+    throw e;
+  }
+}
+
+btnExtract.addEventListener('click', async () => {
+  if (!selectedFile) return;
+  showStatus('Extracting fields...', 'info');
+  output.textContent = '';
+  try {
+    const fd = new FormData();
+    fd.append('file', selectedFile);
+    const data = await apiCall('/api/v1/forms/extract', fd);
+    lastFormId = data.form_id;
+    output.textContent = JSON.stringify(data.fields, null, 2);
+    showStatus(`Extracted ${data.field_count} fields.`, 'ok');
+    document.querySelector('[data-tab="json"]').click();
+    downloadActions.style.display = 'none';
+  } catch (e) {
+    output.textContent = e.message;
+    showStatus('Extraction failed.', 'err');
+  }
+});
+
+btnValidate.addEventListener('click', async () => {
+  if (!selectedFile) return;
+  showStatus('Validating...', 'info');
+  output.textContent = '';
+  try {
+    const fd = new FormData();
+    fd.append('file', selectedFile);
+    const data = await apiCall('/api/v1/forms/validate', fd);
+    output.textContent = JSON.stringify(data, null, 2);
+    showStatus(data.valid ? 'Valid XFA form.' : 'Validation issues found.', data.valid ? 'ok' : 'err');
+    document.querySelector('[data-tab="validate"]').click();
+    downloadActions.style.display = 'none';
+  } catch (e) {
+    output.textContent = e.message;
+    showStatus('Validation failed.', 'err');
+  }
+});
+
+btnFlatten.addEventListener('click', async () => {
+  if (!selectedFile) return;
+  showStatus('Flattening PDF... (not yet implemented)', 'info');
+  output.textContent = 'The flatten endpoint is not yet available.\nUse Extract or Validate instead.';
+});
+
+btnDownload.addEventListener('click', () => {
+  if (!lastBlob) return;
+  const url = URL.createObjectURL(lastBlob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'flattened.pdf';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>

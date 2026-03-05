@@ -7,12 +7,25 @@ mod error;
 mod routes;
 mod state;
 
+use axum::http::header;
+use axum::response::{Html, IntoResponse};
 use axum::routing::{get, post};
 use axum::Router;
 use state::AppState;
 use std::net::SocketAddr;
 use tower_http::cors::{Any, CorsLayer};
 use tower_http::trace::TraceLayer;
+
+/// Embedded sandbox HTML (compiled into the binary).
+const SANDBOX_HTML: &str = include_str!("../static/index.html");
+
+/// Serve the sandbox demo page.
+async fn sandbox() -> impl IntoResponse {
+    (
+        [(header::CACHE_CONTROL, "public, max-age=3600")],
+        Html(SANDBOX_HTML),
+    )
+}
 
 /// Build the API router with all endpoints.
 pub fn build_router() -> Router {
@@ -24,6 +37,9 @@ pub fn build_router() -> Router {
         .allow_headers(Any);
 
     Router::new()
+        // Sandbox demo page
+        .route("/", get(sandbox))
+        .route("/sandbox", get(sandbox))
         // Health check
         .route("/health", get(routes::health))
         // Form processing endpoints
@@ -126,6 +142,44 @@ mod tests {
             .unwrap();
 
         assert_eq!(response.status(), StatusCode::NOT_FOUND);
+    }
+
+    #[tokio::test]
+    async fn sandbox_returns_html() {
+        let app = build_router();
+        let response = app
+            .oneshot(
+                Request::builder()
+                    .uri("/")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+
+        assert_eq!(response.status(), StatusCode::OK);
+        let body = axum::body::to_bytes(response.into_body(), 1_000_000)
+            .await
+            .unwrap();
+        let html = String::from_utf8(body.to_vec()).unwrap();
+        assert!(html.contains("XFA Sandbox"));
+        assert!(html.contains("dropZone"));
+    }
+
+    #[tokio::test]
+    async fn sandbox_alias_works() {
+        let app = build_router();
+        let response = app
+            .oneshot(
+                Request::builder()
+                    .uri("/sandbox")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+
+        assert_eq!(response.status(), StatusCode::OK);
     }
 
     #[tokio::test]
