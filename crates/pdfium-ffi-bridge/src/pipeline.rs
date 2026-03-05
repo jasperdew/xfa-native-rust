@@ -1,17 +1,18 @@
-//! End-to-end rendering pipeline — PDF to pixel output (pure Rust).
+//! End-to-end processing pipeline — PDF to JSON and pixel output (pure Rust).
 //!
-//! Connects the full chain: PDF → XFA extraction → layout → rendering.
-//! The template-to-FormTree parser is not yet implemented (Epic 1/3 gap),
-//! so `render_layout_dom` provides the rendering step for pre-built LayoutDoms.
+//! Connects the full chain: PDF → XFA extraction → template parse →
+//! data merge → scripting → JSON / layout → rendering.
 
+use crate::data_merge;
 use crate::error::{PdfError, Result};
-use crate::native_renderer::{RenderConfig, render_layout};
+use crate::native_renderer::{render_layout, RenderConfig};
 use crate::pdf_reader::PdfReader;
+use crate::template_parser;
 use crate::xfa_extract::XfaPackets;
 use image::DynamicImage;
 use std::path::Path;
-use xfa_layout_engine::layout::{LayoutDom, LayoutEngine};
 use xfa_layout_engine::form::{FormNodeId, FormTree};
+use xfa_layout_engine::layout::{LayoutDom, LayoutEngine};
 use xfa_layout_engine::scripting;
 
 /// Render a pre-built `LayoutDom` to page images.
@@ -56,6 +57,54 @@ pub fn extract_xfa_from_bytes(bytes: &[u8]) -> Result<XfaPackets> {
     reader.extract_xfa()
 }
 
+/// Extract XFA from PDF bytes and convert to JSON.
+///
+/// Full pipeline: PDF → XFA extraction → template parse → data merge →
+/// FormCalc scripting → JSON output with typed field values and metadata.
+///
+/// Returns a JSON object with:
+/// - `fields`: field values keyed by SOM-style dotted path
+/// - `schema`: field metadata (type, required, scripts, etc.)
+pub fn pdf_to_json(bytes: &[u8]) -> Result<serde_json::Value> {
+    // Step 1: Extract XFA packets from PDF
+    let packets = extract_xfa_from_bytes(bytes)?;
+
+    let template_xml = packets.template().ok_or_else(|| {
+        PdfError::XfaPacketNotFound("no template packet — this PDF may not contain XFA".to_string())
+    })?;
+
+    // Step 2: Parse template XML into FormTree
+    let (mut tree, root) = template_parser::parse_template(template_xml)?;
+
+    // Step 3: Merge datasets (if present) into FormTree
+    if let Some(datasets_xml) = packets.datasets() {
+        data_merge::merge_data(&mut tree, root, datasets_xml)?;
+    }
+
+    // Step 4: Run FormCalc calculate scripts
+    let _ = scripting::run_calculations(&mut tree)
+        .map_err(|e| PdfError::RenderError(format!("scripting: {e}")))?;
+
+    // Step 5: Export to JSON
+    let data = xfa_json::form_tree_to_json(&tree, root);
+    let schema = xfa_json::export_schema(&tree, root);
+
+    let result = serde_json::json!({
+        "fields": serde_json::to_value(&data.fields).unwrap_or_default(),
+        "schema": serde_json::to_value(&schema.fields).unwrap_or_default(),
+    });
+
+    Ok(result)
+}
+
+/// Extract XFA from a PDF file and convert to JSON.
+///
+/// File-based convenience wrapper around [`pdf_to_json`].
+pub fn pdf_file_to_json(path: &Path) -> Result<serde_json::Value> {
+    let bytes = std::fs::read(path)?;
+    pdf_to_json(&bytes)
+}
+
 /// Save rendered page images to PNG files.
 ///
 /// Files are written to `{dir}/{prefix}_page_{n}.png`.
@@ -87,7 +136,9 @@ mod tests {
         let mut tree = FormTree::new();
         let field = tree.add_node(FormNode {
             name: "Name".to_string(),
-            node_type: FormNodeType::Field { value: "John".to_string() },
+            node_type: FormNodeType::Field {
+                value: "John".to_string(),
+            },
             box_model: BoxModel {
                 width: Some(200.0),
                 height: Some(25.0),
@@ -148,7 +199,9 @@ mod tests {
         let mut tree = FormTree::new();
         let field = tree.add_node(FormNode {
             name: "Total".to_string(),
-            node_type: FormNodeType::Field { value: String::new() },
+            node_type: FormNodeType::Field {
+                value: String::new(),
+            },
             box_model: BoxModel {
                 width: Some(100.0),
                 height: Some(25.0),

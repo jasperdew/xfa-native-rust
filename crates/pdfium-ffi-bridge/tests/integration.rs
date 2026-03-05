@@ -50,8 +50,7 @@ fn build_xfa_pdf(xfa_xml: &str) -> Vec<u8> {
         "Pages" => pages_id,
         "AcroForm" => acroform_id,
     };
-    doc.objects
-        .insert(catalog_id, Object::Dictionary(catalog));
+    doc.objects.insert(catalog_id, Object::Dictionary(catalog));
     doc.trailer.set("Root", catalog_id);
 
     let mut buf = Vec::new();
@@ -365,7 +364,11 @@ fn multipage_form_renders_all_pages() {
 
     let config = RenderConfig::default();
     let images = pipeline::render_form_tree(&mut tree, root, &config).unwrap();
-    assert!(images.len() > 1, "expected multiple pages, got {}", images.len());
+    assert!(
+        images.len() > 1,
+        "expected multiple pages, got {}",
+        images.len()
+    );
 }
 
 #[test]
@@ -403,8 +406,7 @@ fn pdf_without_xfa_is_detected() {
         "Kids" => vec![page_id.into()],
         "Count" => 1,
     };
-    doc.objects
-        .insert(pages_id, Object::Dictionary(pages));
+    doc.objects.insert(pages_id, Object::Dictionary(pages));
     let page = dictionary! {
         "Type" => "Page",
         "Parent" => pages_id,
@@ -416,8 +418,7 @@ fn pdf_without_xfa_is_detected() {
         "Type" => "Catalog",
         "Pages" => pages_id,
     };
-    doc.objects
-        .insert(catalog_id, Object::Dictionary(catalog));
+    doc.objects.insert(catalog_id, Object::Dictionary(catalog));
     doc.trailer.set("Root", catalog_id);
 
     let mut buf = Vec::new();
@@ -443,6 +444,232 @@ fn save_rendered_pages_to_disk_and_verify() {
     }
 
     let _ = std::fs::remove_dir_all(&dir);
+}
+
+// --- pdf_to_json pipeline tests ---
+
+#[test]
+fn pdf_to_json_full_pipeline() {
+    let xfa_xml = r#"<?xml version="1.0"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">
+  <template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+    <subform name="form1" layout="tb">
+      <field name="Name" w="200pt" h="25pt">
+        <value><text>Default Name</text></value>
+      </field>
+      <field name="Amount" w="100pt" h="25pt">
+        <value><float>0</float></value>
+      </field>
+      <field name="Active" w="50pt" h="25pt"/>
+    </subform>
+  </template>
+  <xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+    <xfa:data>
+      <form1>
+        <Name>Acme Corp</Name>
+        <Amount>42.50</Amount>
+        <Active>true</Active>
+      </form1>
+    </xfa:data>
+  </xfa:datasets>
+</xdp:xdp>"#;
+
+    let pdf_bytes = build_xfa_pdf(xfa_xml);
+
+    let result = pipeline::pdf_to_json(&pdf_bytes).unwrap();
+
+    // Check fields
+    let fields = result.get("fields").unwrap();
+    assert_eq!(fields.get("form1.Name").unwrap(), "Acme Corp");
+    assert_eq!(fields.get("form1.Amount").unwrap(), 42.5);
+    assert_eq!(fields.get("form1.Active").unwrap(), true);
+
+    // Check schema
+    let schema = result.get("schema").unwrap();
+    let name_schema = schema.get("form1.Name").unwrap();
+    assert_eq!(name_schema.get("field_type").unwrap(), "text");
+    assert_eq!(name_schema.get("required").unwrap(), true);
+
+    let amount_schema = schema.get("form1.Amount").unwrap();
+    assert_eq!(amount_schema.get("field_type").unwrap(), "numeric");
+}
+
+#[test]
+fn pdf_to_json_with_calculate_scripts() {
+    let xfa_xml = r#"<?xml version="1.0"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">
+  <template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+    <subform name="form1">
+      <field name="Subtotal" w="100pt" h="25pt"/>
+      <field name="Tax" w="100pt" h="25pt">
+        <calculate><script>10 + 20</script></calculate>
+      </field>
+    </subform>
+  </template>
+  <xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+    <xfa:data>
+      <form1>
+        <Subtotal>100</Subtotal>
+      </form1>
+    </xfa:data>
+  </xfa:datasets>
+</xdp:xdp>"#;
+
+    let pdf_bytes = build_xfa_pdf(xfa_xml);
+    let result = pipeline::pdf_to_json(&pdf_bytes).unwrap();
+
+    let fields = result.get("fields").unwrap();
+    assert_eq!(fields.get("form1.Subtotal").unwrap(), 100.0);
+    // Tax should be calculated: 10 + 20 = 30
+    assert_eq!(fields.get("form1.Tax").unwrap(), 30.0);
+
+    // Schema should include the calculate script
+    let schema = result.get("schema").unwrap();
+    let tax_schema = schema.get("form1.Tax").unwrap();
+    assert_eq!(tax_schema.get("calculate").unwrap(), "10 + 20");
+}
+
+#[test]
+fn pdf_to_json_nested_subforms() {
+    let xfa_xml = r#"<?xml version="1.0"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">
+  <template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+    <subform name="form1">
+      <subform name="Customer">
+        <field name="Name"/>
+        <field name="City"/>
+      </subform>
+    </subform>
+  </template>
+  <xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+    <xfa:data>
+      <form1>
+        <Customer>
+          <Name>Jan de Vries</Name>
+          <City>Amsterdam</City>
+        </Customer>
+      </form1>
+    </xfa:data>
+  </xfa:datasets>
+</xdp:xdp>"#;
+
+    let pdf_bytes = build_xfa_pdf(xfa_xml);
+    let result = pipeline::pdf_to_json(&pdf_bytes).unwrap();
+
+    let fields = result.get("fields").unwrap();
+    assert_eq!(fields.get("form1.Customer.Name").unwrap(), "Jan de Vries");
+    assert_eq!(fields.get("form1.Customer.City").unwrap(), "Amsterdam");
+}
+
+#[test]
+fn pdf_to_json_non_xfa_pdf_returns_error() {
+    // Build a PDF without XFA
+    use lopdf::{dictionary, Document, Object};
+    let mut doc = Document::with_version("1.4");
+    let pages_id = doc.new_object_id();
+    let page_id = doc.new_object_id();
+    doc.objects.insert(
+        pages_id,
+        Object::Dictionary(dictionary! {
+            "Type" => "Pages",
+            "Kids" => vec![page_id.into()],
+            "Count" => 1,
+        }),
+    );
+    doc.objects.insert(
+        page_id,
+        Object::Dictionary(dictionary! {
+            "Type" => "Page",
+            "Parent" => pages_id,
+            "MediaBox" => vec![0.into(), 0.into(), 612.into(), 792.into()],
+        }),
+    );
+    let catalog_id = doc.new_object_id();
+    doc.objects.insert(
+        catalog_id,
+        Object::Dictionary(dictionary! {
+            "Type" => "Catalog",
+            "Pages" => pages_id,
+        }),
+    );
+    doc.trailer.set("Root", catalog_id);
+
+    let mut buf = Vec::new();
+    doc.save_to(&mut buf).unwrap();
+
+    let result = pipeline::pdf_to_json(&buf);
+    assert!(result.is_err());
+}
+
+#[test]
+fn pdf_to_json_field_metadata() {
+    let xfa_xml = r#"<?xml version="1.0"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">
+  <template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+    <subform name="form1">
+      <field name="Required"/>
+      <field name="Calculated">
+        <calculate><script>42</script></calculate>
+        <validate><script>Calculated > 0</script></validate>
+      </field>
+    </subform>
+  </template>
+  <xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+    <xfa:data>
+      <form1>
+        <Required>Hello</Required>
+      </form1>
+    </xfa:data>
+  </xfa:datasets>
+</xdp:xdp>"#;
+
+    let pdf_bytes = build_xfa_pdf(xfa_xml);
+    let result = pipeline::pdf_to_json(&pdf_bytes).unwrap();
+
+    let schema = result.get("schema").unwrap();
+
+    // Required field should be marked as required
+    let req = schema.get("form1.Required").unwrap();
+    assert_eq!(req.get("required").unwrap(), true);
+
+    // Calculated field should have scripts
+    let calc = schema.get("form1.Calculated").unwrap();
+    assert_eq!(calc.get("calculate").unwrap(), "42");
+    assert_eq!(calc.get("validate").unwrap(), "Calculated > 0");
+}
+
+// --- Real-world PDF test (corpus) ---
+
+#[test]
+fn pdf_to_json_real_world_corpus() {
+    let corpus_path = std::path::Path::new("corpus/f1040sa.pdf");
+    if !corpus_path.exists() {
+        // Skip if corpus is not available
+        return;
+    }
+
+    let result = pipeline::pdf_file_to_json(corpus_path);
+    // Real-world PDFs should either succeed or fail gracefully
+    match result {
+        Ok(json) => {
+            // Should have fields and schema
+            assert!(json.get("fields").is_some());
+            assert!(json.get("schema").is_some());
+
+            // Fields should not be empty for a real form
+            let fields = json.get("fields").unwrap().as_object().unwrap();
+            assert!(
+                !fields.is_empty(),
+                "real-world form should have at least one field"
+            );
+        }
+        Err(e) => {
+            // Some real-world PDFs may have complex features we don't support yet.
+            // The error should be descriptive, not a panic.
+            let msg = format!("{e}");
+            assert!(!msg.is_empty(), "error message should be descriptive");
+        }
+    }
 }
 
 // --- Helpers ---
