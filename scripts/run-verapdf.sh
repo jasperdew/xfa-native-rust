@@ -152,7 +152,9 @@ if [[ ! -d "$INPUT_DIR" ]]; then
     exit 1
 fi
 
+shopt -s nullglob
 pdf_files=("$INPUT_DIR"/*.pdf)
+shopt -u nullglob
 if [[ ${#pdf_files[@]} -eq 0 ]]; then
     echo "No PDF files found in '$INPUT_DIR'."
     exit 0

@@ -61,7 +61,7 @@ jobs:
               f.write('## veraPDF Conformance Report\n\n')
               f.write('| Metric | Value |\n')
               f.write('|--------|-------|\n')
-              f.write(f'| Profile | {data[\"profile\"]} |\n')
+              f.write(f'| Flavour | {data[\"flavour\"]} |\n')
               f.write(f'| Total PDFs | {data[\"total\"]} |\n')
               f.write(f'| Passed | {data[\"passed\"]} |\n')
               f.write(f'| Failed | {data[\"failed\"]} |\n')
