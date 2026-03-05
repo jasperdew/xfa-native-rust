@@ -9,3 +9,6 @@ repository.workspace = true
 xfa-dom-resolver.workspace = true
 formcalc-interpreter.workspace = true
 thiserror.workspace = true
+ab_glyph = "0.2"
+ttf-parser = "0.25"
+subsetter = "0.2"

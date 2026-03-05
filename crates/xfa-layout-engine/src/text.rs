@@ -1,22 +1,37 @@
 //! Text placement — font metrics, text wrapping, and dimension calculation.
 //!
-//! Provides basic text measurement for layout purposes. In the absence of
-//! a full font renderer, uses configurable average character widths based
-//! on font size. This module will be extended with PDFium-based font metrics
-//! in a later epic.
+//! Provides text measurement for layout purposes. When a loaded font is
+//! available, uses real glyph metrics including kerning. Falls back to
+//! configurable average character widths when no font data is present.
 
+use crate::font::LoadedFont;
 use crate::types::Size;
 
 /// Font properties for text measurement.
+///
+/// Supports two measurement modes:
+/// - **Estimated** (default): uses `avg_char_width` as a fraction of font size.
+/// - **Real metrics**: uses a [`LoadedFont`] for per-glyph measurement with kerning.
 #[derive(Debug, Clone)]
 pub struct FontMetrics {
     /// Font size in points.
     pub size: f64,
     /// Line height as a multiplier of font size (typically 1.2).
+    /// Used only when no loaded font is available.
     pub line_height: f64,
     /// Average character width as a fraction of font size.
     /// For proportional fonts ~0.5, for monospace ~0.6.
+    /// Used only when no loaded font is available.
     pub avg_char_width: f64,
+    /// Font family name (e.g., "Helvetica", "Arial").
+    pub family: String,
+    /// Bold flag.
+    pub bold: bool,
+    /// Italic flag.
+    pub italic: bool,
+    /// Loaded font for real glyph metrics. When `Some`, `measure_width` and
+    /// `line_height_pt` use real font data instead of estimated values.
+    pub loaded_font: Option<LoadedFont>,
 }
 
 impl Default for FontMetrics {
@@ -25,6 +40,10 @@ impl Default for FontMetrics {
             size: 10.0,
             line_height: 1.2,
             avg_char_width: 0.5,
+            family: String::new(),
+            bold: false,
+            italic: false,
+            loaded_font: None,
         }
     }
 }
@@ -37,14 +56,38 @@ impl FontMetrics {
         }
     }
 
+    /// Create font metrics with a loaded font for real measurements.
+    pub fn with_loaded_font(size: f64, font: LoadedFont) -> Self {
+        Self {
+            size,
+            line_height: 1.2,
+            avg_char_width: 0.5,
+            family: font.family_name.clone(),
+            bold: false,
+            italic: false,
+            loaded_font: Some(font),
+        }
+    }
+
     /// The height of a single line of text.
     pub fn line_height_pt(&self) -> f64 {
-        self.size * self.line_height
+        if let Some(ref font) = self.loaded_font {
+            font.line_height(self.size)
+        } else {
+            self.size * self.line_height
+        }
     }
 
     /// Estimated width of a string in points.
+    ///
+    /// When a loaded font is available, uses per-glyph advance widths with
+    /// kerning. Otherwise falls back to the estimated average character width.
     pub fn measure_width(&self, text: &str) -> f64 {
-        text.len() as f64 * self.size * self.avg_char_width
+        if let Some(ref font) = self.loaded_font {
+            font.measure_width(text, self.size)
+        } else {
+            text.len() as f64 * self.size * self.avg_char_width
+        }
     }
 }
 
@@ -141,7 +184,10 @@ pub fn measure_text(text: &str, font: &FontMetrics) -> Size {
     }
 
     let lines: Vec<&str> = text.split('\n').collect();
-    let max_width = lines.iter().map(|l| font.measure_width(l)).fold(0.0, f64::max);
+    let max_width = lines
+        .iter()
+        .map(|l| font.measure_width(l))
+        .fold(0.0, f64::max);
     let height = lines.len() as f64 * font.line_height_pt();
 
     Size {
@@ -245,7 +291,7 @@ mod tests {
         let f = FontMetrics::new(14.0);
         assert_eq!(f.size, 14.0);
         assert_eq!(f.line_height_pt(), 16.8); // 14 * 1.2
-        // "AB" = 2 * 14 * 0.5 = 14pt
+                                              // "AB" = 2 * 14 * 0.5 = 14pt
         assert_eq!(f.measure_width("AB"), 14.0);
     }
 }

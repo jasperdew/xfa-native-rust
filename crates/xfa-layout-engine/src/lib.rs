@@ -4,6 +4,7 @@
 //! including positioned/flowed layout, content splitting, and pagination.
 
 pub mod error;
+pub mod font;
 pub mod form;
 pub mod layout;
 pub mod scripting;
