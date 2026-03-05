@@ -4,11 +4,11 @@
 //! against golden reference images. On first run, golden images are created.
 //! On subsequent runs, the test verifies the output matches.
 
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 
 use xfa_golden_tests::compare_images;
 use xfa_golden_tests::render::render_layout;
-use xfa_layout_engine::form::{ContentArea, FormNode, FormNodeId, FormNodeType, FormTree, Occur};
+use xfa_layout_engine::form::{FormNode, FormNodeId, FormNodeType, FormTree, Occur};
 use xfa_layout_engine::layout::LayoutEngine;
 use xfa_layout_engine::text::FontMetrics;
 use xfa_layout_engine::types::{BoxModel, LayoutStrategy};
