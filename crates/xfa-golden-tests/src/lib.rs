@@ -1,3 +1,4 @@
+pub mod avrt;
 pub mod render;
 
 use image::{DynamicImage, GenericImageView, Rgba};

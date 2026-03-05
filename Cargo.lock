@@ -2901,6 +2901,8 @@ version = "0.1.0"
 dependencies = [
  "image",
  "pdfium-ffi-bridge",
+ "serde",
+ "serde_json",
  "thiserror",
  "xfa-layout-engine",
 ]

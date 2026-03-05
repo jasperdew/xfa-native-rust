@@ -1,0 +1,22 @@
+{
+  "default_threshold": 1.0,
+  "default_channel_tolerance": 5,
+  "categories": {
+    "tax-individual": {
+      "threshold": 0.5,
+      "channel_tolerance": 3
+    },
+    "tax-business": {
+      "threshold": 1.0,
+      "channel_tolerance": 5
+    },
+    "immigration": {
+      "threshold": 1.0,
+      "channel_tolerance": 5
+    },
+    "government": {
+      "threshold": 1.0,
+      "channel_tolerance": 5
+    }
+  }
+}

@@ -1,0 +1,78 @@
+name: AVRT
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: "-D warnings"
+
+jobs:
+  avrt:
+    name: Visual Regression Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Check for gold masters
+        id: check-masters
+        run: |
+          MASTER_COUNT=$(find golden/masters -name "*.png" 2>/dev/null | wc -l | tr -d ' ')
+          echo "master_count=$MASTER_COUNT" >> "$GITHUB_OUTPUT"
+          if [ "$MASTER_COUNT" -eq 0 ]; then
+            echo "No gold masters found — skipping AVRT comparison"
+          else
+            echo "Found $MASTER_COUNT gold masters"
+          fi
+
+      - name: Run AVRT comparison
+        if: steps.check-masters.outputs.master_count != '0'
+        run: |
+          mkdir -p reports/avrt golden/diffs
+          cargo test --package xfa-golden-tests avrt -- --nocapture
+
+      - name: Upload AVRT artifacts
+        if: steps.check-masters.outputs.master_count != '0' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: avrt-report
+          path: |
+            reports/avrt/
+            golden/diffs/
+          retention-days: 30
+
+      - name: Post AVRT summary to PR
+        if: steps.check-masters.outputs.master_count != '0' && github.event_name == 'pull_request'
+        run: |
+          if [ -f reports/avrt/summary.json ]; then
+            python3 -c "
+          import json
+          with open('reports/avrt/summary.json') as f:
+              data = json.load(f)
+          s = data.get('summary', {})
+          total = s.get('total_pages', 0)
+          passed = s.get('passed_pages', 0)
+          failed = s.get('failed_pages', 0)
+          rate = s.get('pass_rate', 0)
+          icon = ':white_check_mark:' if failed == 0 else ':x:'
+          print(f'## {icon} AVRT Results')
+          print(f'')
+          print(f'| Metric | Value |')
+          print(f'|--------|-------|')
+          print(f'| Pages tested | {total} |')
+          print(f'| Passed | {passed} |')
+          print(f'| Failed | {failed} |')
+          print(f'| Pass rate | {rate:.1f}% |')
+          print()
+          for cat, cs in s.get('per_category', {}).items():
+              print(f\"**{cat}**: {cs['passed_pages']}/{cs['total_pages']} ({cs['pass_rate']:.1f}%)\")
+          " >> "$GITHUB_STEP_SUMMARY"
+          fi
