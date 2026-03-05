@@ -19,3 +19,4 @@ pdfium-render = { workspace = true, optional = true }
 thiserror.workspace = true
 image.workspace = true
 serde_json.workspace = true
+indexmap.workspace = true

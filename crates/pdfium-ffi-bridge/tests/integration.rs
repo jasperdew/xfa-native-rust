@@ -672,6 +672,269 @@ fn pdf_to_json_real_world_corpus() {
     }
 }
 
+// --- json_to_pdf pipeline tests ---
+
+#[test]
+fn json_to_pdf_simple_form_filling() {
+    let xfa_xml = r#"<?xml version="1.0"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">
+  <template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+    <subform name="form1">
+      <field name="Name"/>
+      <field name="Amount"/>
+    </subform>
+  </template>
+  <xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+    <xfa:data>
+      <form1>
+        <Name>Default</Name>
+        <Amount>0</Amount>
+      </form1>
+    </xfa:data>
+  </xfa:datasets>
+</xdp:xdp>"#;
+
+    let template = build_xfa_pdf(xfa_xml);
+
+    let data = serde_json::json!({
+        "fields": {
+            "form1.Name": "Acme Corp",
+            "form1.Amount": 42.5,
+        }
+    });
+
+    let filled_pdf = pipeline::json_to_pdf(&template, &data).unwrap();
+
+    // Verify the filled PDF contains the updated data
+    let result = pipeline::pdf_to_json(&filled_pdf).unwrap();
+    let fields = result.get("fields").unwrap();
+    assert_eq!(fields.get("form1.Name").unwrap(), "Acme Corp");
+    assert_eq!(fields.get("form1.Amount").unwrap(), 42.5);
+}
+
+#[test]
+fn json_to_pdf_roundtrip_identical_data() {
+    let xfa_xml = r#"<?xml version="1.0"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">
+  <template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+    <subform name="form1">
+      <field name="Name"/>
+      <field name="City"/>
+      <field name="Active"/>
+    </subform>
+  </template>
+  <xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+    <xfa:data>
+      <form1>
+        <Name>Old</Name>
+        <City>Old</City>
+        <Active>0</Active>
+      </form1>
+    </xfa:data>
+  </xfa:datasets>
+</xdp:xdp>"#;
+
+    let template = build_xfa_pdf(xfa_xml);
+
+    // Step 1: PDF → JSON
+    let _json1 = pipeline::pdf_to_json(&template).unwrap();
+
+    // Step 2: JSON → PDF (fill with new data)
+    let new_data = serde_json::json!({
+        "fields": {
+            "form1.Name": "Jan",
+            "form1.City": "Amsterdam",
+            "form1.Active": true,
+        }
+    });
+    let filled_pdf = pipeline::json_to_pdf(&template, &new_data).unwrap();
+
+    // Step 3: PDF → JSON (extract filled data)
+    let json2 = pipeline::pdf_to_json(&filled_pdf).unwrap();
+
+    // Step 4: JSON → PDF → JSON (roundtrip)
+    let filled_pdf2 = pipeline::json_to_pdf(&filled_pdf, &json2).unwrap();
+    let json3 = pipeline::pdf_to_json(&filled_pdf2).unwrap();
+
+    // Verify: json2.fields == json3.fields (roundtrip identity)
+    let fields2 = json2.get("fields").unwrap();
+    let fields3 = json3.get("fields").unwrap();
+    assert_eq!(fields2.get("form1.Name"), fields3.get("form1.Name"));
+    assert_eq!(fields2.get("form1.City"), fields3.get("form1.City"));
+    assert_eq!(fields2.get("form1.Active"), fields3.get("form1.Active"));
+}
+
+#[test]
+fn json_to_pdf_unknown_field_rejected() {
+    let xfa_xml = r#"<?xml version="1.0"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">
+  <template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+    <subform name="form1">
+      <field name="Name"/>
+    </subform>
+  </template>
+  <xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+    <xfa:data><form1><Name>X</Name></form1></xfa:data>
+  </xfa:datasets>
+</xdp:xdp>"#;
+
+    let template = build_xfa_pdf(xfa_xml);
+
+    let data = serde_json::json!({
+        "fields": {
+            "form1.Name": "ok",
+            "form1.Nonexistent": "bad",
+        }
+    });
+
+    let result = pipeline::json_to_pdf(&template, &data);
+    assert!(result.is_err());
+    let err = result.unwrap_err().to_string();
+    assert!(
+        err.contains("Nonexistent"),
+        "error should mention the unknown field: {err}"
+    );
+}
+
+#[test]
+fn json_to_pdf_with_nested_subforms() {
+    let xfa_xml = r#"<?xml version="1.0"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">
+  <template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+    <subform name="form1">
+      <subform name="Customer">
+        <field name="Name"/>
+        <field name="City"/>
+      </subform>
+    </subform>
+  </template>
+  <xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+    <xfa:data>
+      <form1><Customer><Name>Old</Name><City>Old</City></Customer></form1>
+    </xfa:data>
+  </xfa:datasets>
+</xdp:xdp>"#;
+
+    let template = build_xfa_pdf(xfa_xml);
+
+    let data = serde_json::json!({
+        "fields": {
+            "form1.Customer.Name": "Jan",
+            "form1.Customer.City": "Amsterdam",
+        }
+    });
+
+    let filled = pipeline::json_to_pdf(&template, &data).unwrap();
+    let result = pipeline::pdf_to_json(&filled).unwrap();
+    let fields = result.get("fields").unwrap();
+    assert_eq!(fields.get("form1.Customer.Name").unwrap(), "Jan");
+    assert_eq!(fields.get("form1.Customer.City").unwrap(), "Amsterdam");
+}
+
+#[test]
+fn json_to_pdf_non_xfa_pdf_returns_error() {
+    use lopdf::{dictionary, Document, Object};
+    let mut doc = Document::with_version("1.4");
+    let pages_id = doc.new_object_id();
+    let page_id = doc.new_object_id();
+    doc.objects.insert(
+        pages_id,
+        Object::Dictionary(dictionary! {
+            "Type" => "Pages",
+            "Kids" => vec![page_id.into()],
+            "Count" => 1,
+        }),
+    );
+    doc.objects.insert(
+        page_id,
+        Object::Dictionary(dictionary! {
+            "Type" => "Page",
+            "Parent" => pages_id,
+            "MediaBox" => vec![0.into(), 0.into(), 612.into(), 792.into()],
+        }),
+    );
+    let catalog_id = doc.new_object_id();
+    doc.objects.insert(
+        catalog_id,
+        Object::Dictionary(dictionary! {
+            "Type" => "Catalog",
+            "Pages" => pages_id,
+        }),
+    );
+    doc.trailer.set("Root", catalog_id);
+
+    let mut buf = Vec::new();
+    doc.save_to(&mut buf).unwrap();
+
+    let data = serde_json::json!({ "fields": { "F1": "x" } });
+    let result = pipeline::json_to_pdf(&buf, &data);
+    assert!(result.is_err());
+}
+
+#[test]
+fn json_to_pdf_flat_json_input() {
+    let xfa_xml = r#"<?xml version="1.0"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">
+  <template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+    <subform name="form1">
+      <field name="Name"/>
+    </subform>
+  </template>
+  <xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+    <xfa:data><form1><Name>Old</Name></form1></xfa:data>
+  </xfa:datasets>
+</xdp:xdp>"#;
+
+    let template = build_xfa_pdf(xfa_xml);
+
+    // Flat JSON (no "fields" wrapper)
+    let data = serde_json::json!({
+        "form1.Name": "Flat Input"
+    });
+
+    let filled = pipeline::json_to_pdf(&template, &data).unwrap();
+    let result = pipeline::pdf_to_json(&filled).unwrap();
+    assert_eq!(
+        result.get("fields").unwrap().get("form1.Name").unwrap(),
+        "Flat Input"
+    );
+}
+
+#[test]
+fn json_to_pdf_boolean_and_null_values() {
+    let xfa_xml = r#"<?xml version="1.0"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">
+  <template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+    <subform name="form1">
+      <field name="Active"/>
+      <field name="Note"/>
+    </subform>
+  </template>
+  <xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+    <xfa:data><form1><Active>0</Active><Note>old</Note></form1></xfa:data>
+  </xfa:datasets>
+</xdp:xdp>"#;
+
+    let template = build_xfa_pdf(xfa_xml);
+
+    let data = serde_json::json!({
+        "fields": {
+            "form1.Active": true,
+            "form1.Note": null,
+        }
+    });
+
+    let filled = pipeline::json_to_pdf(&template, &data).unwrap();
+    let result = pipeline::pdf_to_json(&filled).unwrap();
+    let fields = result.get("fields").unwrap();
+
+    // Boolean true → "1" in FormTree → coerced back to boolean true on re-export
+    assert_eq!(fields.get("form1.Active").unwrap(), true);
+
+    // Null → empty string → coerced to null
+    assert_eq!(fields.get("form1.Note").unwrap(), &serde_json::Value::Null);
+}
+
 // --- Helpers ---
 
 fn build_simple_form() -> (FormTree, FormNodeId) {

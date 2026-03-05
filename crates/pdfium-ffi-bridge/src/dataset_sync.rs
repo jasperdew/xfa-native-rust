@@ -28,13 +28,20 @@ pub fn wrap_datasets_xml(data_dom: &DataDom) -> String {
     )
 }
 
-/// Update the XFA datasets packet in a PDF.
+/// Update the XFA datasets packet in a PDF from a DataDom.
 ///
-/// Finds the existing XFA stream or array in the PDF's AcroForm dictionary
-/// and replaces the datasets content with the serialized Data DOM.
+/// Convenience wrapper around [`sync_datasets_xml`] that serializes the DataDom first.
 pub fn sync_datasets(reader: &mut PdfReader, data_dom: &DataDom) -> Result<()> {
     let datasets_xml = wrap_datasets_xml(data_dom);
+    sync_datasets_xml(reader, &datasets_xml)
+}
 
+/// Update the XFA datasets packet in a PDF from a raw XML string.
+///
+/// The `datasets_xml` must be a complete `<xfa:datasets>` element.
+/// Finds the existing XFA stream or array in the PDF's AcroForm dictionary
+/// and replaces the datasets content.
+pub fn sync_datasets_xml(reader: &mut PdfReader, datasets_xml: &str) -> Result<()> {
     // Try to find and update the XFA entry in the AcroForm
     let doc = reader.document_mut();
 
@@ -70,14 +77,14 @@ pub fn sync_datasets(reader: &mut PdfReader, data_dom: &DataDom) -> Result<()> {
     match &xfa_entry {
         lopdf::Object::Reference(r) => {
             // Single-stream XFA: rebuild the full XDP document
-            let full_xdp = rebuild_xdp_with_datasets(doc, *r, &datasets_xml)?;
+            let full_xdp = rebuild_xdp_with_datasets(doc, *r, datasets_xml)?;
             let stream = lopdf::Stream::new(lopdf::dictionary! {}, full_xdp.into_bytes());
             doc.objects.insert(*r, lopdf::Object::Stream(stream));
             Ok(())
         }
         lopdf::Object::Array(arr) => {
             // Array-form XFA: find and replace the datasets stream
-            update_datasets_in_array(doc, arr, &datasets_xml)
+            update_datasets_in_array(doc, arr, datasets_xml)
         }
         _ => Err(PdfError::XfaPacketNotFound(
             "XFA entry is not a reference or array".to_string(),
