@@ -400,9 +400,14 @@ fn assess_field_support(
     has_calculate: bool,
     _has_validate: bool,
     has_event: bool,
-    _has_data: bool,
-    _has_datasets: bool,
+    has_data: bool,
+    has_datasets: bool,
 ) -> (bool, Option<ErrorCategory>) {
+    // Check for missing datasets packet — fields cannot be bound without data
+    if !has_datasets {
+        return (false, Some(ErrorCategory::DatasetsMissing));
+    }
+
     // Check for unsupported layout features on the field itself
     // Note: <draw> inside a field is a caption, which is supported
     let has_unsupported_layout = field_content.contains("rotate=\"")
@@ -423,6 +428,12 @@ fn assess_field_support(
         && field_content.contains("contentType=\"application/x-javascript\"");
     if has_js_calculate {
         return (false, Some(ErrorCategory::Scripting));
+    }
+
+    // Check if field has data binding — fields without data context
+    // may not render correctly
+    if !has_data && !has_calculate {
+        return (false, Some(ErrorCategory::DataBinding));
     }
 
     // Basic field types we support
