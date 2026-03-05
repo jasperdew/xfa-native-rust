@@ -5,6 +5,9 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  schedule:
+    # Nightly full corpus test at 02:00 UTC
+    - cron: '0 2 * * *'
 
 env:
   CARGO_TERM_COLOR: always
@@ -49,3 +52,153 @@ jobs:
         with:
           components: rustfmt
       - run: cargo fmt --all --check
+
+  conformance:
+    name: Conformance & AVRT
+    runs-on: ubuntu-latest
+    needs: [check, test]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      # Cache corpus PDFs
+      - name: Cache test corpus
+        uses: actions/cache@v4
+        with:
+          path: corpus/
+          key: corpus-${{ hashFiles('corpus/**') }}
+          restore-keys: corpus-
+
+      # Cache gold masters
+      - name: Cache gold masters
+        uses: actions/cache@v4
+        with:
+          path: golden/masters/
+          key: golden-masters-${{ hashFiles('golden/masters/**') }}
+          restore-keys: golden-masters-
+
+      # Run accuracy report (subset for PRs, full for nightly/push)
+      - name: Run accuracy report
+        run: |
+          mkdir -p reports/accuracy
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "Running FULL corpus accuracy report (nightly)"
+            cargo run --release --bin accuracy-report -- \
+              --corpus corpus --output reports/accuracy --html
+          else
+            echo "Running accuracy report on corpus"
+            cargo run --release --bin accuracy-report -- \
+              --corpus corpus --output reports/accuracy --html
+          fi
+
+      # Check for regressions
+      - name: Check accuracy threshold
+        run: |
+          if [ -f reports/accuracy/accuracy.json ]; then
+            python3 -c "
+          import json, sys
+          with open('reports/accuracy/accuracy.json') as f:
+              data = json.load(f)
+          accuracy = data['summary']['overall_accuracy']
+          extraction = data['summary']['extraction_success_rate']
+          print(f'Overall accuracy: {accuracy:.1f}%')
+          print(f'Extraction rate:  {extraction:.1f}%')
+          # Fail if extraction rate drops below 95%
+          if extraction < 95.0:
+              print(f'REGRESSION: Extraction rate {extraction:.1f}% < 95% threshold')
+              sys.exit(1)
+          # Warn if overall accuracy drops (but don't fail yet)
+          if accuracy < 80.0:
+              print(f'WARNING: Overall accuracy {accuracy:.1f}% < 80% target')
+          print('Conformance check passed')
+          "
+          fi
+
+      # AVRT pixel-diff (only if gold masters exist)
+      - name: Run AVRT
+        run: |
+          MASTER_COUNT=$(find golden/masters -name "*.png" 2>/dev/null | wc -l | tr -d ' ')
+          if [ "$MASTER_COUNT" -gt 0 ]; then
+            echo "Running AVRT with $MASTER_COUNT gold masters..."
+            cargo test --package xfa-golden-tests avrt -- --nocapture
+          else
+            echo "No gold masters found — skipping AVRT"
+          fi
+
+      # veraPDF conformance (only for nightly or if explicitly requested)
+      - name: Setup veraPDF
+        if: github.event_name == 'schedule'
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Cache veraPDF
+        if: github.event_name == 'schedule'
+        uses: actions/cache@v4
+        with:
+          path: ~/.verapdf
+          key: verapdf-1.26
+
+      - name: Run veraPDF
+        if: github.event_name == 'schedule'
+        run: |
+          if [ -f scripts/run-verapdf.sh ]; then
+            bash scripts/run-verapdf.sh --install
+            bash scripts/run-verapdf.sh || true
+          else
+            echo "veraPDF script not found — skipping"
+          fi
+
+      # Upload reports
+      - name: Upload conformance artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: conformance-reports
+          path: |
+            reports/
+            golden/diffs/
+          retention-days: 30
+
+      # Post summary to PR
+      - name: Post conformance summary
+        if: github.event_name == 'pull_request'
+        run: |
+          if [ -f reports/accuracy/accuracy.json ]; then
+            python3 -c "
+          import json
+          with open('reports/accuracy/accuracy.json') as f:
+              data = json.load(f)
+          s = data['summary']
+          total = s['total_fields']
+          supported = s['supported_fields']
+          accuracy = s['overall_accuracy']
+          extraction = s['extraction_success_rate']
+          forms = s['total_forms']
+          errors = s['forms_with_errors']
+          icon = ':white_check_mark:' if accuracy >= 80 else ':warning:'
+          print(f'## {icon} Conformance Report')
+          print()
+          print(f'| Metric | Value |')
+          print(f'|--------|-------|')
+          print(f'| Forms processed | {forms} |')
+          print(f'| Total fields | {total} |')
+          print(f'| Supported fields | {supported} |')
+          print(f'| **Overall accuracy** | **{accuracy:.1f}%** |')
+          print(f'| Extraction rate | {extraction:.1f}% |')
+          print(f'| Forms with errors | {errors} |')
+          print()
+          if s.get('errors_by_category'):
+              print('**Error breakdown:**')
+              for cat, count in s['errors_by_category'].items():
+                  print(f'- {cat}: {count}')
+          print()
+          for xfa_type, ts in s.get('per_type', {}).items():
+              print(f'**{xfa_type}**: {ts[\"supported\"]}/{ts[\"fields\"]} fields ({ts[\"accuracy\"]:.1f}%)')
+          " >> "$GITHUB_STEP_SUMMARY"
+          fi
