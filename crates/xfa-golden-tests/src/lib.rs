@@ -1,3 +1,5 @@
+pub mod render;
+
 use image::{DynamicImage, GenericImageView, Rgba};
 use std::path::Path;
 use thiserror::Error;

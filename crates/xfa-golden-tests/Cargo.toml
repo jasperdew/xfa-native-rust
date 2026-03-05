@@ -7,5 +7,6 @@ repository.workspace = true
 
 [dependencies]
 pdfium-ffi-bridge.workspace = true
+xfa-layout-engine.workspace = true
 image.workspace = true
 thiserror.workspace = true
