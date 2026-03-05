@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f8990.pdf",
+  "filename": "f8990.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 134,
+  "page_count": 3,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "sourceSet",
+    "connectionSet",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 120818,
+  "collected_at": "2026-03-05"
+}

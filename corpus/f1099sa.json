@@ -1,0 +1,22 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f1099sa.pdf",
+  "filename": "f1099sa.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 33,
+  "page_count": 3,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "localeSet",
+    "datasets",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 79460,
+  "collected_at": "2026-03-05"
+}

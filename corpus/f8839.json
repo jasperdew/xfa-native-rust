@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f8839.pdf",
+  "filename": "f8839.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 100,
+  "page_count": 2,
+  "has_formcalc": false,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "sourceSet",
+    "connectionSet",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 125260,
+  "collected_at": "2026-03-05"
+}

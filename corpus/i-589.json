@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.uscis.gov/sites/default/files/document/forms/i-589.pdf",
+  "filename": "i-589.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 451,
+  "page_count": 12,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "localeSet",
+    "datasets",
+    "xmpmeta",
+    "xfdf",
+    "PDFSecurity",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 835317,
+  "collected_at": "2026-03-05"
+}

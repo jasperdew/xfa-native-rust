@@ -1,0 +1,24 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f2290.pdf",
+  "filename": "f2290.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 350,
+  "page_count": 10,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "sourceSet",
+    "connectionSet",
+    "localeSet",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 689661,
+  "collected_at": "2026-03-05"
+}

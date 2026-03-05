@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.uscis.gov/sites/default/files/document/forms/n-600.pdf",
+  "filename": "n-600.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 436,
+  "page_count": 16,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "localeSet",
+    "datasets",
+    "PDFSecurity",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 731639,
+  "collected_at": "2026-03-05"
+}

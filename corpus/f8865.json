@@ -1,0 +1,22 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f8865.pdf",
+  "filename": "f8865.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 461,
+  "page_count": 6,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 289228,
+  "collected_at": "2026-03-05"
+}

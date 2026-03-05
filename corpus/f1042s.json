@@ -1,0 +1,21 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f1042s.pdf",
+  "filename": "f1042s.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 300,
+  "page_count": 7,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 230832,
+  "collected_at": "2026-03-05"
+}

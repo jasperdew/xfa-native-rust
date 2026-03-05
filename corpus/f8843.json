@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f8843.pdf",
+  "filename": "f8843.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 48,
+  "page_count": 4,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "sourceSet",
+    "connectionSet",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 108330,
+  "collected_at": "2026-03-05"
+}

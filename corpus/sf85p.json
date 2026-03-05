@@ -1,0 +1,22 @@
+{
+  "source_url": "https://www.opm.gov/forms/pdf_fill/sf85p.pdf",
+  "filename": "sf85p.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 4611,
+  "page_count": 95,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "localeSet",
+    "datasets",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 5827944,
+  "collected_at": "2026-03-05"
+}

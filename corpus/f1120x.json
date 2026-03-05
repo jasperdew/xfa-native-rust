@@ -1,0 +1,21 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f1120x.pdf",
+  "filename": "f1120x.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 70,
+  "page_count": 2,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 86052,
+  "collected_at": "2026-03-05"
+}

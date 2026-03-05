@@ -1,0 +1,24 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f1040.pdf",
+  "filename": "f1040.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 199,
+  "page_count": 2,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "sourceSet",
+    "connectionSet",
+    "localeSet",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 220237,
+  "collected_at": "2026-03-05"
+}

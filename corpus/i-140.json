@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.uscis.gov/sites/default/files/document/forms/i-140.pdf",
+  "filename": "i-140.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 257,
+  "page_count": 8,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "localeSet",
+    "datasets",
+    "PDFSecurity",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 524991,
+  "collected_at": "2026-03-05"
+}

@@ -1,0 +1,22 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/fw4p.pdf",
+  "filename": "fw4p.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 44,
+  "page_count": 4,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 129893,
+  "collected_at": "2026-03-05"
+}

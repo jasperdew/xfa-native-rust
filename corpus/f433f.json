@@ -1,0 +1,22 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f433f.pdf",
+  "filename": "f433f.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 220,
+  "page_count": 4,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 153421,
+  "collected_at": "2026-03-05"
+}

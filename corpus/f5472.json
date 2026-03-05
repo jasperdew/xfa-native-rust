@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f5472.pdf",
+  "filename": "f5472.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 143,
+  "page_count": 3,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "datasets",
+    "sourceSet",
+    "connectionSet",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 150777,
+  "collected_at": "2026-03-05"
+}

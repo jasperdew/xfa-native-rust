@@ -1,0 +1,21 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/fw8eci.pdf",
+  "filename": "fw8eci.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 36,
+  "page_count": 1,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 80793,
+  "collected_at": "2026-03-05"
+}

@@ -1,0 +1,21 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f1041.pdf",
+  "filename": "f1041.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 173,
+  "page_count": 3,
+  "has_formcalc": false,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 181366,
+  "collected_at": "2026-03-05"
+}

@@ -1,0 +1,22 @@
+{
+  "source_url": "https://www.opm.gov/forms/pdf_fill/sf15.pdf",
+  "filename": "sf15.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 47,
+  "page_count": 2,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 1155287,
+  "collected_at": "2026-03-05"
+}

@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.uscis.gov/sites/default/files/document/forms/i-485.pdf",
+  "filename": "i-485.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 739,
+  "page_count": 24,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "localeSet",
+    "datasets",
+    "PDFSecurity",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 1203646,
+  "collected_at": "2026-03-05"
+}

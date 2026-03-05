@@ -1,0 +1,21 @@
+{
+  "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/t2125/t2125-fill-24e.pdf",
+  "filename": "t2125-fill-24e.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 419,
+  "page_count": 8,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "datasets",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 544282,
+  "collected_at": "2026-03-05"
+}

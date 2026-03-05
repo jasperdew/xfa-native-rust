@@ -1,0 +1,20 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f211.pdf",
+  "filename": "f211.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 267,
+  "page_count": 1,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "localeSet",
+    "xmpmeta",
+    "xfdf",
+    "postamble"
+  ],
+  "file_size_bytes": 90365,
+  "collected_at": "2026-03-05"
+}

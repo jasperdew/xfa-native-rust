@@ -1,0 +1,21 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f8991.pdf",
+  "filename": "f8991.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 313,
+  "page_count": 6,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 231436,
+  "collected_at": "2026-03-05"
+}

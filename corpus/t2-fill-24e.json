@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/t2/t2-fill-24e.pdf",
+  "filename": "t2-fill-24e.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 359,
+  "page_count": 9,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "localeSet",
+    "datasets",
+    "xmpmeta",
+    "xfdf",
+    "PDFSecurity",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 758308,
+  "collected_at": "2026-03-05"
+}

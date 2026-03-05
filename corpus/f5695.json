@@ -1,0 +1,22 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f5695.pdf",
+  "filename": "f5695.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 167,
+  "page_count": 4,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 174928,
+  "collected_at": "2026-03-05"
+}

@@ -1,0 +1,21 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f1098e.pdf",
+  "filename": "f1098e.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 21,
+  "page_count": 4,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 481922,
+  "collected_at": "2026-03-05"
+}

@@ -1,0 +1,22 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f1096.pdf",
+  "filename": "f1096.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 48,
+  "page_count": 3,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 531821,
+  "collected_at": "2026-03-05"
+}

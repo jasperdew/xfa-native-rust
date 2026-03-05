@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.uscis.gov/sites/default/files/document/forms/i-765.pdf",
+  "filename": "i-765.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 157,
+  "page_count": 7,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "localeSet",
+    "datasets",
+    "xmpmeta",
+    "xfdf",
+    "PDFSecurity",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 467424,
+  "collected_at": "2026-03-05"
+}

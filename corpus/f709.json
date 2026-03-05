@@ -1,0 +1,21 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f709.pdf",
+  "filename": "f709.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 1851,
+  "page_count": 10,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 770209,
+  "collected_at": "2026-03-05"
+}

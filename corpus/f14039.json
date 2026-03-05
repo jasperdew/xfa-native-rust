@@ -1,0 +1,22 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f14039.pdf",
+  "filename": "f14039.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 70,
+  "page_count": 2,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "localeSet",
+    "datasets",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 101001,
+  "collected_at": "2026-03-05"
+}

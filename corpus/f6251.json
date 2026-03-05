@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f6251.pdf",
+  "filename": "f6251.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 62,
+  "page_count": 2,
+  "has_formcalc": false,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "sourceSet",
+    "connectionSet",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 104434,
+  "collected_at": "2026-03-05"
+}

@@ -1,0 +1,22 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f990pf.pdf",
+  "filename": "f990pf.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 1147,
+  "page_count": 13,
+  "has_formcalc": false,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "preamble",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "postamble"
+  ],
+  "file_size_bytes": 570714,
+  "collected_at": "2026-03-05"
+}

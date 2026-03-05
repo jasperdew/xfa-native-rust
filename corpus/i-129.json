@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.uscis.gov/sites/default/files/document/forms/i-129.pdf",
+  "filename": "i-129.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 945,
+  "page_count": 38,
+  "has_formcalc": true,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "localeSet",
+    "datasets",
+    "PDFSecurity",
+    "xmpmeta",
+    "xfdf",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 2296144,
+  "collected_at": "2026-03-05"
+}

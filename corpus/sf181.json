@@ -1,0 +1,19 @@
+{
+  "source_url": "https://www.opm.gov/forms/pdf_fill/sf181.pdf",
+  "filename": "sf181.pdf",
+  "xfa_type": "static",
+  "field_count": 0,
+  "page_count": 1,
+  "has_formcalc": false,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "datasets",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 64868,
+  "collected_at": "2026-03-05"
+}

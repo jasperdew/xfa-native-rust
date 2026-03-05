@@ -1,0 +1,21 @@
+{
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f1125e.pdf",
+  "filename": "f1125e.pdf",
+  "xfa_type": "dynamic",
+  "field_count": 125,
+  "page_count": 1,
+  "has_formcalc": false,
+  "has_acroform_hybrid": false,
+  "packets": [
+    "xdp:xdp",
+    "config",
+    "template",
+    "datasets",
+    "localeSet",
+    "xmpmeta",
+    "form",
+    "</xdp:xdp>"
+  ],
+  "file_size_bytes": 64870,
+  "collected_at": "2026-03-05"
+}
