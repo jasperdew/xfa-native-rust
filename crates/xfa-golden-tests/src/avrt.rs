@@ -156,7 +156,7 @@ pub fn run_avrt(
 
     let mut results = Vec::new();
     let mut form_names = std::collections::HashSet::new();
-    let mut skipped = 0usize;
+    let mut skipped_forms = std::collections::HashSet::new();
 
     for (category, form_name, page, master_path) in &masters {
         form_names.insert(form_name.clone());
@@ -165,7 +165,7 @@ pub fn run_avrt(
         let actual_path = actuals_dir.join(category).join(master_path.file_name().unwrap());
 
         if !actual_path.exists() {
-            skipped += 1;
+            skipped_forms.insert(form_name.clone());
             continue;
         }
 
@@ -213,7 +213,7 @@ pub fn run_avrt(
         });
     }
 
-    let summary = build_summary(&results, form_names.len(), skipped);
+    let summary = build_summary(&results, form_names.len(), skipped_forms.len());
     Ok(AvrtReport { results, summary })
 }
 

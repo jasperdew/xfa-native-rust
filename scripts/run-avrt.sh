@@ -144,8 +144,14 @@ mkdir -p "$DIFFS_DIR"
 echo ""
 echo "Running pixel comparison..."
 
-# Build and run the AVRT comparison test
-cargo test --package xfa-golden-tests avrt -- --nocapture 2>&1 || true
+# Run the AVRT comparison via the Rust test harness.
+# TODO: Replace with a dedicated binary when the full rendering pipeline is available.
+AVRT_EXIT=0
+cargo test --package xfa-golden-tests avrt -- --nocapture 2>&1 || AVRT_EXIT=$?
+
+if [ "$AVRT_EXIT" -ne 0 ]; then
+    echo "WARNING: AVRT comparison exited with code $AVRT_EXIT"
+fi
 
 # Step 4: Generate report
 echo ""
