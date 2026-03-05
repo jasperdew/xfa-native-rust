@@ -153,6 +153,10 @@ fn merge_node(tree: &mut FormTree, node_id: FormNodeId, data_elem: &roxmltree::N
 }
 
 /// Find a child element by name and return its text content.
+///
+/// Returns `Some("")` for an explicitly present but empty element (e.g., `<Name/>`),
+/// which allows clearing template defaults. Returns `None` only when the element
+/// is absent from the data.
 fn find_element_text(parent: &roxmltree::Node, name: &str) -> Option<String> {
     let elem = find_element(parent, name)?;
     // Get text content, handling elements with mixed content
@@ -161,12 +165,7 @@ fn find_element_text(parent: &roxmltree::Node, name: &str) -> Option<String> {
         .filter(|n| n.is_text())
         .map(|n| n.text().unwrap_or(""))
         .collect();
-    let trimmed = text.trim().to_string();
-    if trimmed.is_empty() {
-        None
-    } else {
-        Some(trimmed)
-    }
+    Some(text.trim().to_string())
 }
 
 /// Find the first child element with a given local name.
@@ -343,6 +342,30 @@ mod tests {
         // Empty datasets should not fail
         let result = merge_data(&mut tree, root, datasets);
         assert!(result.is_ok());
+    }
+
+    #[test]
+    fn merge_empty_element_clears_default() {
+        let template = r#"<template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+            <subform name="form1">
+                <field name="Name"><value><text>Default</text></value></field>
+            </subform>
+        </template>"#;
+
+        let datasets = r#"<xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+            <xfa:data>
+                <form1>
+                    <Name/>
+                </form1>
+            </xfa:data>
+        </xfa:datasets>"#;
+
+        let (mut tree, root) = build_tree(template);
+        merge_data(&mut tree, root, datasets).unwrap();
+
+        let form1 = tree.get(get_form1(&tree, root));
+        // An explicitly empty element should clear the default value
+        assert_eq!(get_field_value(&tree, form1.children[0]), "");
     }
 
     #[test]

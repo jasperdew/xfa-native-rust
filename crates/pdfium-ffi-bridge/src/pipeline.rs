@@ -247,6 +247,14 @@ fn write_data_node(tree: &FormTree, node_id: FormNodeId, out: &mut String, depth
     let indent = "  ".repeat(depth);
     let name = &node.name;
 
+    // Skip nodes with empty names to avoid emitting invalid XML like <>...</>
+    if name.is_empty() {
+        for &child_id in &node.children {
+            write_data_node(tree, child_id, out, depth);
+        }
+        return;
+    }
+
     match &node.node_type {
         FormNodeType::Subform => {
             if node.children.is_empty() {
