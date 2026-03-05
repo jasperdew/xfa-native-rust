@@ -22,16 +22,20 @@ fn render_page(page: &LayoutPage) -> DynamicImage {
     let mut img = RgbaImage::from_pixel(w, h, Rgba([255, 255, 255, 255]));
 
     for node in &page.nodes {
-        render_node(&mut img, node, 0);
+        render_node(&mut img, node, 0, 0.0, 0.0);
     }
 
     DynamicImage::ImageRgba8(img)
 }
 
 /// Render a layout node and its children recursively.
-fn render_node(img: &mut RgbaImage, node: &LayoutNode, depth: usize) {
-    let x = (node.rect.x * SCALE) as i32;
-    let y = (node.rect.y * SCALE) as i32;
+///
+/// `parent_x` and `parent_y` are accumulated offsets from parent containers.
+fn render_node(img: &mut RgbaImage, node: &LayoutNode, depth: usize, parent_x: f64, parent_y: f64) {
+    let abs_x = node.rect.x + parent_x;
+    let abs_y = node.rect.y + parent_y;
+    let x = (abs_x * SCALE) as i32;
+    let y = (abs_y * SCALE) as i32;
     let w = (node.rect.width * SCALE) as i32;
     let h = (node.rect.height * SCALE) as i32;
 
@@ -62,9 +66,9 @@ fn render_node(img: &mut RgbaImage, node: &LayoutNode, depth: usize) {
     // Draw border
     draw_rect(img, x, y, w, h, border_color);
 
-    // Render children
+    // Render children with accumulated parent offset.
     for child in &node.children {
-        render_node(img, child, depth + 1);
+        render_node(img, child, depth + 1, abs_x, abs_y);
     }
 }
 
