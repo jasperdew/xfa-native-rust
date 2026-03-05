@@ -1,0 +1,71 @@
+name: veraPDF Conformance
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+env:
+  VERAPDF_VERSION: "1.28.2"
+
+jobs:
+  conformance:
+    name: PDF/A-2b Conformance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Cache veraPDF
+        id: cache-verapdf
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/verapdf
+          key: verapdf-${{ env.VERAPDF_VERSION }}
+
+      - name: Install veraPDF
+        if: steps.cache-verapdf.outputs.cache-hit != 'true'
+        run: scripts/run-verapdf.sh --install
+
+      - name: Run veraPDF validation on corpus
+        continue-on-error: true
+        run: |
+          scripts/run-verapdf.sh --format html corpus/ || true
+
+      - name: Upload conformance report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verapdf-report
+          path: reports/verapdf/
+          retention-days: 30
+
+      - name: Post summary to PR
+        if: always()
+        env:
+          SUMMARY_FILE: reports/verapdf/summary.json
+        run: |
+          if [[ -f "$SUMMARY_FILE" ]]; then
+            python3 -c "
+          import json, os
+          with open(os.environ['SUMMARY_FILE']) as f:
+              data = json.load(f)
+          summary_path = os.environ.get('GITHUB_STEP_SUMMARY', '/dev/null')
+          with open(summary_path, 'a') as f:
+              f.write('## veraPDF Conformance Report\n\n')
+              f.write('| Metric | Value |\n')
+              f.write('|--------|-------|\n')
+              f.write(f'| Profile | {data[\"profile\"]} |\n')
+              f.write(f'| Total PDFs | {data[\"total\"]} |\n')
+              f.write(f'| Passed | {data[\"passed\"]} |\n')
+              f.write(f'| Failed | {data[\"failed\"]} |\n')
+              f.write(f'| Errors | {data[\"errors\"]} |\n')
+              f.write(f'| **Pass Rate** | **{data[\"pass_rate\"]}%** |\n')
+          "
+          fi
