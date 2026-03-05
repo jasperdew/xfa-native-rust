@@ -7,6 +7,7 @@ members = [
     "crates/xfa-golden-tests",
     "crates/xfa-cli",
     "crates/xfa-json",
+    "crates/xfa-license",
 ]
 resolver = "2"
 
@@ -36,3 +37,4 @@ formcalc-interpreter = { path = "crates/formcalc-interpreter" }
 xfa-layout-engine = { path = "crates/xfa-layout-engine" }
 pdfium-ffi-bridge = { path = "crates/pdfium-ffi-bridge" }
 xfa-json = { path = "crates/xfa-json" }
+xfa-license = { path = "crates/xfa-license" }
