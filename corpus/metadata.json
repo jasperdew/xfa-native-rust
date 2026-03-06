@@ -1,0 +1,1382 @@
+[
+  {
+    "file": "f1040.pdf",
+    "size_bytes": 220237,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040nr.pdf",
+    "size_bytes": 177160,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040pr.pdf",
+    "size_bytes": 194836,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040sa.pdf",
+    "size_bytes": 79008,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040sb.pdf",
+    "size_bytes": 76411,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040sc.pdf",
+    "size_bytes": 122589,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040sd.pdf",
+    "size_bytes": 97968,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040se.pdf",
+    "size_bytes": 148367,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040sf.pdf",
+    "size_bytes": 119133,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040sr.pdf",
+    "size_bytes": 93840,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040ss.pdf",
+    "size_bytes": 149337,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040sse.pdf",
+    "size_bytes": 80290,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040v.pdf",
+    "size_bytes": 97663,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1040x.pdf",
+    "size_bytes": 164571,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1041.pdf",
+    "size_bytes": 181366,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1042.pdf",
+    "size_bytes": 146431,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1042s.pdf",
+    "size_bytes": 230832,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1045.pdf",
+    "size_bytes": 122084,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1065.pdf",
+    "size_bytes": 334608,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1065b.pdf",
+    "size_bytes": 217314,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1065sk1.pdf",
+    "size_bytes": 106155,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1095a.pdf",
+    "size_bytes": 492196,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1095b.pdf",
+    "size_bytes": 317850,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1095c.pdf",
+    "size_bytes": 270510,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1096.pdf",
+    "size_bytes": 531821,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1098.pdf",
+    "size_bytes": 501143,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1098e.pdf",
+    "size_bytes": 481922,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1098t.pdf",
+    "size_bytes": 497539,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1099a.pdf",
+    "size_bytes": 487014,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1099c.pdf",
+    "size_bytes": 487849,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1099div.pdf",
+    "size_bytes": 542425,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1099g.pdf",
+    "size_bytes": 523268,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1099int.pdf",
+    "size_bytes": 538774,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1099k.pdf",
+    "size_bytes": 552229,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1099msc.pdf",
+    "size_bytes": 545480,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1099nec.pdf",
+    "size_bytes": 513361,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1099r.pdf",
+    "size_bytes": 601017,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1099s.pdf",
+    "size_bytes": 490637,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1099sa.pdf",
+    "size_bytes": 79460,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1116.pdf",
+    "size_bytes": 120869,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1120.pdf",
+    "size_bytes": 340034,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1120f.pdf",
+    "size_bytes": 414199,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1120h.pdf",
+    "size_bytes": 93963,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1120s.pdf",
+    "size_bytes": 267113,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1120ssk.pdf",
+    "size_bytes": 83544,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1120x.pdf",
+    "size_bytes": 86052,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1125a.pdf",
+    "size_bytes": 87984,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f1125e.pdf",
+    "size_bytes": 64870,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f12153.pdf",
+    "size_bytes": 2216204,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f14039.pdf",
+    "size_bytes": 101001,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f2106.pdf",
+    "size_bytes": 113949,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f211.pdf",
+    "size_bytes": 90365,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f2210.pdf",
+    "size_bytes": 163566,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f2290.pdf",
+    "size_bytes": 689661,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f2350.pdf",
+    "size_bytes": 108583,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f2441.pdf",
+    "size_bytes": 121040,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f2553.pdf",
+    "size_bytes": 123289,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f2555.pdf",
+    "size_bytes": 156457,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f2848.pdf",
+    "size_bytes": 142587,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f3468.pdf",
+    "size_bytes": 337793,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f3520.pdf",
+    "size_bytes": 323768,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f3800.pdf",
+    "size_bytes": 575438,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f3903.pdf",
+    "size_bytes": 59413,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f4136.pdf",
+    "size_bytes": 251297,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f4137.pdf",
+    "size_bytes": 87668,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f433a.pdf",
+    "size_bytes": 348973,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f433b.pdf",
+    "size_bytes": 275039,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f433d.pdf",
+    "size_bytes": 130059,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f433f.pdf",
+    "size_bytes": 153421,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f4506.pdf",
+    "size_bytes": 678376,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f4506t.pdf",
+    "size_bytes": 680124,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f4562.pdf",
+    "size_bytes": 206401,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f461.pdf",
+    "size_bytes": 61573,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f4684.pdf",
+    "size_bytes": 155627,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f4797.pdf",
+    "size_bytes": 139463,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f4835.pdf",
+    "size_bytes": 111345,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f4868.pdf",
+    "size_bytes": 529415,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f4952.pdf",
+    "size_bytes": 93053,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f5329.pdf",
+    "size_bytes": 111659,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f5405.pdf",
+    "size_bytes": 73385,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f5471.pdf",
+    "size_bytes": 295140,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f5472.pdf",
+    "size_bytes": 150777,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f5498.pdf",
+    "size_bytes": 509173,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f5498sa.pdf",
+    "size_bytes": 82834,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f5500ez.pdf",
+    "size_bytes": 118995,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f56.pdf",
+    "size_bytes": 92313,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f5695.pdf",
+    "size_bytes": 174928,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f6198.pdf",
+    "size_bytes": 82547,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f6251.pdf",
+    "size_bytes": 104434,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f6252.pdf",
+    "size_bytes": 124606,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f637.pdf",
+    "size_bytes": 149544,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f656.pdf",
+    "size_bytes": 162536,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f6765.pdf",
+    "size_bytes": 153023,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f6781.pdf",
+    "size_bytes": 126572,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f7004.pdf",
+    "size_bytes": 76923,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f706.pdf",
+    "size_bytes": 273746,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f709.pdf",
+    "size_bytes": 770209,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f720.pdf",
+    "size_bytes": 388376,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f730.pdf",
+    "size_bytes": 111059,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8027.pdf",
+    "size_bytes": 79782,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8082.pdf",
+    "size_bytes": 97708,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8233.pdf",
+    "size_bytes": 73975,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8275.pdf",
+    "size_bytes": 74414,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8275r.pdf",
+    "size_bytes": 76439,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8283.pdf",
+    "size_bytes": 124569,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8300.pdf",
+    "size_bytes": 121792,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8302.pdf",
+    "size_bytes": 170929,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8332.pdf",
+    "size_bytes": 74144,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8379.pdf",
+    "size_bytes": 96599,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8396.pdf",
+    "size_bytes": 86825,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f843.pdf",
+    "size_bytes": 112273,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8453.pdf",
+    "size_bytes": 84101,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f851.pdf",
+    "size_bytes": 142362,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8582.pdf",
+    "size_bytes": 126437,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8586.pdf",
+    "size_bytes": 67149,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8594.pdf",
+    "size_bytes": 75221,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8606.pdf",
+    "size_bytes": 96165,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8609.pdf",
+    "size_bytes": 87464,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8611.pdf",
+    "size_bytes": 88273,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8615.pdf",
+    "size_bytes": 79087,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8801.pdf",
+    "size_bytes": 104996,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8821.pdf",
+    "size_bytes": 72281,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8822.pdf",
+    "size_bytes": 80702,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8824.pdf",
+    "size_bytes": 102395,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8829.pdf",
+    "size_bytes": 82821,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8832.pdf",
+    "size_bytes": 544716,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8834.pdf",
+    "size_bytes": 69296,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8835.pdf",
+    "size_bytes": 123961,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8839.pdf",
+    "size_bytes": 125260,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8840.pdf",
+    "size_bytes": 115775,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8843.pdf",
+    "size_bytes": 108330,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8844.pdf",
+    "size_bytes": 47855,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8846.pdf",
+    "size_bytes": 72971,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8853.pdf",
+    "size_bytes": 92009,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8857.pdf",
+    "size_bytes": 162249,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8858.pdf",
+    "size_bytes": 188238,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8862.pdf",
+    "size_bytes": 153254,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8863.pdf",
+    "size_bytes": 111888,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8865.pdf",
+    "size_bytes": 289228,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8867.pdf",
+    "size_bytes": 134641,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8868.pdf",
+    "size_bytes": 85952,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8869.pdf",
+    "size_bytes": 64892,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8879.pdf",
+    "size_bytes": 91080,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8880.pdf",
+    "size_bytes": 91662,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8881.pdf",
+    "size_bytes": 71517,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8882.pdf",
+    "size_bytes": 71442,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8886.pdf",
+    "size_bytes": 106654,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8888.pdf",
+    "size_bytes": 112557,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8889.pdf",
+    "size_bytes": 74277,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8898.pdf",
+    "size_bytes": 125496,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8903.pdf",
+    "size_bytes": 76412,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8908.pdf",
+    "size_bytes": 141324,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8911.pdf",
+    "size_bytes": 62710,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8917.pdf",
+    "size_bytes": 100635,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8919.pdf",
+    "size_bytes": 93185,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8936.pdf",
+    "size_bytes": 75930,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8938.pdf",
+    "size_bytes": 136008,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8941.pdf",
+    "size_bytes": 75267,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8949.pdf",
+    "size_bytes": 128770,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8958.pdf",
+    "size_bytes": 112307,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8959.pdf",
+    "size_bytes": 71969,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8960.pdf",
+    "size_bytes": 76922,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8962.pdf",
+    "size_bytes": 117715,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8990.pdf",
+    "size_bytes": 120818,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8991.pdf",
+    "size_bytes": 231436,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8992.pdf",
+    "size_bytes": 65963,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8993.pdf",
+    "size_bytes": 81583,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8994.pdf",
+    "size_bytes": 59371,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8995.pdf",
+    "size_bytes": 72273,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f8996.pdf",
+    "size_bytes": 169142,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f940.pdf",
+    "size_bytes": 833678,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f941.pdf",
+    "size_bytes": 841648,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f941x.pdf",
+    "size_bytes": 215610,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f943.pdf",
+    "size_bytes": 125083,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f944.pdf",
+    "size_bytes": 126012,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f945.pdf",
+    "size_bytes": 114271,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f9465.pdf",
+    "size_bytes": 115848,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f966.pdf",
+    "size_bytes": 76894,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f982.pdf",
+    "size_bytes": 70042,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f990.pdf",
+    "size_bytes": 796676,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f990ez.pdf",
+    "size_bytes": 397623,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f990pf.pdf",
+    "size_bytes": 570714,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "f990t.pdf",
+    "size_bytes": 145815,
+    "category": "irs_tax_forms"
+  }
+,
+  {
+    "file": "fss4.pdf",
+    "size_bytes": 122921,
+    "category": "other"
+  }
+,
+  {
+    "file": "fw12.pdf",
+    "size_bytes": 136651,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw2.pdf",
+    "size_bytes": 1349127,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw2g.pdf",
+    "size_bytes": 156047,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw3.pdf",
+    "size_bytes": 491312,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw4.pdf",
+    "size_bytes": 208845,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw4p.pdf",
+    "size_bytes": 129893,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw4s.pdf",
+    "size_bytes": 91283,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw4v.pdf",
+    "size_bytes": 71781,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw7.pdf",
+    "size_bytes": 97654,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw8ben.pdf",
+    "size_bytes": 67700,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw8bene.pdf",
+    "size_bytes": 314634,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw8eci.pdf",
+    "size_bytes": 80793,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw8exp.pdf",
+    "size_bytes": 126251,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw8imy.pdf",
+    "size_bytes": 285064,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "fw9.pdf",
+    "size_bytes": 140815,
+    "category": "irs_w_forms"
+  }
+,
+  {
+    "file": "i-129.pdf",
+    "size_bytes": 2296144,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-130.pdf",
+    "size_bytes": 729861,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-131.pdf",
+    "size_bytes": 652991,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-134.pdf",
+    "size_bytes": 511302,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-140.pdf",
+    "size_bytes": 524991,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-360.pdf",
+    "size_bytes": 823077,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-485.pdf",
+    "size_bytes": 1203646,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-539.pdf",
+    "size_bytes": 495022,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-589.pdf",
+    "size_bytes": 835317,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-600.pdf",
+    "size_bytes": 723045,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-751.pdf",
+    "size_bytes": 627011,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-765.pdf",
+    "size_bytes": 467424,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-821.pdf",
+    "size_bytes": 861313,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-864.pdf",
+    "size_bytes": 540131,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "i-90.pdf",
+    "size_bytes": 508291,
+    "category": "uscis_immigration"
+  }
+,
+  {
+    "file": "n-400.pdf",
+    "size_bytes": 776244,
+    "category": "uscis_naturalization"
+  }
+,
+  {
+    "file": "n-600.pdf",
+    "size_bytes": 731639,
+    "category": "uscis_naturalization"
+  }
+,
+  {
+    "file": "rc66-fill-24e.pdf",
+    "size_bytes": 348857,
+    "category": "canadian_benefit"
+  }
+,
+  {
+    "file": "sf15.pdf",
+    "size_bytes": 1155287,
+    "category": "us_standard_forms"
+  }
+,
+  {
+    "file": "sf181.pdf",
+    "size_bytes": 64868,
+    "category": "us_standard_forms"
+  }
+,
+  {
+    "file": "sf85p.pdf",
+    "size_bytes": 5827944,
+    "category": "us_standard_forms"
+  }
+,
+  {
+    "file": "sf86.pdf",
+    "size_bytes": 7984610,
+    "category": "us_standard_forms"
+  }
+,
+  {
+    "file": "t2-fill-24e.pdf",
+    "size_bytes": 758308,
+    "category": "canadian_tax"
+  }
+,
+  {
+    "file": "t2125-fill-24e.pdf",
+    "size_bytes": 544282,
+    "category": "canadian_tax"
+  }
+,
+  {
+    "file": "t2200-fill-24e.pdf",
+    "size_bytes": 343429,
+    "category": "canadian_tax"
+  }
+,
+  {
+    "file": "t2202-fill-24e.pdf",
+    "size_bytes": 341535,
+    "category": "canadian_tax"
+  }
+,
+  {
+    "file": "t3-fill-24e.pdf",
+    "size_bytes": 285100,
+    "category": "canadian_tax"
+  }
+,
+  {
+    "file": "t4-fill-24e.pdf",
+    "size_bytes": 228263,
+    "category": "canadian_tax"
+  }
+,
+  {
+    "file": "t4a-fill-24e.pdf",
+    "size_bytes": 209538,
+    "category": "canadian_tax"
+  }
+,
+  {
+    "file": "t5-fill-24e.pdf",
+    "size_bytes": 219311,
+    "category": "canadian_tax"
+  }
+,
+  {
+    "file": "td1-fill-24e.pdf",
+    "size_bytes": 158505,
+    "category": "other"
+  }
+
+]

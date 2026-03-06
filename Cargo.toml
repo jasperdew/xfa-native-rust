@@ -34,6 +34,9 @@ members = [
     "crates/xfa-golden-tests",
     "crates/xfa-api-server",
     "crates/xfa-license",
+
+    # --- Benchmarks ---
+    "crates/pdf-bench",
 ]
 resolver = "2"
 
