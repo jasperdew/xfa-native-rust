@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # Download GovDocs1 PDF subset — DRAAIT OP VPS
-# digitalcorpora.org/corpora/govdocs/
+# Source: AWS S3 bucket s3://digitalcorpora (Open Data Sponsorship Program)
 # 1000 zip files, elk ~300MB gemengde bestanden
 # PDFs zijn ~23% van totaal -> ~231K PDFs
 # Wij nemen een steekproef -> ~5000 PDFs
+#
+# Requires: aws cli (apt install awscli or https://awscli.amazonaws.com/)
 #
 # Usage:
 #   ./scripts/corpus-download-govdocs.sh [--target DIR] [--count N] [--dry-run]
@@ -41,18 +43,17 @@ mkdir -p "$CORPUS_DIR" "$TEMP_DIR"
 for i in $(seq -w 000 999); do
     [[ "$CURRENT" -ge "$TARGET_COUNT" ]] && break
 
-    ZIP_URL="https://digitalcorpora.org/downloads/govdocs1/${i}.zip"
+    S3_URL="s3://digitalcorpora/corpora/files/govdocs1/zipfiles/${i}.zip"
 
     if $DRY_RUN; then
-        echo "[DRY-RUN] Would download: $ZIP_URL"
+        echo "[DRY-RUN] Would download: $S3_URL"
         # Estimate ~50 PDFs per zip (23% of ~220 files)
         CURRENT=$((CURRENT + 50))
         continue
     fi
 
     echo "[$(date)] Downloading govdocs zip $i..."
-    wget -q --timeout=60 --tries=3 "$ZIP_URL" \
-        -O "$TEMP_DIR/${i}.zip" 2>/dev/null || {
+    aws s3 cp "$S3_URL" "$TEMP_DIR/${i}.zip" --no-sign-request --quiet 2>/dev/null || {
         echo "  SKIP: zip $i (download failed)"
         continue
     }
