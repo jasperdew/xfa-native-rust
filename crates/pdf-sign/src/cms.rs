@@ -27,6 +27,8 @@ pub struct CmsSignedData {
     signed_attrs_raw: Option<Vec<u8>>,
     /// The signature algorithm OID from SignerInfo.
     sig_algo_oid: Vec<u8>,
+    /// The signature algorithm parameters (raw DER, needed for RSA-PSS).
+    sig_algo_params: Vec<u8>,
     /// Index of the signer certificate in the certificates array.
     signer_cert_index: usize,
 }
@@ -99,6 +101,7 @@ impl CmsSignedData {
             signer_cn: si.signer_cn,
             signed_attrs_raw: si.signed_attrs_raw,
             sig_algo_oid: si.sig_algo_oid,
+            sig_algo_params: si.sig_algo_params,
             signer_cert_index: si.signer_cert_index,
         })
     }
@@ -160,6 +163,14 @@ impl CmsSignedData {
     /// Return the signature algorithm OID from the SignerInfo.
     pub fn signature_algorithm_oid(&self) -> &[u8] {
         &self.sig_algo_oid
+    }
+
+    /// Return the signature algorithm parameters (raw DER).
+    ///
+    /// For RSA-PSS this contains the RSASSA-PSS-params SEQUENCE that
+    /// specifies the hash algorithm. Empty for most other algorithms.
+    pub fn signature_algorithm_params(&self) -> &[u8] {
+        &self.sig_algo_params
     }
 
     /// Return the index of the signer certificate in the certificates array.
@@ -307,6 +318,7 @@ struct SignerInfoFields {
     signer_cn: Option<String>,
     signed_attrs_raw: Option<Vec<u8>>,
     sig_algo_oid: Vec<u8>,
+    sig_algo_params: Vec<u8>,
     /// Index into the certificates array identifying the signer cert.
     signer_cert_index: usize,
 }
@@ -363,9 +375,13 @@ fn parse_signer_info(data: &[u8], certs: &[X509Certificate]) -> Option<SignerInf
 
     // signatureAlgorithm AlgorithmIdentifier
     let (rest, sig_algo_data) = parse_tlv(pos)?;
-    let sig_algo_oid = parse_tlv(sig_algo_data)
-        .map(|(_, oid)| oid.to_vec())
-        .unwrap_or_default();
+    let (sig_algo_oid, sig_algo_params) = if let Some((params_rest, oid)) = parse_tlv(sig_algo_data)
+    {
+        // Remaining bytes in AlgorithmIdentifier after the OID are the parameters.
+        (oid.to_vec(), params_rest.to_vec())
+    } else {
+        (Vec::new(), Vec::new())
+    };
     pos = rest;
 
     // signature OCTET STRING
@@ -384,6 +400,7 @@ fn parse_signer_info(data: &[u8], certs: &[X509Certificate]) -> Option<SignerInf
         signer_cn,
         signed_attrs_raw,
         sig_algo_oid,
+        sig_algo_params,
         signer_cert_index,
     })
 }

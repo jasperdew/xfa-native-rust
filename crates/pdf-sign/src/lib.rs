@@ -167,6 +167,7 @@ fn validate_one(sig: &SigDict<'_>, pdf_data: &[u8], field_name: &str) -> Validat
                                         sd.signature_value(),
                                         &leaf.spki_raw,
                                         sd.signature_algorithm_oid(),
+                                        sd.signature_algorithm_params(),
                                     ) {
                                         Ok(true) => ValidationStatus::Valid,
                                         Ok(false) => ValidationStatus::Invalid(
