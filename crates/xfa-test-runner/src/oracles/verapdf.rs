@@ -160,7 +160,7 @@ impl VeraPdfOracle {
             .collect();
 
         Ok(VeraPdfResult {
-            is_compliant: vr.is_compliant,
+            is_compliant: vr.compliant,
             profile_name: vr.profile_name,
             passed_rules: vr.details.passed_rules,
             failed_rules: vr.details.failed_rules,
@@ -256,9 +256,10 @@ enum ValidationResultWrapper {
 
 #[derive(Deserialize)]
 struct ValidationResult {
-    #[serde(rename = "isCompliant")]
-    is_compliant: bool,
-    #[serde(rename = "profileName")]
+    /// veraPDF <1.26: "isCompliant", veraPDF 1.28+: "compliant"
+    #[serde(alias = "isCompliant")]
+    compliant: bool,
+    #[serde(alias = "profileName", rename = "profileName", default)]
     profile_name: String,
     details: ValidationDetails,
 }
