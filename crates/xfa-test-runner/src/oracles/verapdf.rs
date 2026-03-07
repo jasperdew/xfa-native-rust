@@ -135,8 +135,15 @@ impl VeraPdfOracle {
             .next()
             .ok_or("veraPDF returned no jobs")?;
 
-        let Some(vr) = job.validation_result else {
-            return Err("veraPDF returned no validation result".to_string());
+        let vr = match job.validation_result {
+            Some(ValidationResultWrapper::Array(mut arr)) => {
+                if arr.is_empty() {
+                    return Err("veraPDF returned empty validation result array".to_string());
+                }
+                arr.remove(0)
+            }
+            Some(ValidationResultWrapper::Single(vr)) => vr,
+            None => return Err("veraPDF returned no validation result".to_string()),
         };
 
         let rule_failures: Vec<RuleFailure> = vr
@@ -235,8 +242,16 @@ struct ReportBody {
 
 #[derive(Deserialize)]
 struct VeraPdfJob {
+    /// veraPDF 1.28+ wraps validationResult in an array.
     #[serde(rename = "validationResult")]
-    validation_result: Option<ValidationResult>,
+    validation_result: Option<ValidationResultWrapper>,
+}
+
+#[derive(Deserialize)]
+#[serde(untagged)]
+enum ValidationResultWrapper {
+    Array(Vec<ValidationResult>),
+    Single(ValidationResult),
 }
 
 #[derive(Deserialize)]
