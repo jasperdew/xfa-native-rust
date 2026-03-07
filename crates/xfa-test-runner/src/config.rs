@@ -24,17 +24,18 @@ impl Config {
         run_id: Option<String>,
         db: Option<&crate::db::Database>,
     ) -> Self {
+        let corpus_str = corpus_dir.to_string_lossy().to_string();
         let run_id = run_id.unwrap_or_else(|| {
             if resume {
-                // When resuming, try to find the latest run
+                // When resuming, find the latest unfinished run for this corpus
                 if let Some(db) = db {
-                    if let Some(latest) = db.latest_run_id() {
+                    if let Some(latest) = db.latest_run_id_for_corpus(&corpus_str) {
                         return latest;
                     }
                 }
             }
             let now = chrono::Utc::now();
-            format!("run-{}", now.format("%Y%m%d-%H%M%S"))
+            format!("run-{}", now.format("%Y%m%d-%H%M%S%.3f"))
         });
         let test_filter = tests.map(|t| t.split(',').map(|s| s.trim().to_string()).collect());
         Self {

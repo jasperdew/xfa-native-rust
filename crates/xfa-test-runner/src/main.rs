@@ -223,8 +223,9 @@ fn main() {
             println!("{:<30} {:<25} {:>8}  Pattern", "Test", "Category", "Count");
             println!("{}", "-".repeat(90));
             for c in &clusters {
-                let pattern = if c.error_pattern.len() > 40 {
-                    format!("{}...", &c.error_pattern[..40])
+                let pattern = if c.error_pattern.chars().count() > 40 {
+                    let truncated: String = c.error_pattern.chars().take(40).collect();
+                    format!("{truncated}...")
                 } else {
                     c.error_pattern.clone()
                 };
