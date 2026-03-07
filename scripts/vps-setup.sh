@@ -86,7 +86,7 @@ if [ ! -d /opt/xfa ]; then
     git clone https://github.com/jasperdew/xfa-native-rust.git /opt/xfa
     chown -R xfa:xfa /opt/xfa
 fi
-su - xfa -c 'source $HOME/.cargo/env && cd /opt/xfa && cargo build --release 2>&1 | tail -3'
+su - xfa -c 'source $HOME/.cargo/env && cd /opt/xfa && cargo build --release'
 
 # 7. Directory structure
 echo "[7/7] Creating directory structure..."
