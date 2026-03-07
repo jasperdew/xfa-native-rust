@@ -162,14 +162,8 @@ fn parse_hocr_words(hocr: &str) -> Vec<OcrWord> {
     // HOCR format: <span class='ocrx_word' ... title='bbox x0 y0 x1 y1; x_wconf 95'>text</span>
     // Split on "ocrx_word" — the first segment is before any word span
     // and may contain page/line-level bboxes that we must skip.
-    for segment in hocr.split("ocrx_word") {
-        // Only process segments that contain x_wconf (word confidence),
-        // which distinguishes actual word spans from page/line segments
-        // that also contain bbox attributes.
-        if !segment.contains("x_wconf") {
-            continue;
-        }
-
+    // All subsequent segments belong to actual word spans.
+    for segment in hocr.split("ocrx_word").skip(1) {
         let bbox = extract_hocr_bbox(segment);
         let conf = extract_hocr_confidence(segment);
         let text = extract_hocr_text(segment);
@@ -310,8 +304,7 @@ mod tests {
     #[test]
     fn hocr_entity_decode_no_cascade() {
         // &amp;lt; should decode to "&lt;", not "<".
-        let hocr =
-            r#"<span class='ocrx_word' title='bbox 0 0 80 30; x_wconf 85'>&amp;lt;tag&amp;gt;</span>"#;
+        let hocr = r#"<span class='ocrx_word' title='bbox 0 0 80 30; x_wconf 85'>&amp;lt;tag&amp;gt;</span>"#;
         let words = parse_hocr_words(hocr);
         assert_eq!(words.len(), 1);
         assert_eq!(words[0].text, "&lt;tag&gt;");
