@@ -236,12 +236,12 @@ fn extract_hocr_text(s: &str) -> Option<String> {
 
 /// Decode common HTML entities in HOCR text output.
 fn decode_html_entities(s: &str) -> String {
-    s.replace("&amp;", "&")
-        .replace("&lt;", "<")
+    s.replace("&lt;", "<")
         .replace("&gt;", ">")
         .replace("&quot;", "\"")
         .replace("&#39;", "'")
         .replace("&apos;", "'")
+        .replace("&amp;", "&")
 }
 
 #[cfg(test)]
@@ -305,6 +305,16 @@ mod tests {
         let words = parse_hocr_words(hocr);
         assert_eq!(words.len(), 1);
         assert_eq!(words[0].text, "A & B");
+    }
+
+    #[test]
+    fn hocr_entity_decode_no_cascade() {
+        // &amp;lt; should decode to "&lt;", not "<".
+        let hocr =
+            r#"<span class='ocrx_word' title='bbox 0 0 80 30; x_wconf 85'>&amp;lt;tag&amp;gt;</span>"#;
+        let words = parse_hocr_words(hocr);
+        assert_eq!(words.len(), 1);
+        assert_eq!(words[0].text, "&lt;tag&gt;");
     }
 
     #[test]
