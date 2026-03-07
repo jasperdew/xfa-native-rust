@@ -1,0 +1,28 @@
+[Unit]
+Description=XFA Test Runner - Continuous Corpus Testing
+After=network.target
+
+[Service]
+Type=simple
+User=xfa
+Group=xfa
+WorkingDirectory=/opt/xfa
+Environment=PDFIUM_DYNAMIC_LIB_PATH=/opt/pdfium/lib
+Environment=LD_LIBRARY_PATH=/opt/pdfium/lib
+ExecStart=/opt/xfa/target/release/xfa-test-runner run \
+    --corpus /opt/xfa-corpus \
+    --db /opt/xfa-results/db/results.sqlite \
+    --workers 12 \
+    --timeout 30
+Restart=on-failure
+RestartSec=60
+StandardOutput=append:/opt/xfa-results/logs/runner.log
+StandardError=append:/opt/xfa-results/logs/runner-error.log
+
+# Resource limits
+LimitNOFILE=65536
+MemoryMax=28G
+CPUQuota=80%
+
+[Install]
+WantedBy=multi-user.target
