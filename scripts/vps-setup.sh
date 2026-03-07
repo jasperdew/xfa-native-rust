@@ -48,20 +48,35 @@ export LD_LIBRARY_PATH=/opt/pdfium/lib:${LD_LIBRARY_PATH:-}
 ENVEOF
 chmod +x /etc/profile.d/pdfium.sh
 
-# 5. veraPDF
+# 5. veraPDF (silent izpack install)
 echo "[5/7] Installing veraPDF..."
-VERAPDF_VERSION="1.26.2"
 if [ ! -f /usr/local/bin/verapdf ]; then
-    wget -q "https://software.verapdf.org/releases/verapdf-greenfield-${VERAPDF_VERSION}-installer.zip" -O /tmp/verapdf.zip
-    cd /tmp && unzip -qo verapdf.zip
-    mkdir -p /opt/verapdf
-    # Copy installer contents and create wrapper script.
-    cp -r verapdf-greenfield-${VERAPDF_VERSION}/* /opt/verapdf/
-    cat > /usr/local/bin/verapdf << 'WRAPPER'
-#!/bin/sh
-exec java -jar /opt/verapdf/verapdf-greenfield-*.jar "$@"
-WRAPPER
-    chmod +x /usr/local/bin/verapdf
+    cd /tmp
+    wget -q "https://software.verapdf.org/rel/verapdf-installer.zip" -O verapdf.zip
+    unzip -qo verapdf.zip
+    INSTALLER_JAR=$(ls /tmp/verapdf-greenfield-*/verapdf-izpack-installer-*.jar)
+    cat > /tmp/verapdf-auto-install.xml << 'AUTOXML'
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<AutomatedInstallation langpack="eng">
+    <com.izforge.izpack.panels.htmlhello.HTMLHelloPanel id="welcome"/>
+    <com.izforge.izpack.panels.target.TargetPanel id="install_dir">
+        <installpath>/opt/verapdf</installpath>
+    </com.izforge.izpack.panels.target.TargetPanel>
+    <com.izforge.izpack.panels.packs.PacksPanel id="sdk_pack_select">
+        <pack index="0" name="veraPDF GUI" selected="true"/>
+        <pack index="1" name="veraPDF Mac and *nix Scripts" selected="true"/>
+        <pack index="2" name="veraPDF Validation model" selected="true"/>
+        <pack index="3" name="veraPDF Documentation" selected="false"/>
+        <pack index="4" name="veraPDF Sample Plugins" selected="false"/>
+    </com.izforge.izpack.panels.packs.PacksPanel>
+    <com.izforge.izpack.panels.install.InstallPanel id="install"/>
+    <com.izforge.izpack.panels.finish.FinishPanel id="finish"/>
+</AutomatedInstallation>
+AUTOXML
+    rm -rf /opt/verapdf
+    java -jar "$INSTALLER_JAR" /tmp/verapdf-auto-install.xml
+    ln -sf /opt/verapdf/verapdf /usr/local/bin/verapdf
+    chmod +x /opt/verapdf/verapdf
     rm -rf /tmp/verapdf*
 fi
 
@@ -87,6 +102,17 @@ cp /opt/xfa/scripts/logrotate/xfa-test-runner /etc/logrotate.d/
 systemctl daemon-reload
 systemctl enable xfa-test-runner.timer
 systemctl start xfa-test-runner.timer
+
+# Cron jobs for auto-update and disk monitoring
+cat > /etc/cron.d/xfa << 'CRONEOF'
+# Auto-update: pull master and rebuild daily at 05:00
+0 5 * * * xfa /opt/xfa/scripts/vps-update.sh >> /opt/xfa-results/logs/update.log 2>&1
+# Disk monitoring: every 30 minutes
+*/30 * * * * xfa /opt/xfa/scripts/check-disk.sh >> /opt/xfa-results/logs/disk.log 2>&1
+CRONEOF
+
+# Allow xfa user to restart the service after updates
+echo "xfa ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart xfa-test-runner" > /etc/sudoers.d/xfa-runner
 
 echo ""
 echo "=== Setup complete ==="
