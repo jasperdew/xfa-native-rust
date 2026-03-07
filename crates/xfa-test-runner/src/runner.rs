@@ -15,12 +15,13 @@ use crate::tests::{PdfTest, TestStatus};
 
 pub struct Runner {
     config: Config,
-    tests: Vec<Box<dyn PdfTest>>,
+    tests: Vec<Arc<dyn PdfTest>>,
     db: Arc<Database>,
 }
 
 impl Runner {
     pub fn new(config: Config, tests: Vec<Box<dyn PdfTest>>, db: Database) -> Self {
+        let tests: Vec<Arc<dyn PdfTest>> = tests.into_iter().map(Arc::from).collect();
         Self {
             config,
             tests,
@@ -79,7 +80,23 @@ impl Runner {
                 let pdf_data = match std::fs::read(pdf_path) {
                     Ok(data) => data,
                     Err(e) => {
-                        eprintln!("Failed to read {}: {}", path_str, e);
+                        // Persist read failures as test results
+                        let err_msg = format!("Failed to read file: {e}");
+                        for test in &self.tests {
+                            let row = TestResultRow::from_test_result(
+                                &self.config.run_id,
+                                &path_str,
+                                "",
+                                0,
+                                test.name(),
+                                &TestStatus::Fail,
+                                Some(&err_msg),
+                                Some(&crate::classifier::classify_error(test.name(), &err_msg)),
+                                0,
+                            );
+                            let _ = self.db.insert_result(&row);
+                            fail_count.fetch_add(1, Ordering::Relaxed);
+                        }
                         progress.inc(1);
                         return;
                     }
@@ -95,7 +112,8 @@ impl Runner {
                         }
                     }
 
-                    let result = self.run_single_test(test.as_ref(), &pdf_data, pdf_path);
+                    let result =
+                        self.run_single_test(test.clone(), &pdf_data, pdf_path);
 
                     match result.status {
                         TestStatus::Pass => {
@@ -162,7 +180,7 @@ impl Runner {
 
     fn run_single_test(
         &self,
-        test: &dyn PdfTest,
+        test: Arc<dyn PdfTest>,
         pdf_data: &[u8],
         path: &Path,
     ) -> crate::tests::TestResult {
@@ -172,29 +190,20 @@ impl Runner {
         let data = pdf_data.to_vec();
         let path_buf = path.to_path_buf();
 
-        // catch_unwind for panic safety; post-hoc timeout check
+        // Spawn test in separate thread for preemptive timeout enforcement
+        let (tx, rx) = std::sync::mpsc::channel();
         let start = Instant::now();
 
-        let result =
-            std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| test.run(&data, &path_buf)));
+        std::thread::spawn(move || {
+            let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+                test.run(&data, &path_buf)
+            }));
+            let _ = tx.send(result);
+        });
 
-        let elapsed = start.elapsed();
-
-        if elapsed > timeout {
-            return crate::tests::TestResult {
-                status: TestStatus::Timeout,
-                error_message: Some(format!(
-                    "Test '{test_name}' exceeded timeout of {timeout:?}"
-                )),
-                duration_ms: elapsed.as_millis() as u64,
-                oracle_score: None,
-                metadata: Default::default(),
-            };
-        }
-
-        match result {
-            Ok(test_result) => test_result,
-            Err(panic_info) => {
+        match rx.recv_timeout(timeout) {
+            Ok(Ok(test_result)) => test_result,
+            Ok(Err(panic_info)) => {
                 let msg = if let Some(s) = panic_info.downcast_ref::<&str>() {
                     s.to_string()
                 } else if let Some(s) = panic_info.downcast_ref::<String>() {
@@ -205,11 +214,20 @@ impl Runner {
                 crate::tests::TestResult {
                     status: TestStatus::Crash,
                     error_message: Some(msg),
-                    duration_ms: elapsed.as_millis() as u64,
+                    duration_ms: start.elapsed().as_millis() as u64,
                     oracle_score: None,
                     metadata: Default::default(),
                 }
             }
+            Err(_) => crate::tests::TestResult {
+                status: TestStatus::Timeout,
+                error_message: Some(format!(
+                    "Test '{test_name}' exceeded timeout of {timeout:?}"
+                )),
+                duration_ms: start.elapsed().as_millis() as u64,
+                oracle_score: None,
+                metadata: Default::default(),
+            },
         }
     }
 
