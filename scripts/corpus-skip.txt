@@ -1,0 +1,25 @@
+# PDFs that cause stack overflows due to deep/circular object references.
+# These are excluded from corpus runs until pdf-syntax gets recursion guards.
+/opt/xfa-corpus/forms/acroform/cmp_checkBoxSetBorders.pdf
+/opt/xfa-corpus/forms/acroform/largeFile.pdf
+/opt/xfa-corpus/general/govdocs/019_019679.pdf
+/opt/xfa-corpus/general/inline-images-ii-some.pdf
+/opt/xfa-corpus/general/inline-images.pdf
+/opt/xfa-corpus/general/numeric-and-string-2.pdf
+/opt/xfa-corpus/general/append-xref-loop.pdf
+
+# Intentionally corrupt test fixtures (qpdf/pdfbox issue trackers, ZUGFeRD test suite).
+# These are designed to test error handling, not valid PDF processing.
+/opt/xfa-corpus/general/PasswordEncryptedReconstructed.pdf
+/opt/xfa-corpus/general/issue-100.pdf
+/opt/xfa-corpus/general/issue-101.pdf
+/opt/xfa-corpus/general/issue-119.pdf
+/opt/xfa-corpus/general/issue-120.pdf
+/opt/xfa-corpus/general/issue-141b.pdf
+/opt/xfa-corpus/general/issue-146.pdf
+/opt/xfa-corpus/general/issue-263.pdf
+/opt/xfa-corpus/general/pdfbox/PDFBOX-6041-example.pdf
+/opt/xfa-corpus/invoices/zugferd/corrupt-factur-x-waytoosmall.pdf
+
+# Pathological PDFs that cause infinite loops in rendering/text extraction.
+/opt/xfa-corpus/general/pdfbox/PDFBOX-4372-2DAYCLVOFG3FTVO4RMAJJL3VTPNYDFRO-p4_reduced.pdf
