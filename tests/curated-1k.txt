@@ -1,0 +1,1000 @@
+/opt/xfa-corpus/forms/acroform/choiceFieldsWithUnnecessaryIEntries.pdf
+/opt/xfa-corpus/forms/acroform/cmp_addButtonInTwoWays.pdf
+/opt/xfa-corpus/forms/acroform/cmp_addFieldToIndirectFieldsArrayTest.pdf
+/opt/xfa-corpus/forms/acroform/cmp_basicRadio.pdf
+/opt/xfa-corpus/forms/acroform/cmp_checkBoxFontSizeTest01.pdf
+/opt/xfa-corpus/forms/acroform/cmp_checkBoxSetSize.pdf
+/opt/xfa-corpus/forms/acroform/cmp_choiceFieldAutoSize01Test.pdf
+/opt/xfa-corpus/forms/acroform/cmp_choiceFieldsWithUnicodeTest.pdf
+/opt/xfa-corpus/forms/acroform/cmp_colorsBorders.pdf
+/opt/xfa-corpus/forms/acroform/cmp_comboBoxFieldWithMaxHeight.pdf
+/opt/xfa-corpus/forms/acroform/cmp_copyFields13.pdf
+/opt/xfa-corpus/forms/acroform/cmp_copyMultipleSubfieldsSmartModeTest01.pdf
+/opt/xfa-corpus/forms/acroform/cmp_createEmptyXFAFormTest01.pdf
+/opt/xfa-corpus/forms/acroform/cmp_createXFAFormTest.pdf
+/opt/xfa-corpus/forms/acroform/cmp_emptyListBoxField.pdf
+/opt/xfa-corpus/forms/acroform/cmp_encryptAes256Pdf2PermissionsTest01.pdf
+/opt/xfa-corpus/forms/acroform/cmp_encryptAes256Pdf2PermissionsTest02.pdf
+/opt/xfa-corpus/forms/acroform/cmp_fillFormWithDefaultResources.pdf
+/opt/xfa-corpus/forms/acroform/cmp_fillFormWithRotatedFieldAndPageTest.pdf
+/opt/xfa-corpus/forms/acroform/cmp_fillFormWithSameEmptyObjsForAppearance.pdf
+/opt/xfa-corpus/forms/acroform/cmp_flatteningPdfWithFields.pdf
+/opt/xfa-corpus/forms/acroform/cmp_formFieldWithStringTest.pdf
+/opt/xfa-corpus/forms/acroform/cmp_FormFlatteningDefaultAppearance_180_90_flattened.pdf
+/opt/xfa-corpus/forms/acroform/cmp_FormFlatteningDefaultAppearance_270_0.pdf
+/opt/xfa-corpus/forms/acroform/cmp_FormFlatteningDefaultAppearance_270_90.pdf
+/opt/xfa-corpus/forms/acroform/cmp_inputButtonIsForcedSplit.pdf
+/opt/xfa-corpus/forms/acroform/cmp_interactive_fixed_pos.pdf
+/opt/xfa-corpus/forms/acroform/cmp_interactiveOutOfBounds.pdf
+/opt/xfa-corpus/forms/acroform/cmp_invalidOptions.pdf
+/opt/xfa-corpus/forms/acroform/cmp_listBoxFieldWithMargins.pdf
+/opt/xfa-corpus/forms/acroform/cmp_listBoxFieldWithMaxHeight.pdf
+/opt/xfa-corpus/forms/acroform/cmp_maxHeightInputField.pdf
+/opt/xfa-corpus/forms/acroform/cmp_maxLenColoredTest.pdf
+/opt/xfa-corpus/forms/acroform/cmp_mergeFieldTaggingTest08.pdf
+/opt/xfa-corpus/forms/acroform/cmp_mergeMergedFieldAndTwoWidgetsTest.pdf
+/opt/xfa-corpus/forms/acroform/cmp_minHeightInputField.pdf
+/opt/xfa-corpus/forms/acroform/cmp_multilineTextFieldRedundantSpacesAreTrimmedTest.pdf
+/opt/xfa-corpus/forms/acroform/cmp_realFontSizeRegenerateAppearance.pdf
+/opt/xfa-corpus/forms/acroform/cmp_removeFieldFromIndirectFieldsArrayTest.pdf
+/opt/xfa-corpus/forms/acroform/cmp_setFont3Ways.pdf
+/opt/xfa-corpus/forms/acroform/cmp_setValueWithDisplayTest.pdf
+/opt/xfa-corpus/forms/acroform/cmp_sigFieldWithNameAndDescriptionModeVertical.pdf
+/opt/xfa-corpus/forms/acroform/cmp_taggedPdfWithForms01.pdf
+/opt/xfa-corpus/forms/acroform/cmp_textAreaDoesNotFit.pdf
+/opt/xfa-corpus/forms/acroform/cmp_textFieldLeadingSpacesAreNotTrimmed.pdf
+/opt/xfa-corpus/forms/acroform/cmp_xfdfButton.pdf
+/opt/xfa-corpus/forms/acroform/cmp_xfdfInReplyTo.pdf
+/opt/xfa-corpus/forms/acroform/cmp_xfdfOnlyRequiredAnnotationAttributes.pdf
+/opt/xfa-corpus/forms/acroform/cmp_xfdfSubelementOverlayAppearance.pdf
+/opt/xfa-corpus/forms/acroform/cmp_xfdfWithFieldsWithValueParentAndChild.pdf
+/opt/xfa-corpus/forms/acroform/corruptedOptAndValueSetToNullTest.pdf
+/opt/xfa-corpus/forms/acroform/datasheet2.pdf
+/opt/xfa-corpus/forms/acroform/datasheet.pdf
+/opt/xfa-corpus/forms/acroform/emptySignature.pdf
+/opt/xfa-corpus/forms/acroform/fieldMergedWithWidget.pdf
+/opt/xfa-corpus/forms/acroform/fillFormWithAutosizeSource.pdf
+/opt/xfa-corpus/forms/acroform/flatteningPdfWithFields.pdf
+/opt/xfa-corpus/forms/acroform/FormFlatteningDefaultAppearance_0_0.pdf
+/opt/xfa-corpus/forms/acroform/FormFlatteningDefaultAppearance_90_0.pdf
+/opt/xfa-corpus/forms/acroform/FormFlatteningDefaultAppearance_90_90.pdf
+/opt/xfa-corpus/forms/acroform/formFlatteningSourceChoiceField.pdf
+/opt/xfa-corpus/forms/acroform/formWithKids.pdf
+/opt/xfa-corpus/forms/acroform/maxLenFields.pdf
+/opt/xfa-corpus/forms/acroform/maxLenInheritanceTest.pdf
+/opt/xfa-corpus/forms/acroform/multilineFormFieldNewLineFontType3Test.pdf
+/opt/xfa-corpus/forms/acroform/mutuallyExclusiveCheckBox.pdf
+/opt/xfa-corpus/forms/acroform/pdfWithRotatedField.pdf
+/opt/xfa-corpus/forms/acroform/rotated90TextFormField.pdf
+/opt/xfa-corpus/forms/acroform/simpleFormWithMultipleFields.pdf
+/opt/xfa-corpus/forms/acroform/src_rotatedFieldAppearanceTest01.pdf
+/opt/xfa-corpus/forms/acroform/xfdfAnnotationAttrColor.pdf
+/opt/xfa-corpus/forms/acroform/xfdfAnnotationCloudNested.pdf
+/opt/xfa-corpus/forms/acroform/xfdfAnnotationLink.pdf
+/opt/xfa-corpus/forms/acroform/xfdfAnnotationPolyline.pdf
+/opt/xfa-corpus/forms/acroform/xfdfDropDown.pdf
+/opt/xfa-corpus/forms/acroform/xfdfJavaScriptForms.pdf
+/opt/xfa-corpus/forms/acroform/xfdfList.pdf
+/opt/xfa-corpus/forms/acroform/xfdfPopupNewFlags.pdf
+/opt/xfa-corpus/forms/acroform/xfdfReferenceFor3DRadial.pdf
+/opt/xfa-corpus/forms/acroform/xfdfWithFieldsWithValueParentAndChild.pdf
+/opt/xfa-corpus/forms/xfa/f1040ez.pdf
+/opt/xfa-corpus/general/4.pdf
+/opt/xfa-corpus/general/annotation-no-resources.pdf
+/opt/xfa-corpus/general/appearances-1-rotated.pdf
+/opt/xfa-corpus/general/appearances-a-more2.pdf
+/opt/xfa-corpus/general/appearances-a-more.pdf
+/opt/xfa-corpus/general/appearances-b.pdf
+/opt/xfa-corpus/general/bad10.pdf
+/opt/xfa-corpus/general/bad22.pdf
+/opt/xfa-corpus/general/badlin1.pdf
+/opt/xfa-corpus/general/button-set-broken.pdf
+/opt/xfa-corpus/general/button-set.pdf
+/opt/xfa-corpus/general/c-info2-in.pdf
+/opt/xfa-corpus/general/c-no-original-object-ids.pdf
+/opt/xfa-corpus/general/detached.pdf
+/opt/xfa-corpus/general/direct-dr.pdf
+/opt/xfa-corpus/general/duplicate-pages.pdf
+/opt/xfa-corpus/general/empty-stream-compressed.pdf
+/opt/xfa-corpus/general/enc1.pdf
+/opt/xfa-corpus/general/encrypted-with-images.pdf
+/opt/xfa-corpus/general/enc-XI-R6,V5,U=attachment,encrypted-attachments.pdf
+/opt/xfa-corpus/general/enc-XI-R6,V5,U=wwwww,O=wwwww.pdf
+/opt/xfa-corpus/general/endobj-at-eol-fixed.pdf
+/opt/xfa-corpus/general/etsi_esscertid_03.pdf
+/opt/xfa-corpus/general/fakebold.pdf
+/opt/xfa-corpus/general/field-parse-errors-out.pdf
+/opt/xfa-corpus/general/fields-split-1.pdf
+/opt/xfa-corpus/general/field-types.pdf
+/opt/xfa-corpus/general/fieldWithUtf16Names.pdf
+/opt/xfa-corpus/general/form-document-defaults.pdf
+/opt/xfa-corpus/general/form-empty-from-odt.pdf
+/opt/xfa-corpus/general/form-errors.pdf
+/opt/xfa-corpus/general/form-filled-by-acrobat-out.pdf
+/opt/xfa-corpus/general/form-filled-with-atril.pdf
+/opt/xfa-corpus/general/form.pdf
+/opt/xfa-corpus/general/good17-not-qdf.pdf
+/opt/xfa-corpus/general/govdocs/000_000187.pdf
+/opt/xfa-corpus/general/govdocs/000_000236.pdf
+/opt/xfa-corpus/general/govdocs/000_000282.pdf
+/opt/xfa-corpus/general/govdocs/000_000324.pdf
+/opt/xfa-corpus/general/govdocs/000_000354.pdf
+/opt/xfa-corpus/general/govdocs/000_000370.pdf
+/opt/xfa-corpus/general/govdocs/000_000578.pdf
+/opt/xfa-corpus/general/govdocs/000_000580.pdf
+/opt/xfa-corpus/general/govdocs/000_000587.pdf
+/opt/xfa-corpus/general/govdocs/000_000737.pdf
+/opt/xfa-corpus/general/govdocs/000_000753.pdf
+/opt/xfa-corpus/general/govdocs/000_000770.pdf
+/opt/xfa-corpus/general/govdocs/000_000813.pdf
+/opt/xfa-corpus/general/govdocs/000_000817.pdf
+/opt/xfa-corpus/general/govdocs/001_001030.pdf
+/opt/xfa-corpus/general/govdocs/001_001036.pdf
+/opt/xfa-corpus/general/govdocs/001_001044.pdf
+/opt/xfa-corpus/general/govdocs/001_001045.pdf
+/opt/xfa-corpus/general/govdocs/001_001067.pdf
+/opt/xfa-corpus/general/govdocs/001_001097.pdf
+/opt/xfa-corpus/general/govdocs/001_001103.pdf
+/opt/xfa-corpus/general/govdocs/001_001154.pdf
+/opt/xfa-corpus/general/govdocs/001_001257.pdf
+/opt/xfa-corpus/general/govdocs/001_001298.pdf
+/opt/xfa-corpus/general/govdocs/001_001306.pdf
+/opt/xfa-corpus/general/govdocs/001_001343.pdf
+/opt/xfa-corpus/general/govdocs/001_001375.pdf
+/opt/xfa-corpus/general/govdocs/001_001383.pdf
+/opt/xfa-corpus/general/govdocs/001_001465.pdf
+/opt/xfa-corpus/general/govdocs/001_001487.pdf
+/opt/xfa-corpus/general/govdocs/001_001492.pdf
+/opt/xfa-corpus/general/govdocs/001_001493.pdf
+/opt/xfa-corpus/general/govdocs/001_001508.pdf
+/opt/xfa-corpus/general/govdocs/001_001511.pdf
+/opt/xfa-corpus/general/govdocs/001_001655.pdf
+/opt/xfa-corpus/general/govdocs/001_001663.pdf
+/opt/xfa-corpus/general/govdocs/001_001670.pdf
+/opt/xfa-corpus/general/govdocs/001_001674.pdf
+/opt/xfa-corpus/general/govdocs/001_001688.pdf
+/opt/xfa-corpus/general/govdocs/001_001692.pdf
+/opt/xfa-corpus/general/govdocs/001_001954.pdf
+/opt/xfa-corpus/general/govdocs/001_001960.pdf
+/opt/xfa-corpus/general/govdocs/001_001994.pdf
+/opt/xfa-corpus/general/govdocs/002_002166.pdf
+/opt/xfa-corpus/general/govdocs/002_002185.pdf
+/opt/xfa-corpus/general/govdocs/002_002190.pdf
+/opt/xfa-corpus/general/govdocs/002_002193.pdf
+/opt/xfa-corpus/general/govdocs/002_002202.pdf
+/opt/xfa-corpus/general/govdocs/002_002315.pdf
+/opt/xfa-corpus/general/govdocs/002_002319.pdf
+/opt/xfa-corpus/general/govdocs/002_002472.pdf
+/opt/xfa-corpus/general/govdocs/002_002481.pdf
+/opt/xfa-corpus/general/govdocs/002_002709.pdf
+/opt/xfa-corpus/general/govdocs/002_002710.pdf
+/opt/xfa-corpus/general/govdocs/002_002716.pdf
+/opt/xfa-corpus/general/govdocs/002_002727.pdf
+/opt/xfa-corpus/general/govdocs/002_002732.pdf
+/opt/xfa-corpus/general/govdocs/002_002848.pdf
+/opt/xfa-corpus/general/govdocs/002_002863.pdf
+/opt/xfa-corpus/general/govdocs/002_002874.pdf
+/opt/xfa-corpus/general/govdocs/002_002877.pdf
+/opt/xfa-corpus/general/govdocs/002_002948.pdf
+/opt/xfa-corpus/general/govdocs/003_003045.pdf
+/opt/xfa-corpus/general/govdocs/003_003054.pdf
+/opt/xfa-corpus/general/govdocs/003_003067.pdf
+/opt/xfa-corpus/general/govdocs/003_003070.pdf
+/opt/xfa-corpus/general/govdocs/003_003072.pdf
+/opt/xfa-corpus/general/govdocs/003_003115.pdf
+/opt/xfa-corpus/general/govdocs/003_003177.pdf
+/opt/xfa-corpus/general/govdocs/003_003195.pdf
+/opt/xfa-corpus/general/govdocs/003_003207.pdf
+/opt/xfa-corpus/general/govdocs/003_003316.pdf
+/opt/xfa-corpus/general/govdocs/003_003407.pdf
+/opt/xfa-corpus/general/govdocs/003_003422.pdf
+/opt/xfa-corpus/general/govdocs/003_003668.pdf
+/opt/xfa-corpus/general/govdocs/003_003677.pdf
+/opt/xfa-corpus/general/govdocs/003_003684.pdf
+/opt/xfa-corpus/general/govdocs/003_003829.pdf
+/opt/xfa-corpus/general/govdocs/003_003838.pdf
+/opt/xfa-corpus/general/govdocs/003_003851.pdf
+/opt/xfa-corpus/general/govdocs/003_003853.pdf
+/opt/xfa-corpus/general/govdocs/003_003917.pdf
+/opt/xfa-corpus/general/govdocs/003_003953.pdf
+/opt/xfa-corpus/general/govdocs/003_003969.pdf
+/opt/xfa-corpus/general/govdocs/003_003982.pdf
+/opt/xfa-corpus/general/govdocs/004_004050.pdf
+/opt/xfa-corpus/general/govdocs/004_004123.pdf
+/opt/xfa-corpus/general/govdocs/004_004129.pdf
+/opt/xfa-corpus/general/govdocs/004_004132.pdf
+/opt/xfa-corpus/general/govdocs/004_004138.pdf
+/opt/xfa-corpus/general/govdocs/004_004149.pdf
+/opt/xfa-corpus/general/govdocs/004_004152.pdf
+/opt/xfa-corpus/general/govdocs/004_004324.pdf
+/opt/xfa-corpus/general/govdocs/004_004325.pdf
+/opt/xfa-corpus/general/govdocs/004_004420.pdf
+/opt/xfa-corpus/general/govdocs/004_004423.pdf
+/opt/xfa-corpus/general/govdocs/004_004463.pdf
+/opt/xfa-corpus/general/govdocs/004_004468.pdf
+/opt/xfa-corpus/general/govdocs/004_004476.pdf
+/opt/xfa-corpus/general/govdocs/004_004484.pdf
+/opt/xfa-corpus/general/govdocs/004_004485.pdf
+/opt/xfa-corpus/general/govdocs/004_004507.pdf
+/opt/xfa-corpus/general/govdocs/004_004678.pdf
+/opt/xfa-corpus/general/govdocs/004_004679.pdf
+/opt/xfa-corpus/general/govdocs/004_004907.pdf
+/opt/xfa-corpus/general/govdocs/004_004908.pdf
+/opt/xfa-corpus/general/govdocs/004_004991.pdf
+/opt/xfa-corpus/general/govdocs/005_005000.pdf
+/opt/xfa-corpus/general/govdocs/005_005001.pdf
+/opt/xfa-corpus/general/govdocs/005_005019.pdf
+/opt/xfa-corpus/general/govdocs/005_005114.pdf
+/opt/xfa-corpus/general/govdocs/005_005285.pdf
+/opt/xfa-corpus/general/govdocs/005_005504.pdf
+/opt/xfa-corpus/general/govdocs/005_005509.pdf
+/opt/xfa-corpus/general/govdocs/005_005525.pdf
+/opt/xfa-corpus/general/govdocs/005_005526.pdf
+/opt/xfa-corpus/general/govdocs/005_005766.pdf
+/opt/xfa-corpus/general/govdocs/005_005795.pdf
+/opt/xfa-corpus/general/govdocs/005_005802.pdf
+/opt/xfa-corpus/general/govdocs/005_005841.pdf
+/opt/xfa-corpus/general/govdocs/005_005861.pdf
+/opt/xfa-corpus/general/govdocs/005_005936.pdf
+/opt/xfa-corpus/general/govdocs/006_006045.pdf
+/opt/xfa-corpus/general/govdocs/006_006054.pdf
+/opt/xfa-corpus/general/govdocs/006_006067.pdf
+/opt/xfa-corpus/general/govdocs/006_006283.pdf
+/opt/xfa-corpus/general/govdocs/006_006293.pdf
+/opt/xfa-corpus/general/govdocs/006_006296.pdf
+/opt/xfa-corpus/general/govdocs/006_006347.pdf
+/opt/xfa-corpus/general/govdocs/006_006369.pdf
+/opt/xfa-corpus/general/govdocs/006_006420.pdf
+/opt/xfa-corpus/general/govdocs/006_006429.pdf
+/opt/xfa-corpus/general/govdocs/006_006437.pdf
+/opt/xfa-corpus/general/govdocs/006_006497.pdf
+/opt/xfa-corpus/general/govdocs/006_006523.pdf
+/opt/xfa-corpus/general/govdocs/006_006545.pdf
+/opt/xfa-corpus/general/govdocs/006_006582.pdf
+/opt/xfa-corpus/general/govdocs/006_006756.pdf
+/opt/xfa-corpus/general/govdocs/006_006785.pdf
+/opt/xfa-corpus/general/govdocs/006_006790.pdf
+/opt/xfa-corpus/general/govdocs/006_006974.pdf
+/opt/xfa-corpus/general/govdocs/006_006984.pdf
+/opt/xfa-corpus/general/govdocs/006_006987.pdf
+/opt/xfa-corpus/general/govdocs/007_007024.pdf
+/opt/xfa-corpus/general/govdocs/007_007025.pdf
+/opt/xfa-corpus/general/govdocs/007_007034.pdf
+/opt/xfa-corpus/general/govdocs/007_007055.pdf
+/opt/xfa-corpus/general/govdocs/007_007078.pdf
+/opt/xfa-corpus/general/govdocs/007_007081.pdf
+/opt/xfa-corpus/general/govdocs/007_007093.pdf
+/opt/xfa-corpus/general/govdocs/007_007203.pdf
+/opt/xfa-corpus/general/govdocs/007_007229.pdf
+/opt/xfa-corpus/general/govdocs/007_007456.pdf
+/opt/xfa-corpus/general/govdocs/007_007509.pdf
+/opt/xfa-corpus/general/govdocs/007_007513.pdf
+/opt/xfa-corpus/general/govdocs/007_007527.pdf
+/opt/xfa-corpus/general/govdocs/007_007625.pdf
+/opt/xfa-corpus/general/govdocs/007_007632.pdf
+/opt/xfa-corpus/general/govdocs/007_007640.pdf
+/opt/xfa-corpus/general/govdocs/007_007649.pdf
+/opt/xfa-corpus/general/govdocs/007_007682.pdf
+/opt/xfa-corpus/general/govdocs/007_007684.pdf
+/opt/xfa-corpus/general/govdocs/007_007695.pdf
+/opt/xfa-corpus/general/govdocs/007_007707.pdf
+/opt/xfa-corpus/general/govdocs/007_007719.pdf
+/opt/xfa-corpus/general/govdocs/007_007748.pdf
+/opt/xfa-corpus/general/govdocs/007_007813.pdf
+/opt/xfa-corpus/general/govdocs/007_007830.pdf
+/opt/xfa-corpus/general/govdocs/007_007856.pdf
+/opt/xfa-corpus/general/govdocs/007_007859.pdf
+/opt/xfa-corpus/general/govdocs/007_007947.pdf
+/opt/xfa-corpus/general/govdocs/007_007983.pdf
+/opt/xfa-corpus/general/govdocs/008_008006.pdf
+/opt/xfa-corpus/general/govdocs/008_008009.pdf
+/opt/xfa-corpus/general/govdocs/008_008037.pdf
+/opt/xfa-corpus/general/govdocs/008_008043.pdf
+/opt/xfa-corpus/general/govdocs/008_008049.pdf
+/opt/xfa-corpus/general/govdocs/008_008207.pdf
+/opt/xfa-corpus/general/govdocs/008_008255.pdf
+/opt/xfa-corpus/general/govdocs/008_008278.pdf
+/opt/xfa-corpus/general/govdocs/008_008342.pdf
+/opt/xfa-corpus/general/govdocs/008_008385.pdf
+/opt/xfa-corpus/general/govdocs/008_008388.pdf
+/opt/xfa-corpus/general/govdocs/008_008572.pdf
+/opt/xfa-corpus/general/govdocs/008_008580.pdf
+/opt/xfa-corpus/general/govdocs/008_008670.pdf
+/opt/xfa-corpus/general/govdocs/008_008672.pdf
+/opt/xfa-corpus/general/govdocs/008_008700.pdf
+/opt/xfa-corpus/general/govdocs/008_008738.pdf
+/opt/xfa-corpus/general/govdocs/008_008764.pdf
+/opt/xfa-corpus/general/govdocs/008_008784.pdf
+/opt/xfa-corpus/general/govdocs/008_008855.pdf
+/opt/xfa-corpus/general/govdocs/008_008861.pdf
+/opt/xfa-corpus/general/govdocs/008_008867.pdf
+/opt/xfa-corpus/general/govdocs/008_008868.pdf
+/opt/xfa-corpus/general/govdocs/008_008990.pdf
+/opt/xfa-corpus/general/govdocs/008_008999.pdf
+/opt/xfa-corpus/general/govdocs/009_009052.pdf
+/opt/xfa-corpus/general/govdocs/009_009074.pdf
+/opt/xfa-corpus/general/govdocs/009_009076.pdf
+/opt/xfa-corpus/general/govdocs/009_009130.pdf
+/opt/xfa-corpus/general/govdocs/009_009169.pdf
+/opt/xfa-corpus/general/govdocs/009_009253.pdf
+/opt/xfa-corpus/general/govdocs/009_009256.pdf
+/opt/xfa-corpus/general/govdocs/009_009277.pdf
+/opt/xfa-corpus/general/govdocs/009_009286.pdf
+/opt/xfa-corpus/general/govdocs/009_009287.pdf
+/opt/xfa-corpus/general/govdocs/009_009352.pdf
+/opt/xfa-corpus/general/govdocs/009_009369.pdf
+/opt/xfa-corpus/general/govdocs/009_009424.pdf
+/opt/xfa-corpus/general/govdocs/009_009530.pdf
+/opt/xfa-corpus/general/govdocs/009_009891.pdf
+/opt/xfa-corpus/general/govdocs/009_009892.pdf
+/opt/xfa-corpus/general/govdocs/009_009907.pdf
+/opt/xfa-corpus/general/govdocs/009_009974.pdf
+/opt/xfa-corpus/general/govdocs/010_010106.pdf
+/opt/xfa-corpus/general/govdocs/010_010208.pdf
+/opt/xfa-corpus/general/govdocs/010_010240.pdf
+/opt/xfa-corpus/general/govdocs/010_010430.pdf
+/opt/xfa-corpus/general/govdocs/010_010432.pdf
+/opt/xfa-corpus/general/govdocs/010_010435.pdf
+/opt/xfa-corpus/general/govdocs/010_010501.pdf
+/opt/xfa-corpus/general/govdocs/010_010582.pdf
+/opt/xfa-corpus/general/govdocs/010_010583.pdf
+/opt/xfa-corpus/general/govdocs/010_010609.pdf
+/opt/xfa-corpus/general/govdocs/010_010707.pdf
+/opt/xfa-corpus/general/govdocs/010_010713.pdf
+/opt/xfa-corpus/general/govdocs/010_010715.pdf
+/opt/xfa-corpus/general/govdocs/010_010724.pdf
+/opt/xfa-corpus/general/govdocs/010_010923.pdf
+/opt/xfa-corpus/general/govdocs/010_010937.pdf
+/opt/xfa-corpus/general/govdocs/011_011150.pdf
+/opt/xfa-corpus/general/govdocs/011_011264.pdf
+/opt/xfa-corpus/general/govdocs/011_011317.pdf
+/opt/xfa-corpus/general/govdocs/011_011325.pdf
+/opt/xfa-corpus/general/govdocs/011_011400.pdf
+/opt/xfa-corpus/general/govdocs/011_011412.pdf
+/opt/xfa-corpus/general/govdocs/011_011416.pdf
+/opt/xfa-corpus/general/govdocs/011_011428.pdf
+/opt/xfa-corpus/general/govdocs/011_011527.pdf
+/opt/xfa-corpus/general/govdocs/011_011580.pdf
+/opt/xfa-corpus/general/govdocs/011_011589.pdf
+/opt/xfa-corpus/general/govdocs/011_011624.pdf
+/opt/xfa-corpus/general/govdocs/011_011626.pdf
+/opt/xfa-corpus/general/govdocs/011_011700.pdf
+/opt/xfa-corpus/general/govdocs/011_011701.pdf
+/opt/xfa-corpus/general/govdocs/011_011709.pdf
+/opt/xfa-corpus/general/govdocs/011_011728.pdf
+/opt/xfa-corpus/general/govdocs/011_011734.pdf
+/opt/xfa-corpus/general/govdocs/011_011736.pdf
+/opt/xfa-corpus/general/govdocs/011_011737.pdf
+/opt/xfa-corpus/general/govdocs/011_011951.pdf
+/opt/xfa-corpus/general/govdocs/012_012073.pdf
+/opt/xfa-corpus/general/govdocs/012_012172.pdf
+/opt/xfa-corpus/general/govdocs/012_012174.pdf
+/opt/xfa-corpus/general/govdocs/012_012176.pdf
+/opt/xfa-corpus/general/govdocs/012_012177.pdf
+/opt/xfa-corpus/general/govdocs/012_012178.pdf
+/opt/xfa-corpus/general/govdocs/012_012179.pdf
+/opt/xfa-corpus/general/govdocs/012_012186.pdf
+/opt/xfa-corpus/general/govdocs/012_012191.pdf
+/opt/xfa-corpus/general/govdocs/012_012360.pdf
+/opt/xfa-corpus/general/govdocs/012_012365.pdf
+/opt/xfa-corpus/general/govdocs/012_012379.pdf
+/opt/xfa-corpus/general/govdocs/012_012501.pdf
+/opt/xfa-corpus/general/govdocs/012_012567.pdf
+/opt/xfa-corpus/general/govdocs/012_012569.pdf
+/opt/xfa-corpus/general/govdocs/012_012613.pdf
+/opt/xfa-corpus/general/govdocs/012_012633.pdf
+/opt/xfa-corpus/general/govdocs/012_012637.pdf
+/opt/xfa-corpus/general/govdocs/012_012638.pdf
+/opt/xfa-corpus/general/govdocs/012_012649.pdf
+/opt/xfa-corpus/general/govdocs/012_012669.pdf
+/opt/xfa-corpus/general/govdocs/012_012680.pdf
+/opt/xfa-corpus/general/govdocs/012_012808.pdf
+/opt/xfa-corpus/general/govdocs/012_012852.pdf
+/opt/xfa-corpus/general/govdocs/013_013046.pdf
+/opt/xfa-corpus/general/govdocs/013_013119.pdf
+/opt/xfa-corpus/general/govdocs/013_013132.pdf
+/opt/xfa-corpus/general/govdocs/013_013243.pdf
+/opt/xfa-corpus/general/govdocs/013_013337.pdf
+/opt/xfa-corpus/general/govdocs/013_013343.pdf
+/opt/xfa-corpus/general/govdocs/013_013347.pdf
+/opt/xfa-corpus/general/govdocs/013_013363.pdf
+/opt/xfa-corpus/general/govdocs/013_013434.pdf
+/opt/xfa-corpus/general/govdocs/013_013446.pdf
+/opt/xfa-corpus/general/govdocs/013_013467.pdf
+/opt/xfa-corpus/general/govdocs/013_013596.pdf
+/opt/xfa-corpus/general/govdocs/013_013601.pdf
+/opt/xfa-corpus/general/govdocs/013_013607.pdf
+/opt/xfa-corpus/general/govdocs/013_013800.pdf
+/opt/xfa-corpus/general/govdocs/013_013808.pdf
+/opt/xfa-corpus/general/govdocs/013_013973.pdf
+/opt/xfa-corpus/general/govdocs/013_013985.pdf
+/opt/xfa-corpus/general/govdocs/013_013991.pdf
+/opt/xfa-corpus/general/govdocs/014_014009.pdf
+/opt/xfa-corpus/general/govdocs/014_014012.pdf
+/opt/xfa-corpus/general/govdocs/014_014096.pdf
+/opt/xfa-corpus/general/govdocs/014_014105.pdf
+/opt/xfa-corpus/general/govdocs/014_014225.pdf
+/opt/xfa-corpus/general/govdocs/014_014236.pdf
+/opt/xfa-corpus/general/govdocs/014_014253.pdf
+/opt/xfa-corpus/general/govdocs/014_014258.pdf
+/opt/xfa-corpus/general/govdocs/014_014264.pdf
+/opt/xfa-corpus/general/govdocs/014_014453.pdf
+/opt/xfa-corpus/general/govdocs/014_014470.pdf
+/opt/xfa-corpus/general/govdocs/014_014579.pdf
+/opt/xfa-corpus/general/govdocs/014_014595.pdf
+/opt/xfa-corpus/general/govdocs/014_014637.pdf
+/opt/xfa-corpus/general/govdocs/014_014643.pdf
+/opt/xfa-corpus/general/govdocs/014_014650.pdf
+/opt/xfa-corpus/general/govdocs/014_014715.pdf
+/opt/xfa-corpus/general/govdocs/014_014807.pdf
+/opt/xfa-corpus/general/govdocs/014_014818.pdf
+/opt/xfa-corpus/general/govdocs/014_014819.pdf
+/opt/xfa-corpus/general/govdocs/014_014846.pdf
+/opt/xfa-corpus/general/govdocs/014_014889.pdf
+/opt/xfa-corpus/general/govdocs/014_014998.pdf
+/opt/xfa-corpus/general/govdocs/015_015151.pdf
+/opt/xfa-corpus/general/govdocs/015_015164.pdf
+/opt/xfa-corpus/general/govdocs/015_015185.pdf
+/opt/xfa-corpus/general/govdocs/015_015192.pdf
+/opt/xfa-corpus/general/govdocs/015_015319.pdf
+/opt/xfa-corpus/general/govdocs/015_015320.pdf
+/opt/xfa-corpus/general/govdocs/015_015326.pdf
+/opt/xfa-corpus/general/govdocs/015_015346.pdf
+/opt/xfa-corpus/general/govdocs/015_015387.pdf
+/opt/xfa-corpus/general/govdocs/015_015475.pdf
+/opt/xfa-corpus/general/govdocs/015_015478.pdf
+/opt/xfa-corpus/general/govdocs/015_015489.pdf
+/opt/xfa-corpus/general/govdocs/015_015601.pdf
+/opt/xfa-corpus/general/govdocs/015_015763.pdf
+/opt/xfa-corpus/general/govdocs/015_015766.pdf
+/opt/xfa-corpus/general/govdocs/016_016012.pdf
+/opt/xfa-corpus/general/govdocs/016_016019.pdf
+/opt/xfa-corpus/general/govdocs/016_016052.pdf
+/opt/xfa-corpus/general/govdocs/016_016113.pdf
+/opt/xfa-corpus/general/govdocs/016_016114.pdf
+/opt/xfa-corpus/general/govdocs/016_016119.pdf
+/opt/xfa-corpus/general/govdocs/016_016127.pdf
+/opt/xfa-corpus/general/govdocs/016_016134.pdf
+/opt/xfa-corpus/general/govdocs/016_016150.pdf
+/opt/xfa-corpus/general/govdocs/016_016151.pdf
+/opt/xfa-corpus/general/govdocs/016_016182.pdf
+/opt/xfa-corpus/general/govdocs/016_016455.pdf
+/opt/xfa-corpus/general/govdocs/016_016456.pdf
+/opt/xfa-corpus/general/govdocs/016_016458.pdf
+/opt/xfa-corpus/general/govdocs/016_016474.pdf
+/opt/xfa-corpus/general/govdocs/016_016482.pdf
+/opt/xfa-corpus/general/govdocs/016_016595.pdf
+/opt/xfa-corpus/general/govdocs/016_016659.pdf
+/opt/xfa-corpus/general/govdocs/016_016667.pdf
+/opt/xfa-corpus/general/govdocs/016_016685.pdf
+/opt/xfa-corpus/general/govdocs/016_016757.pdf
+/opt/xfa-corpus/general/govdocs/016_016800.pdf
+/opt/xfa-corpus/general/govdocs/016_016802.pdf
+/opt/xfa-corpus/general/govdocs/016_016872.pdf
+/opt/xfa-corpus/general/govdocs/017_017130.pdf
+/opt/xfa-corpus/general/govdocs/017_017135.pdf
+/opt/xfa-corpus/general/govdocs/017_017142.pdf
+/opt/xfa-corpus/general/govdocs/017_017216.pdf
+/opt/xfa-corpus/general/govdocs/017_017266.pdf
+/opt/xfa-corpus/general/govdocs/017_017268.pdf
+/opt/xfa-corpus/general/govdocs/017_017284.pdf
+/opt/xfa-corpus/general/govdocs/017_017390.pdf
+/opt/xfa-corpus/general/govdocs/017_017393.pdf
+/opt/xfa-corpus/general/govdocs/017_017395.pdf
+/opt/xfa-corpus/general/govdocs/017_017400.pdf
+/opt/xfa-corpus/general/govdocs/017_017419.pdf
+/opt/xfa-corpus/general/govdocs/017_017422.pdf
+/opt/xfa-corpus/general/govdocs/017_017426.pdf
+/opt/xfa-corpus/general/govdocs/017_017537.pdf
+/opt/xfa-corpus/general/govdocs/017_017548.pdf
+/opt/xfa-corpus/general/govdocs/017_017591.pdf
+/opt/xfa-corpus/general/govdocs/017_017611.pdf
+/opt/xfa-corpus/general/govdocs/017_017644.pdf
+/opt/xfa-corpus/general/govdocs/017_017806.pdf
+/opt/xfa-corpus/general/govdocs/017_017811.pdf
+/opt/xfa-corpus/general/govdocs/017_017865.pdf
+/opt/xfa-corpus/general/govdocs/017_017872.pdf
+/opt/xfa-corpus/general/govdocs/017_017982.pdf
+/opt/xfa-corpus/general/govdocs/018_018091.pdf
+/opt/xfa-corpus/general/govdocs/018_018183.pdf
+/opt/xfa-corpus/general/govdocs/018_018335.pdf
+/opt/xfa-corpus/general/govdocs/018_018343.pdf
+/opt/xfa-corpus/general/govdocs/018_018404.pdf
+/opt/xfa-corpus/general/govdocs/018_018468.pdf
+/opt/xfa-corpus/general/govdocs/018_018481.pdf
+/opt/xfa-corpus/general/govdocs/018_018482.pdf
+/opt/xfa-corpus/general/govdocs/018_018569.pdf
+/opt/xfa-corpus/general/govdocs/018_018610.pdf
+/opt/xfa-corpus/general/govdocs/018_018688.pdf
+/opt/xfa-corpus/general/govdocs/018_018700.pdf
+/opt/xfa-corpus/general/govdocs/018_018732.pdf
+/opt/xfa-corpus/general/govdocs/018_018741.pdf
+/opt/xfa-corpus/general/govdocs/018_018744.pdf
+/opt/xfa-corpus/general/govdocs/018_018745.pdf
+/opt/xfa-corpus/general/govdocs/018_018790.pdf
+/opt/xfa-corpus/general/govdocs/018_018821.pdf
+/opt/xfa-corpus/general/govdocs/018_018835.pdf
+/opt/xfa-corpus/general/govdocs/018_018841.pdf
+/opt/xfa-corpus/general/govdocs/018_018891.pdf
+/opt/xfa-corpus/general/govdocs/018_018902.pdf
+/opt/xfa-corpus/general/govdocs/018_018925.pdf
+/opt/xfa-corpus/general/govdocs/018_018931.pdf
+/opt/xfa-corpus/general/govdocs/018_018933.pdf
+/opt/xfa-corpus/general/govdocs/018_018945.pdf
+/opt/xfa-corpus/general/govdocs/018_018984.pdf
+/opt/xfa-corpus/general/govdocs/019_019021.pdf
+/opt/xfa-corpus/general/govdocs/019_019023.pdf
+/opt/xfa-corpus/general/govdocs/019_019054.pdf
+/opt/xfa-corpus/general/govdocs/019_019066.pdf
+/opt/xfa-corpus/general/govdocs/019_019305.pdf
+/opt/xfa-corpus/general/govdocs/019_019306.pdf
+/opt/xfa-corpus/general/govdocs/019_019322.pdf
+/opt/xfa-corpus/general/govdocs/019_019361.pdf
+/opt/xfa-corpus/general/govdocs/019_019434.pdf
+/opt/xfa-corpus/general/govdocs/019_019437.pdf
+/opt/xfa-corpus/general/govdocs/019_019445.pdf
+/opt/xfa-corpus/general/govdocs/019_019446.pdf
+/opt/xfa-corpus/general/govdocs/019_019449.pdf
+/opt/xfa-corpus/general/govdocs/019_019457.pdf
+/opt/xfa-corpus/general/govdocs/019_019501.pdf
+/opt/xfa-corpus/general/govdocs/019_019505.pdf
+/opt/xfa-corpus/general/govdocs/019_019507.pdf
+/opt/xfa-corpus/general/govdocs/019_019548.pdf
+/opt/xfa-corpus/general/govdocs/019_019759.pdf
+/opt/xfa-corpus/general/govdocs/019_019837.pdf
+/opt/xfa-corpus/general/govdocs/019_019844.pdf
+/opt/xfa-corpus/general/govdocs/019_019851.pdf
+/opt/xfa-corpus/general/invalid-id-xref.pdf
+/opt/xfa-corpus/general/issue-202.pdf
+/opt/xfa-corpus/general/jpeg.pdf
+/opt/xfa-corpus/general/latex-hyperref-checkbox-issue-655.pdf
+/opt/xfa-corpus/general/lin8.pdf
+/opt/xfa-corpus/general/manual-appearances.pdf
+/opt/xfa-corpus/general/manual-appearances-print-out.pdf
+/opt/xfa-corpus/general/mismatch_etsi_vs_sha1.pdf
+/opt/xfa-corpus/general/name-pound-images.pdf
+/opt/xfa-corpus/general/need-appearances-more2.pdf
+/opt/xfa-corpus/general/need-appearances-more-out.pdf
+/opt/xfa-corpus/general/nested-form-xobjects.pdf
+/opt/xfa-corpus/general/other-file-first.pdf
+/opt/xfa-corpus/general/overlay-copy-annotations-p5.pdf
+/opt/xfa-corpus/general/overlay-copy-annotations-p6.pdf
+/opt/xfa-corpus/general/pclm-out.pdf
+/opt/xfa-corpus/general/pdfbox/AcrobatMerge-DifferentOptions.pdf
+/opt/xfa-corpus/general/pdfbox/attachment.pdf
+/opt/xfa-corpus/general/pdfbox/ControlCharacters.pdf
+/opt/xfa-corpus/general/pdfbox/PasswordSample-40bit.pdf
+/opt/xfa-corpus/general/pdfbox/PDFA3A.pdf
+/opt/xfa-corpus/general/pdfbox/PDFBox.GlobalResourceMergeTest.Doc01.pdf
+/opt/xfa-corpus/general/pdfbox/rot180.pdf
+/opt/xfa-corpus/general/pdfbox/sample_fonts_solidconvertor.pdf
+/opt/xfa-corpus/general/pdfbox/test.unc.pdf
+/opt/xfa-corpus/general/pdfbox/with_outline.pdf
+/opt/xfa-corpus/general/png-filters-no-columns-decoded.pdf
+/opt/xfa-corpus/general/resource-from-dr.pdf
+/opt/xfa-corpus/general/russian.pdf
+/opt/xfa-corpus/general/sample-form-out.pdf
+/opt/xfa-corpus/general/searchAcrossLines.pdf
+/opt/xfa-corpus/general/sha1_mixed_functions.pdf
+/opt/xfa-corpus/general/sha1.pdf
+/opt/xfa-corpus/general/shapes+attachments.pdf
+/opt/xfa-corpus/general/shared-form-images.pdf
+/opt/xfa-corpus/general/shared-images-errors-2-out.pdf
+/opt/xfa-corpus/general/short-O-U.pdf
+/opt/xfa-corpus/general/source1.pdf
+/opt/xfa-corpus/general/source2.pdf
+/opt/xfa-corpus/general/test4-5.pdf
+/opt/xfa-corpus/general/test80a2.pdf
+/opt/xfa-corpus/general/to-rotate.pdf
+/opt/xfa-corpus/general/unfilterable-with-crypt.pdf
+/opt/xfa-corpus/general/UseThumbs.pdf
+/opt/xfa-corpus/general/V4-aes.pdf
+/opt/xfa-corpus/general/V4-clearmeta.pdf
+/opt/xfa-corpus/general/WithActualText.pdf
+/opt/xfa-corpus/general/WithAttachments.pdf
+/opt/xfa-corpus/invoices/zugferd/corruptedV2PDF.pdf
+/opt/xfa-corpus/invoices/zugferd/EmptyPDFA1.pdf
+/opt/xfa-corpus/invoices/zugferd/EN16931_1_Teilrechnung.pdf
+/opt/xfa-corpus/invoices/zugferd/Facture_F20180027.pdf
+/opt/xfa-corpus/invoices/zugferd/invalidXMP.pdf
+/opt/xfa-corpus/invoices/zugferd/invalidXRechnung.pdf
+/opt/xfa-corpus/invoices/zugferd/MustangGnuaccountingBeispielRE-20170509_505blanko.pdf
+/opt/xfa-corpus/invoices/zugferd/MustangGnuaccountingBeispielRE-20170509_505.pdf
+/opt/xfa-corpus/invoices/zugferd/MustangGnuaccountingBeispielRE-20170509_505PDF14.pdf
+/opt/xfa-corpus/invoices/zugferd/MustangGnuaccountingBeispielRE-20201121_508blanko.pdf
+/opt/xfa-corpus/invoices/zugferd/validV2PDF.pdf
+/opt/xfa-corpus/invoices/zugferd/veraPDFtestsuite6-7-11-t01-fail-a.pdf
+/opt/xfa-corpus/invoices/zugferd/ZTESTZUGFERD_1_INVDSS_012015738820PDF-1.pdf
+/opt/xfa-corpus/invoices/zugferd/zugferd_2p1_EXTENDED_PDFA-3A.pdf
+/opt/xfa-corpus/invoices/zugferd/ZugferdDev.de.pdf
+/opt/xfa-corpus/invoices/zugferd/ZugferdDev.en.pdf
+/opt/xfa-corpus/signed/rsa/addUnsignedSignatureField.pdf
+/opt/xfa-corpus/signed/rsa/annotationModificationAllowedTabsChangesTest.pdf
+/opt/xfa-corpus/signed/rsa/annotsIndirect.pdf
+/opt/xfa-corpus/signed/rsa/B-B.pdf
+/opt/xfa-corpus/signed/rsa/B-LTA_with_multiple_prolongations.pdf
+/opt/xfa-corpus/signed/rsa/catalogReferenceInRandomPlace.pdf
+/opt/xfa-corpus/signed/rsa/changeExistingFont.pdf
+/opt/xfa-corpus/signed/rsa/cmp_annotsIndirect.pdf
+/opt/xfa-corpus/signed/rsa/cmp_calcHashOnDocCreationThenDeferredSignTest01.pdf
+/opt/xfa-corpus/signed/rsa/cmp_defaultSignedAppearanceTextTest.pdf
+/opt/xfa-corpus/signed/rsa/cmp_defaultSignedPDFAAppearanceTextTest.pdf
+/opt/xfa-corpus/signed/rsa/cmp_defaultSignerPropertiesTest.pdf
+/opt/xfa-corpus/signed/rsa/cmp_emptySignature02.pdf
+/opt/xfa-corpus/signed/rsa/cmp_emptySignatureAppearance.pdf
+/opt/xfa-corpus/signed/rsa/cmp_fontColorTest01.pdf
+/opt/xfa-corpus/signed/rsa/cmp_layer0WithImageAndPositiveImageScaleTest.pdf
+/opt/xfa-corpus/signed/rsa/cmp_ltvEnabledSingleSignatureNoOcspDataTest.pdf
+/opt/xfa-corpus/signed/rsa/cmp_padesSignatureLevelLTATest01.pdf
+/opt/xfa-corpus/signed/rsa/cmp_padesSignatureLevelLTATest3.pdf
+/opt/xfa-corpus/signed/rsa/cmp_padesSignatureLevelLTTest3.pdf
+/opt/xfa-corpus/signed/rsa/cmp_padesSignatureLevelTTest1.pdf
+/opt/xfa-corpus/signed/rsa/cmp_padesSignatureLevelTTest2.pdf
+/opt/xfa-corpus/signed/rsa/cmp_prolongDocumentSignaturesTest1_FIPS.pdf
+/opt/xfa-corpus/signed/rsa/cmp_prolongDocumentSignaturesTest3_FIPS.pdf
+/opt/xfa-corpus/signed/rsa/cmp_reuseAppearanceDeprecated.pdf
+/opt/xfa-corpus/signed/rsa/cmp_reuseAppearance.pdf
+/opt/xfa-corpus/signed/rsa/cmp_secondLtvOriginalHasNoVriTs01.pdf
+/opt/xfa-corpus/signed/rsa/cmp_secondSignOfTagged.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signaturePolicyInfoUnavailableUrl_signed.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signDeferredWithReaderTest.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signedTwiceDocWithDAEntry.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signedTwice.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signExistingNotMergedFieldNotReusedAP.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signExistingNotMergedFieldReusedAPEntryNDic.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signMacProtectedDocInAppendModeTest_signExternalContainerBlank.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signMacProtectedDocInAppendModeTest_signExternalContainerReal.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signMacProtectedDocTest_signDetached.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signMacProtectedDocTest_signExternalContainerBlank.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signMacProtectedDocTest_timestamping.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signMacProtectedDocWithSHA3_384Test_signDetached.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signMacProtectedDocWithSHA3_384Test_timestamping.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signMacPublicEncryptionDocTest_signDetached.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signMacPublicEncryptionDocTest_signExternalContainerReal.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signNotMacProtectedDoc17Test_signExternalContainerReal.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signNotMacProtectedDocInAppendModeTest_signExternalContainerReal.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signNotMacProtectedDocTest_signDetached.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signNotMacProtectedDocTest_timestamping.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signPdf2Cms.pdf
+/opt/xfa-corpus/signed/rsa/cmp_signPdfCades.pdf
+/opt/xfa-corpus/signed/rsa/cmp_simplePssSignature.pdf
+/opt/xfa-corpus/signed/rsa/cmp_testTroughPdfSignerWithCadesType.pdf
+/opt/xfa-corpus/signed/rsa/cmp_testTroughPdfSignerWithTsaClient_FIPS.pdf
+/opt/xfa-corpus/signed/rsa/cmp_twoPhaseSignerWithReaderTest.pdf
+/opt/xfa-corpus/signed/rsa/cmp_twoStepSigningBaselineBTest1.pdf
+/opt/xfa-corpus/signed/rsa/cmp_twoStepSigningBaselineLTATest2_FIPS.pdf
+/opt/xfa-corpus/signed/rsa/cmp_twoStepSigningBaselineLTATest2.pdf
+/opt/xfa-corpus/signed/rsa/cmp_twoStepSigningBaselineLTATest3_FIPS.pdf
+/opt/xfa-corpus/signed/rsa/cmp_twoStepSigningBaselineLTATest4.pdf
+/opt/xfa-corpus/signed/rsa/cmp_twoStepSigningBaselineLTTest2.pdf
+/opt/xfa-corpus/signed/rsa/cmp_twoStepSigningBaselineLTTest3.pdf
+/opt/xfa-corpus/signed/rsa/cmp_twoStepSigningBaselineLTTest4.pdf
+/opt/xfa-corpus/signed/rsa/cmp_twoStepSigningBaselineTTest2.pdf
+/opt/xfa-corpus/signed/rsa/cmp_updateSignedMacProtectedDocumentTest.pdf
+/opt/xfa-corpus/signed/rsa/complicatedTaggedDoc.pdf
+/opt/xfa-corpus/signed/rsa/danglingWidgetAnnotation.pdf
+/opt/xfa-corpus/signed/rsa/emptySignature02.pdf
+/opt/xfa-corpus/signed/rsa/extensionsModifications.pdf
+/opt/xfa-corpus/signed/rsa/fieldLockLevelIncrease.pdf
+/opt/xfa-corpus/signed/rsa/fullCompressionModeLevel3.pdf
+/opt/xfa-corpus/signed/rsa/hybrid.pdf
+/opt/xfa-corpus/signed/rsa/indirectBytesAreNotCoveredTest01.pdf
+/opt/xfa-corpus/signed/rsa/isa-3.pdf
+/opt/xfa-corpus/signed/rsa/lastBytesNotCoveredTest01.pdf
+/opt/xfa-corpus/signed/rsa/linearizedDoc.pdf
+/opt/xfa-corpus/signed/rsa/macEncryptedDocSHA3_384.pdf
+/opt/xfa-corpus/signed/rsa/modifiedDocTimestampDate.pdf
+/opt/xfa-corpus/signed/rsa/notIndirectSigDictionaryTest.pdf
+/opt/xfa-corpus/signed/rsa/ocspResponseSignedByCertToCheck.pdf
+/opt/xfa-corpus/signed/rsa/pdfVersionAdded.pdf
+/opt/xfa-corpus/signed/rsa/revDataInTheSignatureContainer.pdf
+/opt/xfa-corpus/signed/rsa/revDataInTheSignerInfo.pdf
+/opt/xfa-corpus/signed/rsa/sample-brainpoolP384r1-sha384.pdf
+/opt/xfa-corpus/signed/rsa/shortValidityCertsWithOcsp.pdf
+/opt/xfa-corpus/signed/rsa/signatureFieldWithDAEntry.pdf
+/opt/xfa-corpus/signed/rsa/signatureInTextTypeField.pdf
+/opt/xfa-corpus/signed/rsa/signatureWithInvalidOcspTest.pdf
+/opt/xfa-corpus/signed/rsa/signedOnceDocWithDAEntry.pdf
+/opt/xfa-corpus/signed/rsa/signedWithAnnots.pdf
+/opt/xfa-corpus/signed/rsa/signingCertHas3ChainWithOcspOnlyForChildCert.pdf
+/opt/xfa-corpus/signed/rsa/signIntoExistingFieldWithDots.pdf
+/opt/xfa-corpus/signed/rsa/simpleSignatureWithXfa.pdf
+/opt/xfa-corpus/signed/rsa/singleSignatureNotEmptyCRL.pdf
+/opt/xfa-corpus/signed/rsa/spacesBeforeContentsTest01.pdf
+/opt/xfa-corpus/signed/rsa/taggedDocAddAndRemoveAnnotations.pdf
+/opt/xfa-corpus/signed/rsa/taggedDocModifyAnnotationAndStructContent.pdf
+/opt/xfa-corpus/signed/rsa/taggedDocModifyStructElement.pdf
+/opt/xfa-corpus/signed/rsa/taggedDocRemoveStructTreeElement.pdf
+/opt/xfa-corpus/signed/rsa/timestampSignatureDoc.pdf
+/opt/xfa-corpus/signed/rsa/twoContentsTest01.pdf
+/opt/xfa-corpus/signed/rsa/validateSingleSignature1.pdf
+/opt/xfa-corpus/signed/rsa/validateSingleSignature2.pdf
+/opt/xfa-corpus/tagged/verapdf/5-t05-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/6-3-5-t02-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/6-3-5-t03-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/7.10-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.10-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.15-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.16-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.16-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.18.1-t02-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.18.1-t03-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/7.18.1-t03-pass-e.pdf
+/opt/xfa-corpus/tagged/verapdf/7.18.3-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7-18.3-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.18.5-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.18.5-t01-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.18.7-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.18.8-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.1-t01-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.1-t02-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.1-t03-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.1-t04-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.1-t05-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.1-t05-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.1-t06-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.1-t06-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.1-t07-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.1-t09-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.20-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.20-t02-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.21.3.1-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.21.3.1-t01-pass-d.pdf
+/opt/xfa-corpus/tagged/verapdf/7.21.3.2-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.21.3.3-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.21.4.2-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.21.4.2-t02-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.21.5-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.21.6-t02-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/7.21.6-t02-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.21.7-t01-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.21.7-t02-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t02-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t03-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t04-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t07-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t11-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t15-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t17-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t19-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t20-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t20-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t21-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t21-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t21-pass-c.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t22-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t23-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t24-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t25-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t27-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t29-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t29-fail-f.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t29-fail-j.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t29-fail-m.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t29-fail-n.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t29-fail-o.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t29-pass-i.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t31-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t34-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t34-pass-c.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t36-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.2-t41-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.3-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.3-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.4.2-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.4.2-t01-pass-d.pdf
+/opt/xfa-corpus/tagged/verapdf/7.4.4-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.5-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.5-t01-pass-e.pdf
+/opt/xfa-corpus/tagged/verapdf/7.7-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/7.7-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/7.7-t01-pass-c.pdf
+/opt/xfa-corpus/tagged/verapdf/8.11.2-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/8.11.2-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/8.14.1-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/8.2.2-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/8.2.4-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/8.2.4-t02-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/8.2.5.20-t02-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/8.2.5.20-t02-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/8.2.5.26-t05-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/8.2.5.26-t05-pass-d.pdf
+/opt/xfa-corpus/tagged/verapdf/8.2.5.28.2-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/8.4.4-t02-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/8.4.4-t02-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/8.4.4-t02-fail-e.pdf
+/opt/xfa-corpus/tagged/verapdf/8.4.4-t02-pass-d.pdf
+/opt/xfa-corpus/tagged/verapdf/8.4.4-t02-pass-j.pdf
+/opt/xfa-corpus/tagged/verapdf/8.4.5.4-t02-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/8.4.5.4-t03-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/8.4.5.6-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/8.7-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/8.8-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-1-12-t01-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-1-2-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-1-6-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-3-4-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-3-6-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-3-7-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-5-2-t01-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-5-2-t01-fail-f.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-5-2-t01-fail-h.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-5-3-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-5-3-t02-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-5-3-t02-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-5-3-t04-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-5-3-t04-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-6-1-t01-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-6-1-t01-fail-h.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-6-1-t01-fail-i.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-6-1-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-6-1-t02-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-6-1-t03-fail-g.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-6-1-t04-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-6-1-t04-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-7-11-t01-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-7-11-t01-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-7-2-t02-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/isartor-6-7-8-t02-fail-h.pdf
+/opt/xfa-corpus/tagged/verapdf/TWG test suite A005-pdfa1-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/TWG test suite A006-pdfa1-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/TWG test suite A008-pdfa1-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/TWG test suite A011-A015-pdfa1-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/TWG test suite A012-pdfa1-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/TWG test suite A018-pdfa2-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/TWG test suite A029-pdfa2-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/TWG test suite A029-pdfa2-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-12-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-12-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-12-t02-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-12-t03-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-12-t09-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-2-t01-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-3-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-3-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-3-t04-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-3-t05-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-4-t03-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-6-1-t02-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-6-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-7-1-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-8-t01-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-1-9-t03-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-10-3-1-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-10-3-3-t03-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-10-4-1-t02-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-10-7-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-10-8-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-10-t03-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-10-t04-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-10-t05-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-10-t06-fail-g.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-11-6-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-11-7-2-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-11-7-2-t01-pass-f.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-2-t02-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-2-t03-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-2-t04-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-3-3-t02-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-2-t02-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-2-t02-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-2-t03-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-2-t03-fail-f.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-2-t03-pass-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-3-t01-fail-k.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-3-t01-fail-m.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-3-t01-fail-r.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-3-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-3-t01-pass-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-3-t02-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-4-t01-pass-h.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-4-t03-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-5-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-4-5-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-5-t02-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-7-1-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-8-3-t01-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-8-3-t04-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-9-3-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-9-t03-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-9-t04-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-9-t05-fail-e.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-9-t05-fail-f.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-9-t05-fail-g.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-9-t07-fail-e.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-2-9-t07-fail-g.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-3-1-t01-fail-e.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-3-1-t01-fail-f.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-3-1-t01-pass-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-3-2-t01-fail-n.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-3-2-t01-fail-o.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-3-2-t01-fail-q.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-3-2-t01-fail-t.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-3-2-t01-fail-y.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-3-3-1-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-3-3-t01-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-3-8-t01-pass-h.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-4-1-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-4-2-t01-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-4-t03-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-4-t04-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-5-1-t01-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-5-1-t01-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-5-1-t01-fail-g.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-1-t01-fail-l.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-1-t01-fail-m.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t01-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t01-fail-e.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t01-fail-j.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t01-pass-g.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t02-fail-t.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t02-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t02-pass-y.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t03-pass-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t04-fail-e.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t04-pass-h.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t04-pass-i.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t06-pass-g.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t08-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t09-pass-q.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t11-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t13-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t14-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t14-fail-q.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t14-fail-x.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t14-pass-i.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t15-pass-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t15-pass-k.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t15-pass-n.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t15-pass-p.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t16-fail-i.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t16-fail-q.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t16-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t16-pass-k.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t17-fail-r.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t17-fail-t.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t17-pass-g.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t17-pass-m.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t17-pass-p.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t17-pass-s.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-1-t19-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-2-3-3-t01-fail-f.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-4-t01-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-4-t01-fail-f.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-6-6-t01-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-11-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-11-t05-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-1-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t03-fail-o.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t05-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t06-fail-c.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t06-pass-p.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t07-pass-i.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t08-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t09-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t09-fail-i.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t09-fail-l.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t09-pass-o.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t11-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t13-pass-j.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t13-pass-m.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t14-fail-n.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t14-pass-m.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t14-pass-n.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t14-pass-v.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t15-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t15-fail-w.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t15-pass-o.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t15-pass-p.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t15-pass-w.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t16-pass-e.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t17-fail-g.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t17-fail-k.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-2-t18-pass-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-9-t04-pass-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-7-9-t04-pass-h.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-8-3-4-t02-fail-a.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-8-4-t01-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-9-t01-fail-b.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-9-t01-fail-d.pdf
+/opt/xfa-corpus/tagged/verapdf/veraPDF test suite 6-9-t04-fail-a.pdf
