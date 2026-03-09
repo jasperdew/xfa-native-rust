@@ -1,0 +1,23 @@
+[Unit]
+Description=XFA Nightly Corpus Run — Extended Test Matrix
+After=network.target
+
+[Service]
+Type=oneshot
+User=xfa
+Group=xfa
+WorkingDirectory=/opt/xfa
+Environment=PDFIUM_DYNAMIC_LIB_PATH=/opt/pdfium/lib
+Environment=LD_LIBRARY_PATH=/opt/pdfium/lib
+ExecStart=/opt/xfa/scripts/nightly-corpus-run.sh --corpus /opt/xfa-corpus --workers auto --timeout 30
+TimeoutStartSec=14400
+StandardOutput=append:/opt/xfa-results/logs/nightly.log
+StandardError=append:/opt/xfa-results/logs/nightly-error.log
+
+# Resource limits
+LimitNOFILE=65536
+MemoryMax=28G
+CPUQuota=80%
+
+[Install]
+WantedBy=multi-user.target
