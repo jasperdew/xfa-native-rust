@@ -72,12 +72,13 @@ def get_all_data():
 
     # Per-run summary for pdfa_convert
     raw = query_vps(
-        "SELECT run_id, MIN(started_at), "
-        "SUM(CASE WHEN status='pass' THEN 1 ELSE 0 END), "
-        "SUM(CASE WHEN status='fail' THEN 1 ELSE 0 END), "
-        "SUM(CASE WHEN status='skip' THEN 1 ELSE 0 END), "
-        "COUNT(*) FROM test_results WHERE test_name='pdfa_convert' "
-        "GROUP BY run_id ORDER BY MIN(started_at) ASC"
+        "SELECT tr.run_id, r.started_at, "
+        "SUM(CASE WHEN tr.status='pass' THEN 1 ELSE 0 END), "
+        "SUM(CASE WHEN tr.status='fail' THEN 1 ELSE 0 END), "
+        "SUM(CASE WHEN tr.status='skip' THEN 1 ELSE 0 END), "
+        "COUNT(*) FROM test_results tr JOIN runs r ON tr.run_id=r.run_id "
+        "WHERE tr.test_name='pdfa_convert' "
+        "GROUP BY tr.run_id ORDER BY r.started_at ASC"
     )
     iterations = []
     if raw:
@@ -151,7 +152,7 @@ def generate_dashboard():
     github_issues = data["github_issues"]
     running = data["running"]
 
-    pdfa_iters = [i for i in iterations if i.get("total", 0) >= 900]
+    pdfa_iters = [i for i in iterations if i.get("total", 0) >= 700]
     latest = pdfa_iters[-1] if pdfa_iters else {}
     p, f_cnt = latest.get("pass", 0), latest.get("fail", 0)
     applicable = p + f_cnt
