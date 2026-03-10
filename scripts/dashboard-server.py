@@ -54,10 +54,11 @@ def query_vps(sql):
         return ""
 
 
-def get_github_issues():
+def get_github_issues(label="pdfa-iteration"):
     try:
         result = subprocess.run(
             ["gh", "issue", "list", "--state", "all",
+             "--label", label,
              "--json", "number,title,state", "--limit", "30"],
             capture_output=True, text=True, timeout=10,
             cwd=os.path.expanduser("~/Documents/XFA")
@@ -143,7 +144,8 @@ def get_all_data():
         "iterations": iterations,
         "rule_breakdown": rule_breakdown,
         "skip_breakdown": skip_breakdown,
-        "github_issues": get_github_issues(),
+        "github_issues": get_github_issues("pdfa-iteration"),
+        "quality_issues": get_github_issues("quality"),
         "running": running,
         "updated_at": datetime.now().isoformat(),
     }
@@ -158,6 +160,7 @@ def generate_dashboard():
     rule_breakdown = data["rule_breakdown"]
     skip_breakdown = data["skip_breakdown"]
     github_issues = data["github_issues"]
+    quality_issues = data["quality_issues"]
     running = data["running"]
 
     pdfa_iters = [i for i in iterations if i.get("total", 0) >= 700]
@@ -190,14 +193,22 @@ def generate_dashboard():
 
     skip_rows = "".join(f'<tr><td style="font-size:13px">{s["reason"]}</td><td style="font-weight:bold">{s["count"]}</td></tr>' for s in skip_breakdown)
 
+    def render_issues(issues):
+        rows = ""
+        for issue in issues[:15]:
+            st = issue.get("state", "OPEN")
+            c = "#10b981" if st == "CLOSED" else "#f59e0b"
+            ic = "&#x2713;" if st == "CLOSED" else "&#x25CB;"
+            rows += f'<tr><td style="color:{c}">{ic} #{issue.get("number","")}</td><td style="font-size:13px">{issue.get("title","")[:65]}</td><td style="color:{c};font-size:12px">{st}</td></tr>'
+        return rows
+
     open_c = sum(1 for i in github_issues if i.get("state") == "OPEN")
     closed_c = sum(1 for i in github_issues if i.get("state") == "CLOSED")
-    gh_rows = ""
-    for issue in github_issues[:15]:
-        st = issue.get("state", "OPEN")
-        c = "#10b981" if st == "CLOSED" else "#f59e0b"
-        ic = "&#x2713;" if st == "CLOSED" else "&#x25CB;"
-        gh_rows += f'<tr><td style="color:{c}">{ic} #{issue.get("number","")}</td><td style="font-size:13px">{issue.get("title","")[:65]}</td><td style="color:{c};font-size:12px">{st}</td></tr>'
+    gh_rows = render_issues(github_issues)
+
+    q_open = sum(1 for i in quality_issues if i.get("state") == "OPEN")
+    q_closed = sum(1 for i in quality_issues if i.get("state") == "CLOSED")
+    q_rows = render_issues(quality_issues)
 
     chart = build_trend_chart(pdfa_iters)
 
@@ -254,11 +265,16 @@ code{{background:#334155;padding:2px 6px;border-radius:4px;font-size:12px}}
 <tbody>{skip_rows or '<tr><td colspan="2" style="text-align:center;color:#64748b">No skips</td></tr>'}</tbody></table>
 </div></div>
 <div class="two-col" style="margin-top:16px"><div>
-<h2>GitHub Issues ({open_c} open, {closed_c} closed)</h2>
+<h2>Iteration Issues <code style="font-size:10px;background:#1D76DB;color:white;padding:2px 6px;border-radius:4px">pdfa-iteration</code> ({open_c} open, {closed_c} closed)</h2>
 <div style="max-height:300px;overflow-y:auto">
 <table><thead><tr><th>Issue</th><th>Title</th><th>State</th></tr></thead>
 <tbody>{gh_rows or '<tr><td colspan="3" style="text-align:center;color:#64748b">No issues</td></tr>'}</tbody></table></div>
-</div><div></div></div>
+</div><div>
+<h2>Quality Issues <code style="font-size:10px;background:#D4C5F9;color:#1e293b;padding:2px 6px;border-radius:4px">quality</code> ({q_open} open, {q_closed} closed)</h2>
+<div style="max-height:300px;overflow-y:auto">
+<table><thead><tr><th>Issue</th><th>Title</th><th>State</th></tr></thead>
+<tbody>{q_rows or '<tr><td colspan="3" style="text-align:center;color:#64748b">No issues</td></tr>'}</tbody></table></div>
+</div></div>
 <div class="updated">Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</div>
 </body></html>"""
 
