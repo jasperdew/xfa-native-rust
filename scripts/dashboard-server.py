@@ -8,7 +8,11 @@ import json
 import subprocess
 import socketserver
 import os
+import sys
 from datetime import datetime
+
+sys.path.insert(0, os.path.dirname(__file__))
+from iso_rule_map import get_iso_ref, get_spec_reference
 
 PORT = 8787
 VPS = "root@46.225.223.175"
@@ -105,10 +109,14 @@ def get_all_data():
         for line in raw_rules.split("\n"):
             parts = line.split("|", 2)
             if len(parts) >= 2:
+                rule_id = parts[0]
+                iso = get_iso_ref(rule_id)
                 rule_breakdown.append({
-                    "rule": parts[0],
+                    "rule": rule_id,
                     "description": parts[1] if len(parts) > 1 else "",
                     "count": int(parts[-1]) if parts[-1].isdigit() else 0,
+                    "iso_ref": iso[2] if iso else "",
+                    "iso_short": iso[1] if iso else "",
                 })
 
     # Skip reasons for latest run
@@ -177,7 +185,8 @@ def generate_dashboard():
     th = sum(r["count"] for r in rule_breakdown) or 1
     for r in rule_breakdown:
         bw = int(100 * r["count"] / th)
-        rule_rows += f'<tr><td><code style="color:#f59e0b">{r["rule"]}</code></td><td style="font-weight:bold;color:#ef4444">{r["count"]}</td><td><div style="background:#334155;border-radius:3px;height:14px;width:200px"><div style="background:#ef4444;border-radius:3px;height:14px;width:{bw}%"></div></div></td><td style="font-size:12px;color:#94a3b8">{(r["description"] or "")[:80]}</td></tr>'
+        iso_badge = f'<span style="background:#1e3a5f;color:#7dd3fc;padding:1px 5px;border-radius:3px;font-size:10px;margin-left:4px">{r.get("iso_ref","")}</span>' if r.get("iso_ref") else ""
+        rule_rows += f'<tr><td><code style="color:#f59e0b">{r["rule"]}</code>{iso_badge}</td><td style="font-weight:bold;color:#ef4444">{r["count"]}</td><td><div style="background:#334155;border-radius:3px;height:14px;width:200px"><div style="background:#ef4444;border-radius:3px;height:14px;width:{bw}%"></div></div></td><td style="font-size:12px;color:#94a3b8">{r.get("iso_short","") or (r["description"] or "")[:60]}</td></tr>'
 
     skip_rows = "".join(f'<tr><td style="font-size:13px">{s["reason"]}</td><td style="font-weight:bold">{s["count"]}</td></tr>' for s in skip_breakdown)
 
@@ -231,8 +240,8 @@ code{{background:#334155;padding:2px 6px;border-radius:4px;font-size:12px}}
 </div>
 <h2>Pass Rate Trend</h2><div class="chart-card">{chart}</div>
 <div class="three-col"><div>
-<h2>veraPDF Rule Failures</h2>
-<table><thead><tr><th>Rule</th><th>PDFs</th><th></th><th>Description</th></tr></thead>
+<h2>veraPDF Rule Failures (ISO 19005-2)</h2>
+<table><thead><tr><th>Rule / ISO Ref</th><th>PDFs</th><th></th><th>Category</th></tr></thead>
 <tbody>{rule_rows or '<tr><td colspan="4" style="text-align:center;color:#64748b">No failures</td></tr>'}</tbody></table>
 </div><div>
 <h2>Iteration History ({len(pdfa_iters)} runs)</h2>
