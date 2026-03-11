@@ -140,10 +140,41 @@ def get_all_data():
 
     running = iterations[-1]["total"] < 900 if iterations else False
 
+    # Per-PDF failure details (latest run) — single query with oracle join
+    failed_pdfs = []
+    if iterations:
+        latest_run = iterations[-1]["run_id"]
+        raw_fails = query_vps(
+            f"SELECT tr.pdf_file, tr.error_message, "
+            f"COALESCE(("
+            f"  SELECT GROUP_CONCAT("
+            f"    json_extract(rf.value, '$.clause') || ':' || "
+            f"    json_extract(rf.value, '$.test_number'), ',')"
+            f"  FROM oracle_cache oc, "
+            f"  json_each(json_extract(oc.result_json, '$.rule_failures')) rf "
+            f"  WHERE oc.input_hash=tr.pdf_hash AND oc.oracle_name='verapdf'"
+            f"), '') "
+            f"FROM test_results tr "
+            f"WHERE tr.test_name='pdfa_convert' AND tr.status='fail' "
+            f"AND tr.run_id='{latest_run}' ORDER BY tr.pdf_file"
+        )
+        if raw_fails:
+            for line in raw_fails.split("\n"):
+                parts = line.split("|", 2)
+                if len(parts) >= 2:
+                    pdf_name = parts[0].rsplit("/", 1)[-1] if "/" in parts[0] else parts[0]
+                    rules = parts[2].split(",") if len(parts) > 2 and parts[2] else []
+                    failed_pdfs.append({
+                        "name": pdf_name,
+                        "error": parts[1][:80],
+                        "rules": rules[:8],
+                    })
+
     data = {
         "iterations": iterations,
         "rule_breakdown": rule_breakdown,
         "skip_breakdown": skip_breakdown,
+        "failed_pdfs": failed_pdfs,
         "github_issues": get_github_issues("pdfa-iteration"),
         "quality_issues": get_github_issues("quality"),
         "running": running,
@@ -159,6 +190,7 @@ def generate_dashboard():
     iterations = data["iterations"]
     rule_breakdown = data["rule_breakdown"]
     skip_breakdown = data["skip_breakdown"]
+    failed_pdfs = data.get("failed_pdfs", [])
     github_issues = data["github_issues"]
     quality_issues = data["quality_issues"]
     running = data["running"]
@@ -192,6 +224,18 @@ def generate_dashboard():
         rule_rows += f'<tr><td><code style="color:#f59e0b">{r["rule"]}</code>{iso_badge}</td><td style="font-weight:bold;color:#ef4444">{r["count"]}</td><td><div style="background:#334155;border-radius:3px;height:14px;width:200px"><div style="background:#ef4444;border-radius:3px;height:14px;width:{bw}%"></div></div></td><td style="font-size:12px;color:#94a3b8">{r.get("iso_short","") or (r["description"] or "")[:60]}</td></tr>'
 
     skip_rows = "".join(f'<tr><td style="font-size:13px">{s["reason"]}</td><td style="font-weight:bold">{s["count"]}</td></tr>' for s in skip_breakdown)
+
+    fail_rows = ""
+    for fp in failed_pdfs:
+        rule_badges = " ".join(
+            f'<code style="font-size:10px;color:#f59e0b">{r}</code>'
+            for r in fp["rules"]
+        )
+        fail_rows += (
+            f'<tr><td><code>{fp["name"]}</code></td>'
+            f'<td style="font-size:12px;color:#94a3b8">{fp["error"]}</td>'
+            f'<td>{rule_badges or "<span style=\\"color:#64748b\\">no oracle data</span>"}</td></tr>'
+        )
 
     def render_issues(issues):
         rows = ""
@@ -264,6 +308,10 @@ code{{background:#334155;padding:2px 6px;border-radius:4px;font-size:12px}}
 <table><thead><tr><th>Reason</th><th>Count</th></tr></thead>
 <tbody>{skip_rows or '<tr><td colspan="2" style="text-align:center;color:#64748b">No skips</td></tr>'}</tbody></table>
 </div></div>
+<h2>Failed PDFs ({len(failed_pdfs)})</h2>
+<div style="max-height:400px;overflow-y:auto">
+<table><thead><tr><th>PDF</th><th>Error</th><th>veraPDF Rules</th></tr></thead>
+<tbody>{fail_rows or '<tr><td colspan="3" style="text-align:center;color:#10b981;font-weight:bold">All PDFs passing!</td></tr>'}</tbody></table></div>
 <div class="two-col" style="margin-top:16px"><div>
 <h2>Iteration Issues <code style="font-size:10px;background:#1D76DB;color:white;padding:2px 6px;border-radius:4px">pdfa-iteration</code> ({open_c} open, {closed_c} closed)</h2>
 <div style="max-height:300px;overflow-y:auto">
