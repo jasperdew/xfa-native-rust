@@ -1,8 +1,9 @@
 # Monetisatieplan XFA SDK & PDFluent
 
-> **Versie:** 1.0 — 10 maart 2026
+> **Versie:** 2.0 — 11 maart 2026
 > **Status:** Definitief strategisch plan
 > **Model:** Closed-source, gratis persoonlijk gebruik, betaald zakelijk (JetBrains-model)
+> **Gerelateerd:** [LICENSING_AND_ENTERPRISE_DEPLOYMENT.md](../PDFluent/LICENSING_AND_ENTERPRISE_DEPLOYMENT.md) — technische licentie-implementatie
 
 ---
 
@@ -30,17 +31,19 @@
 
 ### Het plan in drie zinnen
 
-PDFluent wordt een gratis, closed-source desktop PDF editor die als credibility-motor dient voor de commerciële XFA SDK. Iedereen krijgt dezelfde volledige versie — zakelijk gebruik vereist een betaalde licentie (JetBrains-model). Omzet komt uit drie gestapelde lagen: PDFluent Business licenties, SDK self-serve verkoop, en enterprise deals via resellers.
+PDFluent wordt een gratis, closed-source desktop PDF editor die als credibility-motor dient voor de commerciële XFA SDK. Iedereen krijgt dezelfde volledige versie — zakelijk gebruik vereist een betaalde licentie (JetBrains-model). Omzet komt uit drie gestapelde lagen: PDFluent Business licenties, SDK self-serve verkoop (per-product model), en enterprise deals via resellers.
 
 ### Kernbeslissingen
 
 | Beslissing | Keuze | Rationale |
 |------------|-------|-----------|
 | Editor licentie | Closed source, gratis persoonlijk | Maximale adoptie zonder open-source overhead |
-| SDK licentie | Closed source, commercieel | Volledige IP-bescherming |
+| SDK licentie | Closed source, per-product pricing | Industry-standaard, simpeler voor kopers dan per-developer |
 | Feature-gating editor | Geen — iedereen krijgt alles | Simpelheid, goodwill, brede adoptie |
-| Betalingen | LemonSqueezy (MoR) | Btw, compliance, licensing in één platform |
-| Licentie-management SDK | Keygen.sh | Geavanceerd: per-developer, machine limits, Tauri plugin |
+| Betalingen self-serve | LemonSqueezy (MoR) | Btw, compliance, invoicing tot ~€10K |
+| Betalingen enterprise | Directe facturatie + bankoverschrijving | PO-support, NET-30, IBAN — wat enterprise verwacht |
+| Licentie-technologie | Ed25519 signed license files | Offline, geen externe dienst, zelfde systeem voor editor + SDK |
+| SDK evaluatie | 30-dagen tijdslimiet, geen watermark | Pragmatisch: volledige SDK, geen frictie, grote bedrijven betalen |
 | Open source | Nee (noch editor, noch SDK) | Minder overhead, betere bescherming |
 
 ### Verwachte resultaten
@@ -78,7 +81,7 @@ PDFluent wordt een gratis, closed-source desktop PDF editor die als credibility-
 - Desktop PDF editor markt: $4,7B
 - Adobe Acrobat: $240/jaar, breed gehaat
 - Apryse koopt agressief: iText, PDFlib, Qoppa, LEAD Technologies, Eversign
-- Anti-SaaS sentiment groeit (TechCrunch, Bain, Chargebee)
+- Anti-SaaS sentiment groeit
 - Geen volwaardige gratis desktop PDF editor zonder beperkingen
 
 ---
@@ -91,7 +94,7 @@ PDFluent wordt een gratis, closed-source desktop PDF editor die als credibility-
 ┌─────────────────────────────────────────────────────────┐
 │  LAAG 3: Enterprise SDK + Resellers (€15K-€200K/deal)   │  ← maand 9+
 ├─────────────────────────────────────────────────────────┤
-│  LAAG 2: SDK Self-Serve + Cloud API (€999-€4.999/jr)    │  ← maand 4+
+│  LAAG 2: SDK Self-Serve + Cloud API (€1.990-€5.900/jr)  │  ← maand 4+
 ├─────────────────────────────────────────────────────────┤
 │  LAAG 1: PDFluent Business Licenties (€99/user/jr)      │  ← maand 1+
 ├─────────────────────────────────────────────────────────┤
@@ -109,6 +112,16 @@ PDFluent wordt een gratis, closed-source desktop PDF editor die als credibility-
 | Laag 3 | High-value enterprise deals | Recurring, groot | Hoog per klant, maar weinig klanten |
 
 **Het punt**: als één laag tegenvalt, compenseren de andere twee. Een pure enterprise-strategie is fragiel. Een pure consumer-strategie heeft lage marges. De combinatie is robuust.
+
+### Verwachte revenue-mix bij volwassenheid
+
+| Bron | Aandeel |
+|------|---------|
+| Editor licenties | ~30% |
+| SDK self-serve | ~20% |
+| Enterprise deals | ~50% |
+
+Het meeste revenue komt uiteindelijk van een klein aantal enterprise klanten. De editor en self-serve SDK vormen de funnel daarheen.
 
 ---
 
@@ -129,7 +142,7 @@ PDFluent
 - **Eén enkele build** — iedereen downloadt exact dezelfde app
 - **Geen feature-verschil** — gratis gebruikers hebben toegang tot alles
 - **Zelf-declaratie** — bij eerste start kiest de gebruiker "Persoonlijk" of "Zakelijk"
-- **Zakelijk = licentie-activatie** — via license key (LemonSqueezy)
+- **Zakelijk = licentie-activatie** — via signed license file
 - **Persoonlijk = gewoon gebruiken** — geen registratie, geen beperkingen
 
 **Wat telt als "zakelijk gebruik"?**
@@ -153,115 +166,210 @@ Zakelijk gebruik is elk gebruik in de context van een bedrijf, overheidsinstelli
 │  [Persoonlijk]  [Zakelijk]       │
 │                                  │
 │  Persoonlijk: gratis, direct     │
-│  Zakelijk: voer licentie-key in  │
+│  Zakelijk: voer licentie in     │
 └──────────────────────────────────┘
 ```
 
 - Keuze wordt opgeslagen in lokale config
-- "Zakelijk" toont invoerveld voor license key
-- Validatie via LemonSqueezy License API (of offline cache)
+- "Zakelijk" toont invoerveld voor license key of license file
+- Validatie via Ed25519 signature verificatie (offline, geen API call)
 - Geen harde blokkade — app werkt altijd, maar toont periodiek herinnering bij zakelijk gebruik zonder key
 - Gebruiker kan altijd switchen via Instellingen
 
+> **Technische details:** Zie [LICENSING_AND_ENTERPRISE_DEPLOYMENT.md](../PDFluent/LICENSING_AND_ENTERPRISE_DEPLOYMENT.md) voor het volledige Ed25519 signing schema, licentiebestand format, en enterprise deployment.
+
 ### XFA SDK (Developer Library)
 
-**Model: Gelaagde licenties, per-developer seat**
+**Model: Per-product licentie — gecompileerde distributie**
 
 ```
 XFA SDK
-├── Community       → Gratis (watermark, 100 docs/maand limiet)
-├── Indie           → €999/dev/jaar (bedrijven <€500K omzet)
-├── Professional    → €4.999/dev/jaar (standaard)
-├── Enterprise      → Custom pricing (vanaf €15.000/jaar)
-└── OEM             → Custom pricing (redistributierechten)
+├── Evaluation     → Gratis (30 dagen, volledige SDK, geen watermark)
+├── Startup        → €1.990/product/jaar (≤3 developers)
+├── Business       → €5.900/product/jaar (≤10 developers)
+├── Enterprise     → Vanaf €15.000/jaar (ongelimiteerd, SLA)
+└── OEM            → Vanaf €25.000/jaar (redistributierechten)
 ```
 
-**SDK Licentie-management via Keygen.sh:**
-- Per-developer seat licenties
-- Machine fingerprinting (max 2 machines per developer)
-- Offline validatie support
-- License key in code: `XfaSdk::init("LICENSE-KEY")?`
-- Community tier: watermark + rate limit, geen key nodig
+**Waarom per-product en niet per-developer?**
+
+Bedrijven kopen geen developer seats — ze kopen het recht om software te bouwen met de SDK. Dit is de dominante trend in de PDF SDK-industrie:
+- Simpler voor de koper: geen "developers tellen"
+- Natuurlijke schaling: meer producten = upgrade
+- Beter voor procurement: past bij budgettering per project/product
+- Hogere deal sizes: een product-licentie is makkelijker te verantwoorden dan N× developer seats
+
+**SDK Evaluatie — pragmatische aanpak:**
+
+De SDK wordt gecompileerd gedistribueerd (geen broncode). De evaluatieperiode werkt als volgt:
+- **Volledige functionaliteit** — geen watermarks, geen rate limits, geen feature-beperkingen
+- **30-dagen tijdslimiet** — na 30 dagen vanaf eerste gebruik retourneert de SDK een duidelijke foutmelding
+- **Tijdstempel in binary** — elke maand een nieuwe evaluatie-build op de website
+- **Geen online validatie vereist** — alles werkt offline
+
+Na de evaluatieperiode heeft de developer twee opties:
+1. Download een nieuwe evaluatie-build (reset naar 30 dagen)
+2. Koop een licentie (license file, onbeperkt gebruik)
+
+**Bewuste keuze: geen watermark op SDK-output.** De SDK wordt ook gebruikt voor het lezen van PDFs, niet alleen genereren. Een watermark zou de evaluatie-ervaring verslechteren. Het risico op piraterij is acceptabel — grote organisaties betalen uit compliance-overwegingen, ongeacht technische enforcement.
+
+**SDK Licentie-management via Ed25519 signed license files:**
+
+Zelfde technologie als de editor (zie [LICENSING_AND_ENTERPRISE_DEPLOYMENT.md](../PDFluent/LICENSING_AND_ENTERPRISE_DEPLOYMENT.md)):
+- Signed JSON licentiebestand met product-rechten, expiry, en developer-limiet
+- Public key ingebakken in de compiled SDK
+- Initialisatie: `XfaSdk::init_with_license("path/to/license.json")?`
+- Geen externe dienst, geen online checks, volledig offline
+
+**SDK Redistributieregels:**
+
+De licentie staat toe:
+- SDK inbedden in software waar PDF-verwerking een *feature* is (boekhoudpakketten, HR-tools, rapportage-platforms)
+
+De licentie verbiedt:
+- Bouwen van general-purpose PDF editors
+- Bouwen van concurrerende PDF SDKs
+- Bouwen van document processing platforms die concurreren met PDFluent of de XFA SDK
+
+Dit is standaard in de industrie (Apryse, iText, Nutrient hanteren dezelfde restrictie).
 
 ---
 
 ## 5. Betalingsinfrastructuur
 
-### Architectuur
+### Architectuur — twee kanalen
 
 ```
-Klant koopt licentie
-        │
-        ▼
-┌──────────────────┐
-│  LemonSqueezy    │  ← Merchant of Record
-│  (betaling +     │     Handelt af: betaling, btw, invoicing,
-│   btw + invoice) │     refunds, compliance, 135+ landen
-└────────┬─────────┘
-         │ webhook
-         ▼
-┌──────────────────┐     ┌──────────────────┐
-│  PDFluent:       │     │  XFA SDK:        │
-│  LemonSqueezy    │     │  Keygen.sh       │
-│  License API     │     │  License API     │
-│  (ingebouwd)     │     │  (geavanceerd)   │
-└──────────────────┘     └──────────────────┘
+                    SELF-SERVE (tot ~€10K)              ENTERPRISE (€10K+)
+                    ─────────────────────               ──────────────────
+Klant koopt         Via website/checkout                Via email/sales
+        │                   │                                   │
+        ▼                   ▼                                   ▼
+┌──────────────────┐  LemonSqueezy (MoR)         Directe facturatie
+│  PDFluent (1-9)  │  Handelt af: betaling,      (Moneybird / handmatig)
+│  SDK self-serve  │  btw, invoicing, refunds    + bankoverschrijving (IBAN)
+└────────┬─────────┘  135+ landen                + PO-support, NET-30
+         │                                               │
+         ▼                                               ▼
+   Ed25519 license file                          Ed25519 license file
+   (automatisch of handmatig)                    (handmatig gegenereerd)
 ```
 
-### Waarom LemonSqueezy als MoR?
+### Kanaal 1: Self-serve via LemonSqueezy (dag 1)
 
-| Criterium | LemonSqueezy | Paddle | FastSpring |
-|-----------|-------------|--------|------------|
-| Commissie | 5% + $0,50 | 5% + $0,50 | Custom (5-8%) |
-| Setup-complexiteit | Zeer laag | Laag | Medium |
-| Ingebouwde licensing | Ja (license keys) | Nee | Nee |
-| Btw-afhandeling | Ja (135+ landen) | Ja | Ja |
-| Developer-focus | Sterk | Sterk | Medium |
-| Stripe-integratie | Ja (Stripe-eigendom) | Nee | Nee |
-| Webhook naar Keygen | Ja (via Zapier of custom) | Ja | Ja |
+**Geschikt voor:**
+- PDFluent Business licenties (1-9 seats)
+- SDK Startup en Business tiers
+- Alles tot ~€10K/jaar
 
-**Beslissing**: LemonSqueezy voor alles.
+**Wat LemonSqueezy doet:**
+| Aspect | Detail |
+|--------|--------|
+| Commissie | 5% + $0,50 per transactie |
+| Btw-afhandeling | Ja (135+ landen, incl. EU btw-reverse charge) |
+| Betaalmethoden | Creditcard, PayPal, Apple Pay, Google Pay, iDEAL (via Stripe) |
+| Invoicing | Automatische facturen (PDF) voor klanten |
+| License keys | Ingebouwde license key generatie |
+| Refunds | Geautomatiseerd |
 
-- PDFluent Business licenties: LemonSqueezy checkout → LemonSqueezy license key → validatie in app
-- SDK licenties: LemonSqueezy checkout → webhook → Keygen license aanmaken → license key naar klant
+**Wat LemonSqueezy NIET kan (en waarom kanaal 2 nodig is):**
+- Geen purchase order (PO) support
+- Geen NET-30/60 betalingstermijnen
+- Geen bankoverschrijving als betaalmethode voor kopers
+- Niet geschikt voor enterprise procurement workflows
 
-### Waarom Keygen apart voor de SDK?
+### Kanaal 2: Directe facturatie + bankoverschrijving (maand 1+)
 
-LemonSqueezy's ingebouwde licensing is voldoende voor PDFluent (simpele key-validatie). Maar de SDK heeft meer nodig:
-- Per-developer seat management
-- Machine fingerprinting (max 2 machines)
-- Offline validatie (SDK draait op build servers zonder internet)
-- Usage tracking (docs/maand voor community tier)
-- Rust crate (`keygen-rs`) en Tauri plugin beschikbaar
+**Geschikt voor:**
+- PDFluent Business volume (10+ seats)
+- SDK Enterprise en OEM
+- Alle deals boven ~€10K/jaar
+- Klanten die PO/NET-30/bankovermaking vereisen
 
-**Kosten:**
-- LemonSqueezy: 5% + $0,50 per transactie (geen vaste kosten)
-- Keygen: Gratis tot 100 active users, daarna ~$99/maand
+**Flow:**
+```
+1. Klant neemt contact op (email, website formulier)
+2. Offerte/quote sturen (PDF)
+3. Klant stuurt Purchase Order (PO)
+4. Factuur sturen tegen de PO (via Moneybird of handmatig)
+5. Klant betaalt via IBAN-bankoverschrijving (NET-30)
+6. License file genereren en leveren
+```
 
-### Flow: Klant koopt PDFluent Business
+**Facturatie-tools (kies één):**
+| Tool | Prijs | Geschikt voor |
+|------|-------|---------------|
+| Moneybird | €11/maand | Nederlands, populair bij ZZP/MKB, btw-aangifte |
+| Exact Online | €30+/maand | Nederlands, enterprise-grade, boekhouding |
+| FreshBooks | €15/maand | Internationaal, mooi design |
+| Handmatige PDF | €0 | Eerste deals, simpelst mogelijk |
+
+**Aanbeveling:** Start met Moneybird. Nederlands, betaalbaar, genereert automatisch btw-aangifte, en stuurt professionele facturen met IBAN-gegevens.
+
+### Waarom GEEN Keygen meer?
+
+Het oorspronkelijke plan gebruikte Keygen.sh voor SDK license management. Dit is geschrapt om drie redenen:
+
+1. **Onnodige complexiteit** — Ed25519 signed license files zijn simpeler en doen hetzelfde
+2. **Onnodige kosten** — Keygen kost €99/maand bij groei; Ed25519 signing is gratis
+3. **Consistentie** — editor én SDK gebruiken nu dezelfde licentie-technologie
+4. **Offline-first** — geen externe API dependency voor licentievalidatie
+
+De Ed25519 approach biedt alles wat nodig is:
+- Cryptografisch veilige validatie (onmogelijk te vervalsen zonder private key)
+- Volledig offline (geen internet vereist)
+- Seats, expiry, features, en product-rechten in het licentiebestand
+- Enterprise deployment: IT kopieert bestand naar centrale locatie
+- Eén signing tool genereert licenties voor zowel editor als SDK
+
+### Flow: Klant koopt PDFluent Business (1-9 seats)
 
 ```
 1. Klant klikt "Zakelijke licentie kopen" in app of op website
-2. → LemonSqueezy checkout pagina (hosted, of in-app webview)
-3. → Klant betaalt (creditcard, PayPal, iDEAL via Stripe)
-4. → LemonSqueezy genereert license key automatisch
-5. → Klant ontvangt key per email
-6. → Klant voert key in PDFluent in
-7. → App valideert via LemonSqueezy License API
-8. → Licentie actief, herinnering verdwijnt
+2. → LemonSqueezy checkout pagina
+3. → Klant betaalt (creditcard, iDEAL, PayPal)
+4. → LemonSqueezy genereert license key
+5. → Webhook triggert license file generatie (of: handmatig)
+6. → Klant ontvangt license file per email
+7. → Klant plaatst file in app of voert key in
+8. → App valideert Ed25519 signature (offline)
+9. → Licentie actief, herinnering verdwijnt
 ```
 
-### Flow: Klant koopt SDK licentie
+### Flow: Klant koopt PDFluent Business (10+ seats)
 
 ```
-1. Klant kiest tier op xfa-sdk.com
-2. → LemonSqueezy checkout (voor Indie/Professional)
-   → Of: direct contact voor Enterprise/OEM
-3. → Bij betaling: webhook naar eigen backend
-4. → Backend maakt Keygen license aan
-5. → Klant ontvangt Keygen license key per email
-6. → Developer initialiseert SDK: XfaSdk::init("KEY")?
-7. → SDK valideert via Keygen API (of offline cache)
+1. Klant contacteert via website of email
+2. → Offerte met volumekorting (€79/seat/jaar bij 10+)
+3. → Klant stuurt PO
+4. → Factuur via Moneybird met IBAN
+5. → Betaling via bankoverschrijving (NET-30)
+6. → License file genereren (seats=N, customer=naam)
+7. → IT distribueert license file + app centraal
+```
+
+### Flow: Klant koopt SDK licentie (self-serve)
+
+```
+1. Developer kiest tier op xfa-sdk.com
+2. → LemonSqueezy checkout (Startup of Business)
+3. → Bij betaling: license file wordt gegenereerd
+4. → Developer ontvangt license file per email
+5. → Plaatst file naast SDK of in config directory
+6. → SDK valideert Ed25519 signature bij init
+7. → Evaluatielimiet verdwijnt, productie-klaar
+```
+
+### Flow: Klant koopt SDK Enterprise/OEM
+
+```
+1. Klant neemt contact op via xfa-sdk.com/enterprise
+2. → Discovery call: requirements, volume, SLA-behoefte
+3. → Custom offerte
+4. → PO + contract ondertekening
+5. → Factuur + betaling via bankoverschrijving
+6. → License file met enterprise-rechten
+7. → Optioneel: dedicated Slack channel voor support
 ```
 
 ---
@@ -273,9 +381,9 @@ LemonSqueezy's ingebouwde licensing is voldoende voor PDFluent (simpele key-vali
 | Gebruik | Prijs | Wat de klant krijgt |
 |---------|-------|---------------------|
 | Persoonlijk | **Gratis** | Volledige app, geen beperkingen |
-| Zakelijk (per user) | **€99/user/jaar** | Volledige app + license key + email support |
-| Zakelijk (team 10+) | **€79/user/jaar** | Volume korting + prioriteit support |
-| Zakelijk (team 50+) | **Contact** | Custom pricing + onboarding |
+| Zakelijk (1-9 users) | **€99/user/jaar** | Volledige app + license file + email support |
+| Zakelijk (10-49 users) | **€79/user/jaar** | Volume korting + prioriteit support |
+| Zakelijk (50+ users) | **Contact** | Custom pricing + onboarding + enterprise deployment |
 
 **Pricing rationale:**
 - Adobe Acrobat Pro: €240/jaar → PDFluent is 60% goedkoper
@@ -283,23 +391,32 @@ LemonSqueezy's ingebouwde licensing is voldoende voor PDFluent (simpele key-vali
 - PDFgear: gratis maar closed source, beperkte features
 - €99/jaar is een "no-brainer" voor bedrijven — lager dan één uur IT-consultancy
 
+**Betaalkanaal:**
+- 1-9 seats: LemonSqueezy (self-serve, creditcard/iDEAL)
+- 10+ seats: Directe facturatie + bankoverschrijving (IBAN)
+
 ### XFA SDK Pricing
 
-| Tier | Prijs | Doelgroep | Limieten |
-|------|-------|-----------|----------|
-| **Community** | Gratis | Hobbyisten, evaluatie | 100 docs/maand, watermark |
-| **Indie** | €999/dev/jaar | Startups (<€500K omzet) | 1 developer, 1 applicatie |
-| **Professional** | €4.999/dev/jaar | Mid-market, ISVs | Per developer, ongelimiteerd |
-| **Enterprise** | Vanaf €15.000/jaar | Grote organisaties | Ongelimiteerd, SLA, support |
-| **OEM** | Custom | Software vendors | Redistributierechten |
+| Tier | Prijs | Doelgroep | Wat je krijgt |
+|------|-------|-----------|---------------|
+| **Evaluation** | Gratis | Iedereen | 30 dagen volledige SDK, geen watermark |
+| **Startup** | €1.990/product/jaar | Startups (<€500K omzet) | 1 product, ≤3 developers, productie-gebruik |
+| **Business** | €5.900/product/jaar | Mid-market, ISVs | 1 product, ≤10 developers, priority support |
+| **Enterprise** | Vanaf €15.000/jaar | Grote organisaties | Ongelimiteerd, meerdere producten, SLA, security reviews |
+| **OEM** | Vanaf €25.000/jaar | Software vendors | Redistributierechten, white-label, extended legal terms |
 
-**Pricing rationale:**
-- IronPDF: $799-$4.799 eenmalig → wij recurring, maar lagere instap
-- Nutrient: ~€5.000/user/jaar → wij vergelijkbaar op Professional
-- Apryse: $15K-$210K+/jaar → wij significant goedkoper
-- iText: $10K-$210K+/jaar → wij goedkoper, plus XFA support
+**Pricing rationale en marktpositionering:**
+| Vendor | Typische prijs | Model |
+|--------|---------------|-------|
+| IronPDF | ~$2.000 eenmalig | Per-developer, perpetual |
+| Nutrient/PSPDFKit | ~€5.000/user/jaar | Per-user, subscription |
+| Apryse | $15K-$210K+/jaar | Per-seat + deployment |
+| iText | $10K-$210K+/jaar | Per-PDF-volume |
+| **XFA SDK** | **€1.990-€15K+/jaar** | **Per-product, subscription** |
 
-**Publiceer pricing op de website.** Transparantie bouwt vertrouwen. Enterprise = "contact us" voor custom deals.
+Onze positie: **midden van de markt** met een aantrekkelijke instap (€1.990) en duidelijk pad naar enterprise (€15K+). Goedkoper dan Apryse/iText, vergelijkbaar met Nutrient, maar met unieke XFA-differentiatie.
+
+**Publiceer pricing op de website.** Transparantie bouwt vertrouwen. Enterprise en OEM = "contact us" voor custom deals.
 
 ### Cloud API Pricing (toekomstig, fase 2+)
 
@@ -351,9 +468,9 @@ Dit is geen open source verhaal. Het is een **gratis + privacy + kwaliteit** ver
 PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met een zakelijke licentie. De conversie komt door:
 
 1. **Compliance-druk**: Bedrijven willen legaal software gebruiken
-2. **Periodieke herinnering**: Na 30 dagen zakelijk gebruik zonder key → subtiele banner "Zakelijk gebruik? Activeer uw licentie."
+2. **Periodieke herinnering**: Na 30 dagen zakelijk gebruik zonder license → subtiele banner "Zakelijk gebruik? Activeer uw licentie."
 3. **Support**: Business licentie = email support, personal = community/zelf
-4. **Factuurnodig**: Bedrijven hebben een factuur nodig voor de boekhouding → LemonSqueezy levert automatisch
+4. **Factuurnodig**: Bedrijven hebben een factuur nodig voor de boekhouding → LemonSqueezy (self-serve) of Moneybird (enterprise) levert automatisch
 
 **Verwachte conversieratio:**
 - Van alle downloads: ~5% is zakelijk gebruik
@@ -366,38 +483,53 @@ PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met 
 - Non-profits en scholen (gratis of korting)
 - Freelancers en ZZP'ers (€99/jaar is aftrekbaar)
 
-### LAAG 2: SDK Self-Serve (€999-€4.999/dev/jaar)
+### LAAG 2: SDK Self-Serve (€1.990-€5.900/product/jaar)
 
 **Doel**: Developers vinden, evalueren, en kopen de SDK zonder menselijke interactie.
+
+**Developer experience flow:**
+```
+1. Developer zoekt "rust pdf sdk" of "xfa pdf processing"
+2. → Vindt xfa-sdk.com of crates.io
+3. → Downloadt evaluatie-build (gratis, 30 dagen, volledig functioneel)
+4. → Bouwt prototype, test met eigen PDFs
+5. → Evaluatie verloopt → koopt Startup of Business tier
+6. → Self-serve checkout via LemonSqueezy
+7. → Ontvangt Ed25519 license file per email
+8. → Plaatst naast SDK → productie-klaar
+```
 
 **Kanalen:**
 
 | Kanaal | Actie | Prioriteit |
 |--------|-------|-----------|
-| xfa-sdk.com | Documentatie, pricing, "Get Started" | Hoog |
-| crates.io | `xfa-sdk` crate publiceren (community tier) | Hoog |
-| npm | `@xfa/wasm` pakket publiceren | Hoog |
+| xfa-sdk.com | Documentatie, pricing, download, "Get Started" | Hoog |
+| crates.io | `xfa-sdk` crate (evaluation binary) | Hoog |
+| npm | `@xfa/wasm` pakket | Hoog |
 | PyPI | `xfa-sdk` Python package | Medium |
 | GitHub | Issue tracker + voorbeeldcode (niet de SDK zelf) | Medium |
 | Dev.to / Medium | Technische artikelen | Medium |
 | Stack Overflow | PDF/XFA vragen beantwoorden | Medium |
 | Hacker News | "Show HN: XFA 3.3 engine in pure Rust" | Hoog (eenmalig) |
 
-**Developer experience flow:**
-```
-1. Developer zoekt "rust pdf sdk" of "xfa pdf processing"
-2. → Vindt xfa-sdk.com of crates.io
-3. → Installeert community tier (gratis, watermark)
-4. → Bouwt prototype, test met eigen PDFs
-5. → Wil watermark weg → koopt Indie of Professional
-6. → Self-serve checkout via LemonSqueezy
-7. → Ontvangt Keygen license key
-8. → Productie-ready
-```
-
 ### LAAG 3: Enterprise SDK + Resellers (€15K+/jaar)
 
 **Doel**: High-value deals met grote organisaties, via resellers en directe sales.
+
+**Hoe enterprise deals typisch starten:**
+```
+Developer vindt SDK
+        ↓
+Prototype gebouwd
+        ↓
+Product wordt kritiek
+        ↓
+Procurement betrokken
+        ↓
+Enterprise licentie gekocht
+```
+
+Enterprise deals beginnen bijna nooit met outbound sales. Ze beginnen bij developer adoption. Daarom is Laag 2 (self-serve SDK) de funnel voor Laag 3.
 
 **Zie sectie 9 (Reseller & Distributie Strategie) voor details.**
 
@@ -417,52 +549,63 @@ PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met 
   - Disclaimer, aansprakelijkheid
   - Template via juridische dienst (Legalloyd, Rocket Lawyer NL)
 - [ ] **SDK licentie-overeenkomst** schrijven
-  - Per-developer seat definitie
+  - Per-product definitie (wat telt als "1 product")
+  - Redistributieverbod voor concurrerende producten
   - Gebruiksvoorwaarden, export restricties
 - [ ] **LemonSqueezy account** aanmaken
   - Store configureren
-  - Producten aanmaken: PDFluent Business, SDK Indie, SDK Professional
+  - Producten aanmaken: PDFluent Business, SDK Startup, SDK Business
   - Checkout flows testen
-  - Webhook endpoints configureren
-- [ ] **Keygen.sh account** aanmaken
-  - Producten aanmaken voor SDK tiers
-  - Policy configureren (machine limits, offline grace period)
-  - Webhook integratie met LemonSqueezy (via Zapier of custom)
+  - Webhook endpoints configureren voor license file generatie
+- [ ] **Moneybird account** aanmaken (voor enterprise facturatie)
+  - IBAN/bankgegevens configureren
+  - Factuurtemplate met bedrijfsgegevens
+  - Btw-instellingen (NL btw + EU reverse charge)
 - [ ] **Apple Developer Account** ($99/jaar)
 - [ ] **Microsoft Store Developer Account** ($19 eenmalig)
 
-#### Week 2-3: Website & Documentatie
+#### Week 2-3: Licentie-infrastructuur bouwen
+
+- [ ] **Ed25519 keypair genereren** (private key veilig opslaan!)
+- [ ] **License signing tool** bouwen (CLI)
+  - Input: klantdata, tier, seats, expiry, features
+  - Output: signed JSON license file
+  - Werkt voor zowel PDFluent als SDK licenties
+- [ ] **License verifier** implementeren in Tauri (PDFluent)
+  - Ed25519 signature verificatie
+  - Eerste-keer-keuze dialog (Persoonlijk / Zakelijk)
+  - License file laden + valideren
+  - Periodieke herinnering bij zakelijk gebruik zonder license
+  - Offline grace period (7 dagen na expiry)
+- [ ] **License verifier** implementeren in SDK
+  - Ed25519 signature verificatie bij `XfaSdk::init_with_license()`
+  - 30-dagen evaluatielimiet (geen license file aanwezig)
+  - Duidelijke foutmelding na evaluatieperiode
+- [ ] **LemonSqueezy → license file webhook** bouwen
+  - Bij betaling: automatisch license file genereren + emailen
+  - Eenvoudige Cloudflare Worker of Hetzner VPS
+
+#### Week 3-4: Website & Product
 
 - [ ] **pdfluent.com** bouwen en live zetten
   - Landing page: screenshots, features, download buttons
   - "Gratis voor persoonlijk gebruik" prominente messaging
   - Zakelijke licentie pagina met LemonSqueezy checkout link
+  - Enterprise: "10+ licenties? Neem contact op"
   - Privacy policy, EULA
   - Tech stack: Astro of Hugo op Cloudflare Pages
 - [ ] **xfa-sdk.com** bouwen (of sdk.pdfluent.com)
   - Productpagina met features, benchmarks
-  - Pricing pagina (transparant, alle tiers)
-  - "Get Started" met installatie-instructies
+  - Pricing pagina (transparant, Startup/Business/Enterprise/OEM)
+  - "Get Started" met evaluatie-download + installatie-instructies
   - API documentatie (Docusaurus of mdBook)
   - Code voorbeelden per taal (Rust, Python, Node.js, C)
-- [ ] **AlternativeTo.net listing** aanmaken (PDFluent vs Adobe, Foxit, PDF Expert)
-
-#### Week 3-4: Product Gereedmaken
-
-- [ ] **PDFluent migratie naar XFA SDK** afronden (of MVP bepalen)
-- [ ] **License check implementeren** in Tauri
-  - Eerste-keer-keuze dialog (Persoonlijk / Zakelijk)
-  - License key invoerveld bij "Zakelijk"
-  - LemonSqueezy License API validatie
-  - Offline grace period (7 dagen)
-  - Periodieke herinnering bij zakelijk gebruik zonder key (na 30 dagen)
-- [ ] **Auto-update systeem** opzetten (Tauri updater)
-- [ ] **Installers bouwen**: .dmg (macOS), .msi (Windows), .AppImage (Linux)
-- [ ] **App Store submissions** voorbereiden (screenshots, beschrijvingen)
-- [ ] **Community tier SDK** klaarmaken
-  - Watermark toevoegen bij geen geldige key
-  - Rate limit: 100 docs/maand
-  - Publiceren op crates.io
+- [ ] **AlternativeTo.net listing** aanmaken
+- [ ] **PDFluent + SDK builds** gereedmaken
+  - Installers: .dmg (macOS), .msi (Windows), .AppImage (Linux)
+  - SDK evaluatie-builds: per platform, met build-timestamp
+  - Auto-update systeem opzetten (Tauri updater)
+- [ ] **App Store submissions** voorbereiden
 
 ---
 
@@ -485,11 +628,11 @@ PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met 
 - [ ] Kritieke bugs fixen
 - [ ] Eerste iteratie van de app op basis van feedback
 - [ ] App Store reviews monitoren en beantwoorden
-- [ ] Product Hunt listing voorbereiden (screenshots, tagline, maker comment)
+- [ ] Product Hunt listing voorbereiden
 
 **KPI targets maand 1:**
 - 1.000-3.000 downloads
-- 50-100 GitHub issues/feedback items
+- 50-100 feedback items
 - 0-5 Business licenties
 - MRR: €0-€500
 
@@ -508,9 +651,7 @@ PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met 
   - Target: The Verge, TechCrunch, Ars Technica, Tweakers.net
   - Angle: "Solo developer bouwt gratis alternatief voor Adobe's €240/jaar product"
 - [ ] YouTube tech reviewers benaderen (10K-100K subs)
-  - Stuur ze de app + one-pager met features
 - [ ] SEO-content schrijven: "PDFluent vs Adobe Acrobat", "PDFluent vs PDFgear", "Beste gratis PDF editor 2026"
-- [ ] App Store Optimization: keywords, screenshots, beschrijvingen
 
 **KPI targets maand 2:**
 - 5.000-10.000 downloads cumulatief
@@ -520,51 +661,45 @@ PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met 
 
 #### Maand 3: Stabilisatie & eerste B2B
 
-**Acties:**
 - [ ] Bug backlog afwerken op basis van user feedback
 - [ ] Feature requests prioriteren (top 3 implementeren)
-- [ ] XFA SDK Community tier publiceren op crates.io
+- [ ] XFA SDK evaluatie-build publiceren op xfa-sdk.com
 - [ ] npm pakket `@xfa/wasm` publiceren
 - [ ] Eerste "Powered by XFA SDK" case study schrijven (PDFluent zelf)
-- [ ] LinkedIn: beginnen met regelmatig posten over PDF, security, Rust
-  - 2-3x per week, waarde-gericht (niet sales-gericht)
-  - Topics: PDF security, Rust vs C++ in document processing, compliance
+- [ ] LinkedIn: beginnen met regelmatig posten (2-3x/week)
 
 **KPI targets maand 3:**
 - 10.000-15.000 downloads cumulatief
 - 50-100 Business licenties
-- Eerste SDK community tier downloads
+- Eerste SDK evaluatie-downloads
 - MRR: €1.500-€3.000
 
 ---
 
 ### FASE 2: SDK Launch & Schaling (Maand 4-6)
 
-> **Doel**: SDK als apart product lanceren, eerste betalende SDK-klanten binnenhalen, Cloud API MVP.
+> **Doel**: SDK als apart product lanceren, eerste betalende SDK-klanten binnenhalen.
 
 #### Maand 4: SDK Soft Launch
 
 - [ ] XFA SDK documentatie site live (xfa-sdk.com/docs)
 - [ ] Pricing pagina live met LemonSqueezy checkout integratie
-- [ ] Keygen integratie live (license keys voor betaalde tiers)
+- [ ] License file generatie-webhook live en getest
 - [ ] SDK aankondiging:
   - Blog post: "Introducing XFA SDK — The first pure-Rust PDF engine"
   - Hacker News: "Show HN: Full PDF SDK in pure Rust — XFA 3.3, FormCalc, WASM"
   - r/rust post
-  - crates.io: `xfa-sdk` update met betaalde tiers
 - [ ] Eerste gratis pilots aanbieden aan 5-10 bedrijven
   - Via LinkedIn DM naar engineering leads in target verticals
-  - 30 dagen gratis Professional tier
+  - 60 dagen gratis (extended evaluation license file)
 
-#### Maand 5: Cloud API MVP
+#### Maand 5: Developer Marketing
 
-- [ ] REST API bouwen bovenop XFA SDK
-  - Endpoints: /render, /extract-text, /fill-form, /convert, /validate
-  - Hosting: Cloudflare Workers (WASM) of Hetzner VPS
-- [ ] API documentatie schrijven
-- [ ] Usage-based pricing implementeren via LemonSqueezy
-- [ ] API publiceren op RapidAPI (extra visibility)
-- [ ] Eerste API-klanten werven via developer communities
+- [ ] Technische blogposts: "XFA SDK vs Apryse", "PDF/A in Rust"
+- [ ] Stack Overflow: PDF/XFA vragen beantwoorden
+- [ ] crates.io: evaluatie crate publiceren
+- [ ] Eerste SDK support cases afhandelen
+- [ ] Cloud API MVP evalueren (scope bepalen)
 
 #### Maand 6: Eerste betalende SDK-klanten
 
@@ -572,13 +707,12 @@ PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met 
 - [ ] Eerste case studies schrijven
 - [ ] Testimonials verzamelen
 - [ ] Enterprise leads identificeren (LinkedIn Sales Navigator)
-- [ ] SDK vergelijkingscontent: "XFA SDK vs Apryse", "XFA SDK vs iText"
+- [ ] SDK vergelijkingscontent publiceren
 
 **KPI targets maand 6:**
 - 20.000-30.000 PDFluent downloads cumulatief
 - 150-300 Business licenties
 - 3-5 betalende SDK-klanten
-- 10-20 API-gebruikers
 - MRR: €5.000-€8.000
 
 ---
@@ -601,19 +735,12 @@ PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met 
 
 #### Maand 9-10: Reseller Partnerships
 
-- [ ] MoR (LemonSqueezy) voor self-serve tot €15K/jaar
 - [ ] Eerste reseller-gesprekken:
   - SoftwareOne (Benelux/DACH)
   - Comparex/Insight
   - Regionale system integrators (Ordina, Sogeti)
-- [ ] Reseller-programma opzetten:
-  - Commissie: 20-30%
-  - Marketing materiaal leveren
-  - Demo-omgeving beschikbaar stellen
-  - Deal registration systeem
-- [ ] XFA Legacy Migratie als dienst aanbieden
-  - Via system integrators naar overheden
-  - Pricing: per-project of per-document
+- [ ] Reseller-programma opzetten (zie sectie 9)
+- [ ] XFA Legacy Migratie als dienst aanbieden via system integrators
 
 #### Maand 11-12: Consolidatie
 
@@ -651,13 +778,7 @@ PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met 
 #### Optie B: Strategic Exit
 
 - [ ] Technology brief schrijven met metrics
-  - Downloads, ARR, klanten, churn, growth rate
-  - Technische differentiatie (XFA, Rust, WASM)
-- [ ] Targets benaderen:
-  - Apryse/Thoma Bravo (actieve koper)
-  - Foxit (zoekt next-gen tech)
-  - Nutrient/PSPDFKit (cross-platform focus)
-  - Cloudflare (WASM edge computing)
+- [ ] Targets benaderen: Apryse, Foxit, Nutrient, Cloudflare
 - [ ] M&A adviseur inhuren (5-10% commissie)
 - [ ] Verwachte waardering met traction: €1M-€5M
 
@@ -665,8 +786,7 @@ PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met 
 
 - [ ] Angel/pre-seed ronde: €200K-€500K voor 10-15% equity
 - [ ] Pitch deck bouwen met metrics
-- [ ] Nederlandse angel investors benaderen
-- [ ] Accelerators overwegen: Y Combinator, Techstars
+- [ ] Nederlandse angel investors + accelerators
 
 **KPI targets maand 24:**
 - 150.000-300.000 PDFluent downloads
@@ -680,11 +800,9 @@ PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met 
 
 ## 9. Reseller & Distributie Strategie
 
-### Twee categorieën resellers
+### Twee categorieën
 
-#### Categorie 1: Merchant of Record (dag 1)
-
-**Platform: LemonSqueezy**
+#### Categorie 1: Merchant of Record — LemonSqueezy (dag 1)
 
 | Aspect | Detail |
 |--------|--------|
@@ -693,9 +811,8 @@ PDFluent Business is geen "upgrade" met extra features. Het is dezelfde app met 
 | Wat jij doet | Product leveren, support, marketing |
 | Landen | 135+ |
 | Betaalmethoden | Creditcard, PayPal, Apple Pay, Google Pay, iDEAL (via Stripe) |
-| Geschikt voor | PDFluent Business + SDK self-serve (tot ~€15K/jaar) |
-
-**Actie**: Account aanmaken in Fase 0.
+| Geschikt voor | PDFluent Business (1-9 seats) + SDK self-serve (Startup/Business) |
+| Limiet | Niet geschikt voor enterprise procurement (geen PO, geen NET-30) |
 
 #### Categorie 2: Enterprise Resellers & Distributeurs (maand 9+)
 
@@ -739,10 +856,10 @@ System integrators (Sogeti, Ordina) die overheids-IT doen, kunnen XFA migratie-p
 | Hetzner VPS (API + test infra) | €600 | Jaarlijks |
 | Hetzner Storage Box | €200 | Jaarlijks |
 | LemonSqueezy | 5% + $0,50/tx | Per transactie |
-| Keygen.sh | €0-€1.200 | Gratis → €99/mo bij groei |
+| Moneybird | €132 | Jaarlijks (€11/mo) |
 | Juridisch (EULA, licenties) | €500-€2.000 | Eenmalig |
 | LinkedIn Sales Navigator | €0-€900 | Optioneel, jaarlijks |
-| **Totaal jaar 1** | **~€2.000-€5.000** | + transactiekosten |
+| **Totaal jaar 1** | **~€2.000-€4.000** | + transactiekosten |
 
 ### Revenue projectie (conservatief)
 
@@ -756,16 +873,16 @@ System integrators (Sogeti, Ordina) die overheids-IT doen, kunnen XFA migratie-p
 | 18 | 150.000 | 7.500 | 750 | 1.200 | €9.900 |
 | 24 | 250.000 | 12.500 | 1.250 | 2.000 | €16.500 |
 
-#### SDK licenties (gemiddeld €3.500/klant/jaar)
+#### SDK licenties (per-product model)
 
-| Maand | Community users | Betalende klanten | Gem. deal | MRR SDK |
-|-------|----------------|-------------------|-----------|---------|
-| 6 | 50 | 3 | €2.500 | €625 |
-| 12 | 200 | 10 | €3.000 | €2.500 |
-| 18 | 500 | 18 | €3.500 | €5.250 |
-| 24 | 1.000 | 25 | €4.000 | €8.333 |
+| Maand | Evaluatie-downloads | Betalende klanten | Mix | MRR SDK |
+|-------|--------------------|--------------------|-----|---------|
+| 6 | 50 | 3 | 2× Startup, 1× Business | €1.150 |
+| 12 | 200 | 8 | 4× Startup, 3× Business, 1× Enterprise | €3.850 |
+| 18 | 500 | 15 | 6× Startup, 6× Business, 3× Enterprise | €7.900 |
+| 24 | 1.000 | 22 | 8× Startup, 8× Business, 4× Enterprise, 2× OEM | €13.800 |
 
-#### Enterprise deals (€15K+/jaar)
+#### Enterprise deals (€15K+/jaar, via resellers)
 
 | Maand | Actieve enterprise deals | Gem. deal | MRR Enterprise |
 |-------|-------------------------|-----------|----------------|
@@ -778,10 +895,10 @@ System integrators (Sogeti, Ordina) die overheids-IT doen, kunnen XFA migratie-p
 | Maand | MRR PDFluent | MRR SDK | MRR Enterprise | MRR Totaal | ARR |
 |-------|-------------|---------|----------------|------------|-----|
 | 3 | €619 | €0 | €0 | €619 | €7.425 |
-| 6 | €1.650 | €625 | €0 | €2.275 | €27.300 |
-| 12 | €4.950 | €2.500 | €1.667 | €9.117 | €109.400 |
-| 18 | €9.900 | €5.250 | €6.250 | €21.400 | €256.800 |
-| 24 | €16.500 | €8.333 | €12.500 | €37.333 | €448.000 |
+| 6 | €1.650 | €1.150 | €0 | €2.800 | €33.600 |
+| 12 | €4.950 | €3.850 | €1.667 | €10.467 | €125.600 |
+| 18 | €9.900 | €7.900 | €6.250 | €24.050 | €288.600 |
+| 24 | €16.500 | €13.800 | €12.500 | €42.800 | €513.600 |
 
 ### Break-even analyse
 
@@ -789,8 +906,8 @@ System integrators (Sogeti, Ordina) die overheids-IT doen, kunnen XFA migratie-p
 |------------|-------------|----------------|
 | Vaste kosten | ~€300/maand | 4 PDFluent Business licenties |
 | LemonSqueezy fees (5%) | Variabel | Inbegrepen in marge |
-| Keygen fees | €0-€99/maand | Vanaf ~100 SDK users |
-| **Totaal break-even** | **~€400/maand** | **~5 betalende klanten** |
+| Moneybird | €11/maand | Inbegrepen in vaste kosten |
+| **Totaal break-even** | **~€350/maand** | **~4 betalende klanten** |
 
 ---
 
@@ -801,8 +918,8 @@ System integrators (Sogeti, Ordina) die overheids-IT doen, kunnen XFA migratie-p
 | Moment | Metrics | Geschatte waardering | Methode |
 |--------|---------|---------------------|---------|
 | Nu (geen traction) | 0 klanten, 0 revenue | €200K-€500K | Cost-to-recreate |
-| Maand 12 (€110K ARR) | 600+ licenties, 10 SDK klanten | €500K-€1,5M | 5-10x ARR |
-| Maand 24 (€450K ARR) | 2.000+ licenties, 25 SDK klanten | €2M-€5M | 5-10x ARR |
+| Maand 12 (€125K ARR) | 600+ licenties, 8 SDK klanten | €500K-€1,5M | 5-10x ARR |
+| Maand 24 (€514K ARR) | 2.000+ licenties, 22 SDK klanten | €2M-€5M | 5-10x ARR |
 | Maand 36 (€1M+ ARR) | 5.000+ licenties, 50+ SDK klanten | €5M-€15M | 5-15x ARR |
 
 ### Potentiële kopers
@@ -813,16 +930,15 @@ System integrators (Sogeti, Ordina) die overheids-IT doen, kunnen XFA migratie-p
 | **Foxit** | Concurrentie met Apryse, next-gen tech | €500K-€3M | Medium |
 | **Nutrient** (PSPDFKit) | Cross-platform, Rust voor mobile | €500K-€2M | Medium |
 | **Cloudflare** | WASM edge PDF processing | €1M-€5M | Medium |
-| **Datadog/New Relic** | Document compliance monitoring | €500K-€2M | Laag |
 
 ### Strategische timing
 
 **Verkoop niet te vroeg.** De waardering stijgt exponentieel met traction:
 - Zonder revenue: €200K-€500K (technology asset)
-- Met €100K ARR: €1M-€2M (5-10x multiple, bewezen product-market fit)
+- Met €100K ARR: €1M-€2M (bewezen product-market fit)
 - Met €500K ARR: €3M-€7M (hogere multiple door groeitraject)
 
-**Ideaal verkoopmoment**: 18-24 maanden, wanneer je €250K-€500K ARR hebt én Apryse/Foxit actief acquisities doen.
+**Ideaal verkoopmoment**: 18-24 maanden, wanneer je €250K-€500K ARR hebt.
 
 ---
 
@@ -832,21 +948,21 @@ System integrators (Sogeti, Ordina) die overheids-IT doen, kunnen XFA migratie-p
 
 | # | Risico | Impact | Kans | Mitigatie |
 |---|--------|--------|------|-----------|
-| 1 | **Overbelasting** — twee producten solo onderhouden | Hoog | Hoog | Prioriteer PDFluent stabiliteit boven nieuwe features. SDK community tier vergt weinig support. |
+| 1 | **Overbelasting** — twee producten solo onderhouden | Hoog | Hoog | Prioriteer PDFluent stabiliteit boven nieuwe features. SDK vergt weinig support. |
 | 2 | **Geen traction** — PDFluent wordt niet opgepikt | Hoog | Medium | Meerdere launch-kanalen tegelijk. Als PH faalt, focus op Reddit/HN. App Store biedt organisch bereik. |
 | 3 | **Enterprise sales te traag** — lange cycles | Medium | Hoog | Niet afhankelijk van enterprise. Laag 1 en 2 draaien onafhankelijk. Enterprise is bonus. |
 | 4 | **Concurrent lanceert Rust PDF SDK** | Medium | Laag | XFA + FormCalc is onze moat. Dat kopieer je niet in 6 maanden. First-mover advantage. |
-| 5 | **Pricing te laag** — race to bottom | Medium | Medium | Verlaag nooit de prijs. Voeg waarde toe (features, support) in plaats van korting. |
+| 5 | **Pricing te laag** — race to bottom | Medium | Medium | Verlaag nooit de prijs. Voeg waarde toe in plaats van korting. |
 
 ### Aanvullende risico's
 
 | Risico | Mitigatie |
 |--------|-----------|
 | LemonSqueezy service issues | Backup: Paddle of FastSpring. Migratie is mogelijk. |
-| Keygen downtime | SDK heeft offline grace period (7 dagen). Overweeg self-hosted Keygen. |
+| Ed25519 private key compromised | Key rotation procedure: nieuwe public key in volgende app/SDK release. Oude licenties blijven werken tot expiry. Bewaar private key offline (hardware key of air-gapped machine). |
 | App Store afwijzing | Direct download via website als backup. App Store is nice-to-have, niet must-have. |
-| EULA-enforcement | Niet hard afdwingen. Vertrouw op compliance-cultuur bij bedrijven. Focus op waarde, niet op dwang. |
-| Juridische claim (patent troll) | Rustig blijven. Pure Rust implementatie op basis van ISO 32000 spec. Geen code gekopieerd. Bewaar documentatie van clean-room proces. |
+| SDK piraterij | Bewust geaccepteerd risico. Focus op waarde (support, updates, compliance) niet op enforcement. Grote organisaties betalen uit compliance. |
+| Juridische claim (patent troll) | Pure Rust implementatie op basis van ISO 32000 spec. Geen code gekopieerd. Bewaar documentatie van clean-room proces. |
 
 ---
 
@@ -864,7 +980,8 @@ System integrators (Sogeti, Ordina) die overheids-IT doen, kunnen XFA migratie-p
     ↓           ├───────────────────────────────────────────┤
     NICHE       │  ★ PDFluent (gratis│  Nutrient ($5K/user) │
                 │    persoonlijk)    │  iText ($10K-$210K)  │
-                │  ★ XFA SDK (€999+)│                      │
+                │  ★ XFA SDK (€1.99K│                      │
+                │    per product)    │                      │
                 └───────────────────────────────────────────┘
 ```
 
@@ -875,7 +992,8 @@ System integrators (Sogeti, Ordina) die overheids-IT doen, kunnen XFA migratie-p
 | **Enige pure-Rust XFA engine** | Geen C++ dependency, memory-safe | Security-bewuste organisaties |
 | **WASM-native** | XFA in de browser, geen server nodig | SaaS bedrijven, edge computing |
 | **€99/jaar vs €240/jaar** | 60% goedkoper dan Adobe Acrobat | Elke business gebruiker |
-| **Volledige XFA 3.3 + FormCalc** | Slechts 3 spelers hebben dit (Adobe, Foxit, wij) | Overheden, belastingdiensten |
+| **Per-product licensing** | Simpeler dan per-developer seats | Procurement teams |
+| **Volledige XFA 3.3 + FormCalc** | Slechts 3 spelers hebben dit | Overheden, belastingdiensten |
 | **3MB vs 7GB** | Instant install, geen bloat | Iedereen die Adobe haat |
 | **Privacy-first, geen cloud** | Geen data naar derden | GDPR-bewuste organisaties |
 | **EU compliance stack** | PDF/A, PDF/UA, ZUGFeRD | EU overheid en bedrijven |
@@ -903,55 +1021,47 @@ System integrators (Sogeti, Ordina) die overheids-IT doen, kunnen XFA migratie-p
 |-----|------|----------------|-----------------|
 | Downloads (cumulatief) | Website analytics + App Stores | 30.000 | 75.000 |
 | MAU (Monthly Active Users) | Optionele telemetrie (opt-in) | 5.000 | 15.000 |
-| Business licenties actief | LemonSqueezy dashboard | 200 | 600 |
+| Business licenties actief | LemonSqueezy + Moneybird | 200 | 600 |
 | Conversieratio (download → business) | Berekend | 0,5% | 0,8% |
 | Churn rate (business) | LemonSqueezy | <5%/maand | <3%/maand |
 | App Store rating | App Stores | 4.0+ | 4.3+ |
-| Support tickets/maand | Email/issue tracker | <50 | <100 |
 
 **SDK:**
 | KPI | Bron | Target Maand 6 | Target Maand 12 |
 |-----|------|----------------|-----------------|
-| Community tier users | Keygen/crates.io | 50 | 200 |
-| Betalende klanten | LemonSqueezy + Keygen | 3 | 10 |
-| ARR (SDK) | Berekend | €7.500 | €30.000 |
-| Trial → betaald conversie | Keygen | 10% | 15% |
-| Gem. deal size | LemonSqueezy | €2.500 | €3.000 |
+| Evaluatie-downloads | Website analytics | 50 | 200 |
+| Betalende klanten | LemonSqueezy + Moneybird | 3 | 8 |
+| ARR (SDK) | Berekend | €13.800 | €46.200 |
+| Evaluatie → betaald conversie | Berekend | 6% | 4% (meer volume) |
+| Gem. deal size | Berekend | €3.800 | €4.800 |
 
 **Overall:**
 | KPI | Target Maand 6 | Target Maand 12 | Target Maand 24 |
 |-----|----------------|-----------------|-----------------|
-| MRR totaal | €2.275 | €9.117 | €37.333 |
-| ARR totaal | €27.300 | €109.400 | €448.000 |
+| MRR totaal | €2.800 | €10.467 | €42.800 |
+| ARR totaal | €33.600 | €125.600 | €513.600 |
 | Burn rate | €300-€500/mo | €500-€1.000/mo | €1.000-€2.000/mo |
 | Runway (bij €0 externe funding) | ∞ (kosten = laag) | ∞ | ∞ |
-
-### Kwartaalrapportage
-
-Elk kwartaal:
-1. Revenue per laag (PDFluent / SDK / Enterprise)
-2. Download trends en conversieratio's
-3. Churn analyse (waarom vertrekken klanten?)
-4. Top feature requests (prioriteren voor roadmap)
-5. Concurrentie-update (nieuwe spelers, prijswijzigingen)
-6. Exit-waarde schatting (ARR × multiple)
 
 ---
 
 ## 15. Beslissingslog
 
-Dit document bevat de strategische beslissingen die zijn genomen. Gebruik deze log om terug te verwijzen bij twijfel.
-
 | # | Beslissing | Rationale | Datum |
 |---|-----------|-----------|-------|
 | 1 | Editor closed source (niet open source) | Geen community-management overhead, betere IP-bescherming, JetBrains-model bewezen effectief | 10-03-2026 |
 | 2 | Geen feature-verschil tussen gratis en betaald | Maximale goodwill, hogere adoptie, compliance-conversie is sterker dan feature-gating | 10-03-2026 |
-| 3 | LemonSqueezy als MoR | Ingebouwde licensing, laagste complexiteit, Stripe-backing, 5% + $0,50 | 10-03-2026 |
-| 4 | Keygen voor SDK licensing | Tauri plugin, machine fingerprinting, offline validatie, Rust crate beschikbaar | 10-03-2026 |
-| 5 | Drie-lagen revenue model | Risicospreiding: als één laag tegenvalt, compenseren de andere twee | 10-03-2026 |
-| 6 | Transparante SDK pricing op website | Vertrouwen opbouwen, self-serve mogelijk maken, enterprise = "contact us" | 10-03-2026 |
-| 7 | Resellers pas na eigen klanten (maand 9+) | Resellers willen bewezen producten met referenties | 10-03-2026 |
-| 8 | Exit-optie open houden | Niet nu committeren aan doorgroeien of verkopen — metrics bepalen de keuze | 10-03-2026 |
+| 3 | LemonSqueezy als MoR voor self-serve | Ingebouwde licensing, laagste complexiteit, Stripe-backing, 5% + $0,50 | 10-03-2026 |
+| 4 | Directe facturatie + bankoverschrijving voor enterprise | LemonSqueezy kan geen PO/NET-30/bankoverschrijving; enterprise verwacht dit | 11-03-2026 |
+| 5 | Ed25519 signed license files (geen Keygen) | Simpeler, goedkoper, consistenter (zelfde systeem voor editor + SDK), volledig offline | 11-03-2026 |
+| 6 | SDK per-product pricing (niet per-developer) | Industry-standaard, simpeler voor kopers, betere deal sizes, geen "developers tellen" | 11-03-2026 |
+| 7 | SDK evaluatie: 30 dagen, geen watermark | Pragmatisch: SDK leest ook PDFs (watermark onlogisch), grote bedrijven betalen uit compliance | 11-03-2026 |
+| 8 | Drie-lagen revenue model | Risicospreiding: als één laag tegenvalt, compenseren de andere twee | 10-03-2026 |
+| 9 | Transparante SDK pricing op website | Vertrouwen opbouwen, self-serve mogelijk maken, Enterprise/OEM = "contact us" | 10-03-2026 |
+| 10 | Resellers pas na eigen klanten (maand 9+) | Resellers willen bewezen producten met referenties | 10-03-2026 |
+| 11 | Exit-optie open houden | Niet nu committeren aan doorgroeien of verkopen — metrics bepalen de keuze | 10-03-2026 |
+| 12 | Moneybird voor enterprise facturatie | Nederlands, betaalbaar, btw-aangifte, professionele facturen met IBAN | 11-03-2026 |
+| 13 | SDK redistributieverbod voor concurrerende producten | Industry-standaard (Apryse, iText, Nutrient), beschermt marktpositie | 11-03-2026 |
 
 ---
 
@@ -961,20 +1071,23 @@ Dit document bevat de strategische beslissingen die zijn genomen. Gebruik deze l
 
 - [ ] KvK-registratie up-to-date
 - [ ] EULA geschreven en gereviewd
-- [ ] SDK licentie-overeenkomst geschreven
+- [ ] SDK licentie-overeenkomst geschreven (incl. redistributieregels)
 - [ ] LemonSqueezy account + producten geconfigureerd
-- [ ] Keygen account + producten geconfigureerd
-- [ ] LemonSqueezy → Keygen webhook integratie werkend
+- [ ] Moneybird account geconfigureerd (enterprise facturatie)
+- [ ] Ed25519 keypair gegenereerd (private key veilig opgeslagen)
+- [ ] License signing CLI tool gebouwd
+- [ ] LemonSqueezy → license file webhook werkend
 - [ ] Apple Developer Account actief
 - [ ] Microsoft Store Developer Account actief
 - [ ] pdfluent.com live
-- [ ] xfa-sdk.com live met docs
+- [ ] xfa-sdk.com live met docs + pricing
 - [ ] AlternativeTo listing aangemaakt
-- [ ] PDFluent license check geïmplementeerd in Tauri
+- [ ] PDFluent license verifier geïmplementeerd in Tauri
+- [ ] SDK license verifier + evaluatielimiet geïmplementeerd
 - [ ] Auto-update systeem werkend
 - [ ] Installers gebuild (.dmg, .msi, .AppImage)
+- [ ] SDK evaluatie-builds beschikbaar per platform
 - [ ] App Store submissions voorbereid
-- [ ] SDK community tier op crates.io
 
 ### Fase 1 Checklist (Maand 1-3)
 
@@ -988,20 +1101,19 @@ Dit document bevat de strategische beslissingen die zijn genomen. Gebruik deze l
 - [ ] AlternativeTo reviews verzameld
 - [ ] Eerste 10+ Business licenties verkocht
 - [ ] Eerste bugs gefixt op basis van feedback
-- [ ] LinkedIn profiel geoptimaliseerd voor PDF/SDK thought leadership
+- [ ] LinkedIn profiel geoptimaliseerd
 - [ ] 10+ LinkedIn posts gepubliceerd
+- [ ] SDK evaluatie-build live op website
 
 ### Fase 2 Checklist (Maand 4-6)
 
 - [ ] SDK documentatie site live
-- [ ] SDK pricing pagina live
+- [ ] SDK pricing pagina live met LemonSqueezy checkout
 - [ ] SDK Hacker News launch
 - [ ] npm pakket gepubliceerd
-- [ ] 5-10 gratis pilots gestart
-- [ ] Cloud API MVP live
+- [ ] 5-10 gratis SDK pilots gestart
 - [ ] Eerste 3+ betalende SDK-klanten
 - [ ] Eerste case study geschreven
-- [ ] API op RapidAPI
 
 ### Fase 3 Checklist (Maand 7-12)
 
@@ -1011,7 +1123,7 @@ Dit document bevat de strategische beslissingen die zijn genomen. Gebruik deze l
 - [ ] 10+ enterprise prospects benaderd
 - [ ] Eerste reseller-gesprekken gevoerd
 - [ ] Reseller-programma gedocumenteerd
-- [ ] Eerste enterprise deal gesloten
+- [ ] Eerste enterprise deal gesloten (via directe facturatie + bankoverschrijving)
 - [ ] Maand 12 revenue review uitgevoerd
 - [ ] Jaar 2 roadmap bepaald
 
@@ -1022,9 +1134,11 @@ Dit document bevat de strategische beslissingen die zijn genomen. Gebruik deze l
 | Asset | Doel | Wanneer nodig |
 |-------|------|---------------|
 | EULA (NL + EN) | Juridische basis | Fase 0 |
-| SDK License Agreement (EN) | SDK klanten | Fase 0 |
-| Product Hunt listing (screenshots + copy) | Launch | Fase 1, maand 2 |
-| Hacker News post (titel + eerste comment) | Launch | Fase 1, maand 2 |
+| SDK License Agreement (EN) | SDK klanten (incl. redistributieregels) | Fase 0 |
+| License signing tool (CLI) | License files genereren | Fase 0 |
+| Factuurtemplate (Moneybird) | Enterprise facturatie | Fase 0 |
+| Product Hunt listing | Launch | Fase 1, maand 2 |
+| Hacker News post | Launch | Fase 1, maand 2 |
 | Productsheet SDK (2 pagina's, PDF) | Enterprise sales + resellers | Fase 2 |
 | Security Whitepaper | Enterprise prospects | Fase 3 |
 | Case Study template | Referenties | Fase 2+ |
@@ -1036,29 +1150,28 @@ Dit document bevat de strategische beslissingen die zijn genomen. Gebruik deze l
 
 ## Bijlage C: Bronnen & Referenties
 
+**Markt & Concurrentie:**
 - [PDF SDKs Software Market Forecast 2025-2032](https://www.statsndata.org/report/pdf-sdks-software-market-298367)
 - [Apryse Pricing & Licensing](https://apryse.com/pricing)
 - [Nutrient SDK Pricing](https://www.nutrient.io/sdk/pricing/)
-- [iText AGPL Licensing Discussion](https://beemanmuchmore.com/software-licensing-trolls-apryse-and-itext/)
+- [iText AGPL Licensing](https://itextpdf.com/how-buy/AGPLv3-license)
+- [IronPDF Licensing](https://ironpdf.com/licensing/)
+- [Syncfusion Pricing](https://www.syncfusion.com/sales/pricing)
+- [Apryse Acquisition History](https://canvasbusinessmodel.com/blogs/brief-history/apryse-brief-history)
+
+**Betalingsinfrastructuur:**
 - [LemonSqueezy — Merchant of Record](https://www.lemonsqueezy.com/reporting/merchant-of-record)
 - [LemonSqueezy Pricing](https://www.lemonsqueezy.com/pricing)
-- [LemonSqueezy 2026 Stripe Update](https://www.lemonsqueezy.com/blog/2026-update)
 - [LemonSqueezy License Key Management](https://docs.lemonsqueezy.com/help/licensing/generating-license-keys)
-- [Keygen.sh — Software Licensing API](https://keygen.sh)
-- [Keygen for Tauri Apps](https://keygen.sh/for-tauri-apps/)
-- [Keygen Pricing](https://keygen.sh/pricing/)
-- [tauri-plugin-keygen (Rust crate)](https://crates.io/crates/tauri-plugin-keygen)
-- [Open Core Business Model Handbook](https://handbook.opencoreventures.com/open-core-business-model/)
-- [Open Source Monetization Strategies](https://www.reo.dev/blog/monetize-open-source-software)
-- [Open Source Business Models (Wikipedia)](https://en.wikipedia.org/wiki/Business_models_for_open-source_software)
-- [Open Source Models That Work in 2026](https://technews180.com/blog/open-source-models-that-work/)
-- [Indie Hacker Success Stories 2026](https://www.somethingsblog.com/2026/01/24/real-indie-hacker-success-stories-that-prove-its-still-possible-in-2026/)
-- [How to Hit $10K MRR in 2026](https://dev.to/shayy/how-to-actually-hit-10k-mrr-in-2025-no-bs-just-what-works-204k)
-- [SaaSpocalypse — TechCrunch](https://techcrunch.com/2026/03/01/saas-in-saas-out-heres-whats-driving-the-saaspocalypse/)
-- [Will AI Disrupt SaaS? — Bain & Company](https://www.bain.com/insights/will-agentic-ai-disrupt-saas-technology-report-2025/)
-- [Apryse Acquisition History](https://canvasbusinessmodel.com/blogs/brief-history/apryse-brief-history)
-- [Apryse acquires LEAD Technologies](https://www.thomabravo.com/press-releases/apryse-announces-acquisition-of-ai-powered-document-toolkit-provider-lead-technologies)
+- [Paddle Invoicing & B2B](https://www.paddle.com/billing/invoicing)
+- [PostHog — Enterprise Software Buying](https://posthog.com/founders/how-to-buy-software-enterprise)
+
+**Licensing & Modellen:**
+- [Syncfusion Community License](https://www.syncfusion.com/products/communitylicense)
+- [iText Subscription Transition](https://itextpdf.com/blog/itext-news/itext-transitions-subscription-based-commercial-licenses)
 
 ---
 
+> **Gerelateerd document:** [LICENSING_AND_ENTERPRISE_DEPLOYMENT.md](../PDFluent/LICENSING_AND_ENTERPRISE_DEPLOYMENT.md) — technische details van het Ed25519 licentiesysteem, bestandsformaat, en enterprise deployment instructies.
+>
 > **Volgende update**: Na Fase 0 voltooiing — valideer aannames en pas projecties aan op basis van eerste data.

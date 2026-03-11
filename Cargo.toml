@@ -36,6 +36,7 @@ members = [
     "crates/xfa-golden-tests",
     "crates/xfa-api-server",
     "crates/xfa-license",
+    "crates/xfa-license-gen",
 
     # --- PDF manipulation ---
     "crates/pdf-manip",
